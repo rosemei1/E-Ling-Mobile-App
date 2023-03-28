@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto/bottombar.dart';
+import 'package:proto/widget/bottombar.dart';
 
 void main() => runApp(const MyApp());
 
@@ -16,5 +16,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
