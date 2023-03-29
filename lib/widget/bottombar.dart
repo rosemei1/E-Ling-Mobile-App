@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:proto/article.dart';
+import 'package:proto/ui/article.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});
@@ -12,7 +11,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Artikel(),
     Text(
@@ -34,7 +33,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
