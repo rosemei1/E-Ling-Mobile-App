@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/article.dart';
+import 'package:proto/topek.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});
@@ -14,10 +15,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Artikel(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    topikList(),
     Text(
       'Index 2: School',
       style: optionStyle,
