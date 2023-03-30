@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:proto/article.dart';
+import 'package:proto/profil.dart';
 import 'package:proto/topek.dart';
 
 class MyStatefulWidget extends StatefulWidget {
@@ -17,10 +18,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     Artikel(),
     topikList(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    ProfilPage(),
   ];
 
   void _onItemTapped(int index) {
