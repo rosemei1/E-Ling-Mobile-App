@@ -171,7 +171,8 @@ class topikList extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
+              ,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 border: Border.all(color: Colors.black54, width: 1.0),
