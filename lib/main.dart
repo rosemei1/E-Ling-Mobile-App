@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proto/artlist.dart';
 import 'package:proto/bottombar.dart';
 
 void main() => runApp(const MyApp());

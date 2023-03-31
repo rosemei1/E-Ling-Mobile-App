@@ -33,6 +33,14 @@ class _ArticleWebViewState extends State<ArticleWebView> {
         javascriptMode: JavascriptMode.unrestricted,
         initialUrl: widget.url,
         onWebViewCreated: (controller) => webViewController = controller,
+        onPageStarted: (url) {
+          webViewController.runJavascript(
+              "document.getElementsByTagName('mw-header')[0].style.display='none'");
+          webViewController.runJavascript(
+              "document.getElementsByTagName('footer')[0].style.display='none'");
+          webViewController.runJavascript(
+              "document.getElementsByTagName('section')[1].style.display='none'");
+        },
       ),
     );
   }

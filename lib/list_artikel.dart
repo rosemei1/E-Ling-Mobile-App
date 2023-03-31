@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:core';
 import 'package:proto/model/article.dart';
 import 'package:proto/model/artikel.dart';
-import 'package:proto/detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/model/materi.dart';
 import 'package:proto/web_view.dart';
 
 class NewsListPage extends StatelessWidget {
@@ -124,80 +124,27 @@ class NewsListPage extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
+              child: FutureBuilder<String>(
+                future: DefaultAssetBundle.of(context)
+                    .loadString('assets/json/materi.json'),
+                builder: (context, snapshot) {
+                  final List material = parseMateri(snapshot.data);
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: material.length,
+                    itemBuilder: (context, index) {
+                      return _buildMateriItem(context, material[index]!);
+                    },
+                  );
+                },
+              ),
+            ),
             SizedBox(height: 8),
             //vid
-            Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-              child: Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    SizedBox(height: 8),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.play_arrow,
-                        color: Color.fromARGB(255, 28, 140, 36),
-                        size: 40,
-                      ),
-                      title: Text('The Enchanted Nightingale'),
-                      subtitle:
-                          Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        TextButton(
-                          child: const Text('BUY TICKETS'),
-                          onPressed: () {/* ... */},
-                        ),
-                        const SizedBox(width: 8),
-                        TextButton(
-                          child: const Text('LISTEN'),
-                          onPressed: () {/* ... */},
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-              child: Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    SizedBox(height: 8),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.play_arrow,
-                        color: Color.fromARGB(255, 28, 140, 36),
-                        size: 40,
-                      ),
-                      title: Text('The Enchanted Nightingale'),
-                      subtitle:
-                          Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        TextButton(
-                          child: const Text('BUY TICKETS'),
-                          onPressed: () {/* ... */},
-                        ),
-                        const SizedBox(width: 8),
-                        TextButton(
-                          child: const Text('LISTEN'),
-                          onPressed: () {/* ... */},
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+
             //artikel
             Container(
               margin: EdgeInsets.only(
@@ -215,20 +162,23 @@ class NewsListPage extends StatelessWidget {
                 ),
               ),
             ),
-            FutureBuilder<String>(
-              future: DefaultAssetBundle.of(context)
-                  .loadString('assets/json/artikel.json'),
-              builder: (context, snapshot) {
-                final List articles = parseArticles(snapshot.data);
-                return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: articles.length,
-                  itemBuilder: (context, index) {
-                    return _buildArticleItem(context, articles[index]!);
-                  },
-                );
-              },
+            Container(
+              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
+              child: FutureBuilder<String>(
+                future: DefaultAssetBundle.of(context)
+                    .loadString('assets/json/artikel.json'),
+                builder: (context, snapshot) {
+                  final List articles = parseArticles(snapshot.data);
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: articles.length,
+                    itemBuilder: (context, index) {
+                      return _buildArticleItem(context, articles[index]!);
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -242,6 +192,14 @@ class NewsListPage extends StatelessWidget {
     }
     final List parsed = jsonDecode(json);
     return parsed.map((json) => Artikel.fromJson(json)).toList();
+  }
+
+  List parseMateri(String? json) {
+    if (json == null) {
+      return [];
+    }
+    final List parsed = jsonDecode(json);
+    return parsed.map((json) => Materi.fromJson(json)).toList();
   }
 }
 
@@ -271,6 +229,55 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                     MaterialPageRoute(
                         builder: (context) => ArticleWebView(
                               url: article.link,
+                            )));
+              },
+            ),
+            const SizedBox(width: 8),
+          ],
+        ),
+      ],
+    ),
+  );
+  // return ListTile(
+  //   contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+  //   title: Text(article.nama),
+  //   onTap: () {
+  //     Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //             builder: (context) => ArticleWebView(
+  //                   url: article.link,
+  //                 )));
+  //   },
+  // );
+}
+
+Widget _buildMateriItem(BuildContext context, Materi materi) {
+  return Card(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        SizedBox(height: 8),
+        ListTile(
+          leading: Icon(
+            Icons.play_arrow,
+            color: Color.fromARGB(255, 28, 140, 36),
+            size: 40,
+          ),
+          title: Text(materi.nama),
+          subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            TextButton(
+              child: const Text('LISTEN'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ArticleWebView(
+                              url: materi.link,
                             )));
               },
             ),
