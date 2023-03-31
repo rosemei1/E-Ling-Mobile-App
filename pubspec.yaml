@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   animations: ^2.0.7
   flutter_gen: ^5.2.0
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,7 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/earth.png
+    - assets/articles.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

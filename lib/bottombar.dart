@@ -1,17 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:proto/article.dart';
+import 'package:proto/homepage.dart';
 import 'package:proto/profil.dart';
 import 'package:proto/topek.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
+class botNav extends StatefulWidget {
+  const botNav({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<botNav> createState() => _botNavState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _botNavState extends State<botNav> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
