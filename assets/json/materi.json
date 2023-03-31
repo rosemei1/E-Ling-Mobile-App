@@ -14,5 +14,21 @@
             "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
             "created_at": null,
             "updated_at": null
+        },
+        {
+            "id": 3,
+            "nama": "pengelolaan sampah",
+            "id_kategory": 3,
+            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 4,
+            "nama": "waste management",
+            "id_kategory": 4,
+            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
+            "created_at": null,
+            "updated_at": null
         }
     ]

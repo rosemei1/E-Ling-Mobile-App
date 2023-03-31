@@ -7,9 +7,15 @@ import 'package:proto/model/materi.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/youtube_view.dart';
 
-class NewsListPage extends StatelessWidget {
+class NewsListPage extends StatefulWidget {
   static const routeName = '/article_list';
+  final int id;
+  const NewsListPage({required this.id});
+  @override
+  State<NewsListPage> createState() => _NewsListPageState();
+}
 
+class _NewsListPageState extends State<NewsListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,7 +198,10 @@ class NewsListPage extends StatelessWidget {
       return [];
     }
     final List parsed = jsonDecode(json);
-    return parsed.map((json) => Artikel.fromJson(json)).toList();
+    return parsed
+        .map((json) => Artikel.fromJson(json))
+        .where((article) => article.idKategori == widget.id)
+        .toList();
   }
 
   List parseMateri(String? json) {
@@ -200,7 +209,10 @@ class NewsListPage extends StatelessWidget {
       return [];
     }
     final List parsed = jsonDecode(json);
-    return parsed.map((json) => Materi.fromJson(json)).toList();
+    return parsed
+        .map((json) => Materi.fromJson(json))
+        .where((article) => article.idKategory == widget.id)
+        .toList();
   }
 }
 

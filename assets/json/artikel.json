@@ -10,5 +10,24 @@
             "nama": "pengelolaan sampah",
             "id_kategori": 2,
             "link": "https://www.bbc.com"
+        },
+        {
+            "id": 3,
+            "nama": "pengelolaan sampah",
+            "id_kategori": 3,
+            "link": "https://www.bbc.com"
+        },
+        {
+            "id": 4,
+            "nama": "pengelolaan sampah",
+            "id_kategori": 4,
+            "link": "https://www.bbc.com"
+        },
+        {
+            "id": 5,
+            "nama": "pengelolaan sampah",
+            "id_kategori": 2,
+            "link": "https://www.bbc.com"
         }
-    ]
+
+]
