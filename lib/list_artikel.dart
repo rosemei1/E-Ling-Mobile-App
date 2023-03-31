@@ -5,6 +5,7 @@ import 'package:proto/model/artikel.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/model/materi.dart';
 import 'package:proto/web_view.dart';
+import 'package:proto/youtube_view.dart';
 
 class NewsListPage extends StatelessWidget {
   static const routeName = '/article_list';
@@ -276,7 +277,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ArticleWebView(
+                        builder: (context) => ViewYoutube(
                               url: materi.link,
                             )));
               },
