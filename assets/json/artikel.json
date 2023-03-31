@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nama": "waste managemen",
+    "id_kategori": 1,
+    "link": "https://www.netmedia.co.id/home"
+  },
+  {
+    "id": 2,
+    "nama": "pengelolaan sampah",
+    "id_kategori": 2,
+    "link": "https://www.bbc.com"
+  }
+]

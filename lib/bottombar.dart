@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:proto/article.dart';
 import 'package:proto/profil.dart';
+import 'package:proto/topek.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});
@@ -16,11 +17,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Artikel(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-     ProfilPage(),
+    topikList(),
+    ProfilPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -52,7 +50,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(255, 28, 140, 36),
         onTap: _onItemTapped,
       ),
     );
