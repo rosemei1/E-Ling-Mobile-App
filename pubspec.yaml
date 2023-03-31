@@ -38,6 +38,7 @@ dependencies:
   animations: ^2.0.7
   flutter_gen: ^5.2.0
   webview_flutter: ^3.0.4
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +64,10 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/earth.png
-    - assets/articles.json
+    - assets/json/artikel.json
+    - assets/json/kategori.json
+    - assets/json/materi.json
+    - assets/json/articles.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

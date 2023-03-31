@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:core';
-import 'package:proto/article.dart';
+import 'package:proto/model/article.dart';
+import 'package:proto/model/artikel.dart';
 import 'package:proto/detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/web_view.dart';
 
 class NewsListPage extends StatelessWidget {
   static const routeName = '/article_list';
@@ -51,7 +53,12 @@ class NewsListPage extends StatelessWidget {
                           children: <TextSpan>[
                             TextSpan(
                               text: 'Apa sih itu Waste Management?',
-                              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "Poppins",),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Poppins",
+                              ),
                             ),
                           ],
                         ),
@@ -62,11 +69,16 @@ class NewsListPage extends StatelessWidget {
                           SizedBox(height: 10),
                           RichText(
                             text: TextSpan(
-                              style: TextStyle(fontSize: 15.0, color: Colors.black),
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.black),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ...',
-                                  style: TextStyle(fontSize: 14, fontFamily: "Poppins",color: Colors.white),
+                                  text:
+                                      'Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ...',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "Poppins",
+                                      color: Colors.white),
                                 ),
                               ],
                             ),
@@ -79,7 +91,13 @@ class NewsListPage extends StatelessWidget {
                       children: <Widget>[
                         const SizedBox(width: 8),
                         TextButton(
-                          child: const Text('Baca lebih lanjut', style: TextStyle(fontFamily: "Poppins", fontSize: 13, color: Colors.white),),
+                          child: const Text(
+                            'Baca lebih lanjut',
+                            style: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 13,
+                                color: Colors.white),
+                          ),
                           onPressed: () {/* ... */},
                         ),
                         const SizedBox(width: 8),
@@ -91,7 +109,8 @@ class NewsListPage extends StatelessWidget {
             ),
             //title
             Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
+              margin: EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -115,9 +134,14 @@ class NewsListPage extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 8),
                     const ListTile(
-                      leading: Icon(Icons.play_arrow, color: Color.fromARGB(255, 28, 140, 36), size: 40,),
+                      leading: Icon(
+                        Icons.play_arrow,
+                        color: Color.fromARGB(255, 28, 140, 36),
+                        size: 40,
+                      ),
                       title: Text('The Enchanted Nightingale'),
-                      subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+                      subtitle:
+                          Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -146,9 +170,14 @@ class NewsListPage extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 8),
                     const ListTile(
-                      leading: Icon(Icons.play_arrow, color: Color.fromARGB(255, 28, 140, 36), size: 40,),
+                      leading: Icon(
+                        Icons.play_arrow,
+                        color: Color.fromARGB(255, 28, 140, 36),
+                        size: 40,
+                      ),
                       title: Text('The Enchanted Nightingale'),
-                      subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+                      subtitle:
+                          Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -171,7 +200,8 @@ class NewsListPage extends StatelessWidget {
             ),
             //artikel
             Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
+              margin: EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -187,7 +217,7 @@ class NewsListPage extends StatelessWidget {
             ),
             FutureBuilder<String>(
               future: DefaultAssetBundle.of(context)
-                  .loadString('assets/articles.json'),
+                  .loadString('assets/json/artikel.json'),
               builder: (context, snapshot) {
                 final List articles = parseArticles(snapshot.data);
                 return ListView.builder(
@@ -211,27 +241,55 @@ class NewsListPage extends StatelessWidget {
       return [];
     }
     final List parsed = jsonDecode(json);
-    return parsed.map((json) => Article.fromJson(json)).toList();
+    return parsed.map((json) => Artikel.fromJson(json)).toList();
   }
 }
 
-Widget _buildArticleItem(BuildContext context, Article article) {
-  return ListTile(
-    contentPadding:
-    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    leading: Image.network(
-      article.urlToImage,
-      width: 100,
+Widget _buildArticleItem(BuildContext context, Artikel article) {
+  return Card(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        SizedBox(height: 8),
+        ListTile(
+          leading: Icon(
+            Icons.play_arrow,
+            color: Color.fromARGB(255, 28, 140, 36),
+            size: 40,
+          ),
+          title: Text(article.nama),
+          subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            TextButton(
+              child: const Text('LISTEN'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ArticleWebView(
+                              url: article.link,
+                            )));
+              },
+            ),
+            const SizedBox(width: 8),
+          ],
+        ),
+      ],
     ),
-    title: Text(article.title),
-    subtitle: Text(article.author),
-    onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ArticleDetailPage(
-                article: article,
-              )));
-    },
   );
+  // return ListTile(
+  //   contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+  //   title: Text(article.nama),
+  //   onTap: () {
+  //     Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //             builder: (context) => ArticleWebView(
+  //                   url: article.link,
+  //                 )));
+  //   },
+  // );
 }

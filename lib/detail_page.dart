@@ -1,7 +1,7 @@
 import 'package:proto/web_view.dart';
 import 'package:flutter/material.dart';
 
-import 'article.dart';
+import 'model/article.dart';
 
 class ArticleDetailPage extends StatelessWidget {
   static const routeName = '/article_detail';
@@ -46,8 +46,8 @@ class ArticleDetailPage extends StatelessWidget {
                   SizedBox(height: 10),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(
-                          145, 127, 38, 161)),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromARGB(145, 127, 38, 161)),
                     ),
                     child: Text('Read more'),
                     onPressed: () {
