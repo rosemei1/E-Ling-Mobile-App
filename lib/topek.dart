@@ -7,8 +7,8 @@ class topikList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 07,
-        title: const Text("Topik", style: TextStyle(fontWeight: FontWeight.bold,color:Color.fromARGB(255, 154, 191, 21), fontFamily: "Poppins",),),
+        elevation: 0,
+        title: const Text("Topik", style: TextStyle(fontWeight: FontWeight.bold,color:Color.fromARGB(255, 154, 191, 21), fontFamily: "WorkSans",),),
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: IconButton(
