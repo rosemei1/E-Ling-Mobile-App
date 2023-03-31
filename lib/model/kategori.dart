@@ -2,6 +2,7 @@
 //
 //     final kategori = kategoriFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<Kategori> kategoriFromJson(String str) =>
@@ -14,26 +15,18 @@ class Kategori {
   Kategori({
     required this.id,
     required this.jenisKategori,
-    this.createdAt,
-    this.updatedAt,
   });
 
   int id;
   String jenisKategori;
-  dynamic createdAt;
-  dynamic updatedAt;
 
   factory Kategori.fromJson(Map<String, dynamic> json) => Kategori(
         id: json["id"],
         jenisKategori: json["jenis_kategori"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "jenis_kategori": jenisKategori,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
       };
 }

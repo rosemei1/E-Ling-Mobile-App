@@ -1,0 +1,18 @@
+[
+        {
+            "id": 1,
+            "nama": "pengelolaan sampah",
+            "id_kategory": 2,
+            "link": "https://www.bbc.com\r\n",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "nama": "waste management",
+            "id_kategory": 1,
+            "link": "https://www.netmedia.co.id/home",
+            "created_at": null,
+            "updated_at": null
+        }
+    ]

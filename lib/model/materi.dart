@@ -1,35 +1,24 @@
 // To parse this JSON data, do
 //
-//     final material = materialFromJson(jsonString);
+//     final materi = materiFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
-Material materialFromJson(String str) => Material.fromJson(json.decode(str));
+List<Materi> materiFromJson(String str) =>
+    List<Materi>.from(json.decode(str).map((x) => Materi.fromJson(x)));
 
-String materialToJson(Material data) => json.encode(data.toJson());
+String materiToJson(List<Materi> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Material {
-  Material({
-    required this.data,
-  });
-
-  List<Datum> data;
-
-  factory Material.fromJson(Map<String, dynamic> json) => Material(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-      };
-}
-
-class Datum {
-  Datum({
+class Materi {
+  Materi({
     required this.id,
     required this.nama,
     required this.idKategory,
     required this.link,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   int id;
@@ -39,11 +28,13 @@ class Datum {
   dynamic createdAt;
   dynamic updatedAt;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Materi.fromJson(Map<String, dynamic> json) => Materi(
         id: json["id"],
         nama: json["nama"],
         idKategory: json["id_kategory"],
         link: json["link"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,5 +42,7 @@ class Datum {
         "nama": nama,
         "id_kategory": idKategory,
         "link": link,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
       };
 }

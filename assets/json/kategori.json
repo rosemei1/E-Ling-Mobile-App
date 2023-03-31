@@ -1,0 +1,18 @@
+[
+        {
+            "id": 1,
+            "jenis_kategori": "waste management"
+        },
+        {
+            "id": 2,
+            "jenis_kategori": "Jenis sampah"
+        },
+        {
+            "id": 3,
+            "jenis_kategori": "Teknik Pengelolaan Sampah"
+        },
+        {
+            "id": 4,
+            "jenis_kategori": "Prinsip Pengelolaan Sampah\r\n"
+        }
+    ]
