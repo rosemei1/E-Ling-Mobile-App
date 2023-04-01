@@ -31,7 +31,7 @@ class Artikel extends StatelessWidget {
           Container(
             margin:
                 EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
-            child: Text(
+            child: const Text(
               'Selamat datang, Darla!',
               style: TextStyle(
                 fontSize: 25,
