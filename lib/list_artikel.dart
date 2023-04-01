@@ -296,7 +296,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
             size: 40,
           ),
           title: Text(materi.nama),
-          subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+          subtitle: Text(materi.desc),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -309,6 +309,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
                     MaterialPageRoute(
                         builder: (context) => ViewYoutube(
                               url: materi.link,
+                              id: materi.idKategory,
                             )));
               },
             ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:proto/list_artikel.dart';
 import 'package:proto/topek.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ViewYoutube extends StatefulWidget {
   //final String videoId;
   final String url;
-  const ViewYoutube({required this.url});
+  final int id;
+  const ViewYoutube({required this.url, required this.id});
 
   @override
   _ViewYoutubeState createState() => _ViewYoutubeState();
@@ -48,7 +50,8 @@ class _ViewYoutubeState extends State<ViewYoutube> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => topikList()),
+              MaterialPageRoute(
+                  builder: (context) => NewsListPage(id: widget.id)),
             );
           },
         ),
@@ -69,7 +72,9 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Text(
                       'Apa sih Waste Management?',
                       style: TextStyle(
@@ -79,9 +84,11 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                       ),
                       textAlign: TextAlign.left,
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Padding(
-                    padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: YoutubePlayer(
@@ -100,7 +107,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                           ],
                         ),
                       ),
-                ),
+                    ),
                   ],
                 ),
               ),
@@ -123,8 +130,8 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                         SizedBox(height: 10),
                         RichText(
                           text: const TextSpan(
-                            style:
-                                TextStyle(fontSize: 15.0, color: Colors.black54),
+                            style: TextStyle(
+                                fontSize: 15.0, color: Colors.black54),
                             children: <TextSpan>[
                               TextSpan(
                                 text:
