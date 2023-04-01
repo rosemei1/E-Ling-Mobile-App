@@ -1,38 +1,66 @@
 [
         {
             "id": 1,
-            "nama": "pengelolaan sampah",
-            "id_kategory": 2,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "desc" : "wasre",
+            "nama": "Waste Management from InSWA",
+            "id_kategory": 1,
+            "link": "https://www.youtube.com/watch?v=ALWlbFTgYgk",
             "created_at": null,
             "updated_at": null
         },
         {
-            "id": 2,
-            "nama": "waste management",
-            "id_kategory": 1,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "desc" : "wasre",
-            "created_at": null,
-            "updated_at": null
+          "id": 2,
+          "nama": "Home Waste Management Solution",
+          "id_kategory": 1,
+          "link": "https://youtu.be/uBTzUrWoWGk",
+          "created_at": null,
+          "updated_at": null
         },
         {
             "id": 3,
-            "nama": "pengelolaan sampah",
-            "id_kategory": 3,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "desc" : "",
+            "nama": "jenis-jenis Sampah",
+            "id_kategory": 2,
+            "link": "https://www.youtube.com/watch?v=n9HwaCqg-oY",
             "created_at": null,
             "updated_at": null
         },
         {
             "id": 4,
-            "nama": "waste management",
-            "id_kategory": 4,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "desc" : "",
+            "nama": "Jenis Sampah Berdasarkan Sifatnya",
+            "id_kategory": 2,
+            "link": "https://www.youtube.com/watch?v=_AdR_j_gk0A",
             "created_at": null,
             "updated_at": null
+        },
+        {
+            "id": 5,
+            "nama": "Kelola Sampah Jadi Produk Bernilai",
+            "id_kategory": 3,
+            "link": "https://www.youtube.com/watch?v=Zaz0bb4KceM",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+          "id": 6,
+          "nama": "Pengolahan Sampah Organik",
+          "id_kategory": 3,
+          "link": "https://www.youtube.com/watch?v=WI4pRrTDhUs",
+          "created_at": null,
+          "updated_at": null
+        },
+        {
+          "id": 7,
+          "nama": "Mengolah Sampah Dengan 3R",
+          "id_kategory": 4,
+          "link": "https://www.youtube.com/watch?v=i1mTuBMOTpc",
+          "created_at": null,
+          "updated_at": null
+        },
+        {
+          "id": 8,
+          "nama": "Belajar 3R",
+          "id_kategory": 4,
+          "link": "https://www.youtube.com/watch?v=gCmmf9hL7R8",
+          "created_at": null,
+          "updated_at": null
         }
-    ]
+]

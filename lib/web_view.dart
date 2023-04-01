@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:proto/homepage.dart';
+import 'package:proto/list_artikel.dart';
 import 'package:proto/web_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -45,7 +45,7 @@ class _ArticleWebViewState extends State<ArticleWebView> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Artikel()),
+                MaterialPageRoute(builder: (context) => NewsListPage()),
               );
             },
           ),

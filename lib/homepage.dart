@@ -253,7 +253,7 @@ class Artikel extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => NewsListPage(
-                                id: 1,
+                                id: 3,
                               )));
                 },
                 child: Card(
@@ -292,7 +292,7 @@ class Artikel extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => NewsListPage(
-                                id: 1,
+                                id: 4,
                               )));
                 },
                 child: Card(
