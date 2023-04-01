@@ -1,38 +1,74 @@
 [
-        {
-            "id": 1,
-            "nama": "pengelolaan sampah",
-            "id_kategory": 2,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "created_at": null,
-            "updated_at": null,
-            "desc" : ""
-        },
-        {
-            "id": 2,
-            "nama": "waste management",
-            "id_kategory": 1,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "created_at": null,
-            "updated_at": null,
-            "desc" : ""
-        },
-        {
-            "id": 3,
-            "nama": "pengelolaan sampah",
-            "id_kategory": 3,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "created_at": null,
-            "updated_at": null,
-            "desc" : ""
-        },
-        {
-            "id": 4,
-            "nama": "waste management",
-            "id_kategory": 4,
-            "link": "https://www.youtube.com/watch?v=kg7AZ3SR62c&list=RDMM&index=11",
-            "created_at": null,
-            "updated_at": null,
-            "desc" : ""
-        }
-    ]
+  {
+    "id": 1,
+    "nama": "Waste Management from InSWA",
+    "id_kategory": 1,
+    "link": "https://www.youtube.com/watch?v=ALWlbFTgYgk",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Super Indo telah bekerja sama dengan InSWA (Indonesian Solid Waste Association) dalam berbagai inisiatif untuk mengelola sampah atau limbah yang dihasilkan dalam operasional Super Indo. Implementasi program Zero Waste Project, merupakan salah satu bentuk kerjasama dimana InSWA memberikan pendampingan kepada tim Super Indo untuk mengoptimalkan inisiatif pengurangan limbah organik di seluruh gerai Super Indo."
+  },
+  {
+    "id": 2,
+    "nama": "Home Waste Management Solution",
+    "id_kategory": 1,
+    "link": "https://youtu.be/uBTzUrWoWGk",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Sampah tetap harus dipilah, diangkut, dan didaur ulang dengan optimal agar tidak menjadi sarang penyakit. #PersonalWasteManagement dari Waste4Change merupakan jasa angkut sampah anorganik individu yang langsung menjemput sampah dari rumah. Nantinya, Mitra Angkut akan membawa sampah klien untuk dipilah lebih detail oleh Mitra Olah untuk mengurangi jumlah sampah yang berakhir di TPA."
+  },
+  {
+    "id": 3,
+    "nama": "jenis-jenis Sampah",
+    "id_kategory": 2,
+    "link": "https://www.youtube.com/watch?v=n9HwaCqg-oY",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "APA SAJA JENIS-JENIS SAMPAH? Secara umum sampah dibedakan menjadi 3: 1. Sampah Mudah Membusuk, 2. Sampah Sulit Membusuk, 3. Sampah B3"
+  },
+  {
+    "id": 4,
+    "nama": "Jenis Sampah Berdasarkan Sifatnya",
+    "id_kategory": 2,
+    "link": "https://www.youtube.com/watch?v=_AdR_j_gk0A",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Ketika mendengar kata “sampah”, maka hal pertama yang terlintas adalah tumpukan sisa-sisa makanan atau limbah yang menimbulkan aroma tidak sedap dan tidak enak dipandang mata. Namun ada beberapa hal yang harus diketahui beberapa jenis sampah yang ada di sekitar kita."
+  },
+  {
+    "id": 5,
+    "nama": "Kelola Sampah Jadi Produk Bernilai",
+    "id_kategory": 3,
+    "link": "https://www.youtube.com/watch?v=Zaz0bb4KceM",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Bisakah sampah dikelola menjadi produk bernilai guna? Bisa dengan mesin Musayama! Mesin Musayama buatan Kemal Pasya bisa menjadi teknologi yang efektif untuk mengatasi beban sampah di kota besar seperti Jakarta. Inovasi ini menjadi krusial karena dengan beban 7700 ton sampah per hari di Jakarta, Tempat Pembuangan Akhir (TPA) Bantargebang, di kota Bekasi sudah kewalahan mengelola sampah. Tak sekadar membakar sampah, mesin yang dioperasikan di perusahaan Abu & Co yang didirikannya di Serpong itu, juga berfungsi mengolah sampah menjadi produk lain yang bernilai guna. Produk olahannya mulai dari arang, batu bata ringan, hingga energi gas."
+  },
+  {
+    "id": 6,
+    "nama": "Pengolahan Sampah Organik",
+    "id_kategory": 3,
+    "link": "https://www.youtube.com/watch?v=WI4pRrTDhUs",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Sudah ada yang tahu apa itu sampah organik? \nSampah organik merupakan sampah hasil kegiatan rumah tangga yang berasal dari sisa makhluk hidup yang mudah terurai.\nSampah organik perlu dilakukan pengolahan, apabila tidak dilakukan pengolahan akan menyebabkan berbagai dampak seperti penumpukan sampah, tempat perkembangbiakan vektor penyakit, banjir, pemanasan global hingga perubahan iklim."
+  },
+  {
+    "id": 7,
+    "nama": "Mengolah Sampah Dengan 3R",
+    "id_kategory": 4,
+    "link": "https://www.youtube.com/watch?v=i1mTuBMOTpc",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Reduce, Reuse, Recycle” merupakan maksud penanganan sampah yang terdiri dari tiga unsur yaitu, “Mengurangi”, “Menggunakan ulang” dan “Mendaur ulang” sampah (juga dikenal sebagai 3R). Untuk memulai melakukan 3R ini memang dapat dilakukan oleh siapa saja."
+  },
+  {
+    "id": 8,
+    "nama": "Belajar 3R",
+    "id_kategory": 4,
+    "link": "https://www.youtube.com/watch?v=gCmmf9hL7R8",
+    "created_at": null,
+    "updated_at": null,
+    "desc": "Pernahkah Anda melihat tagline 3R di lingkungan sekitar rumah, sekolah, ataupun kantor? 3R merupakan singkatan dari Reduce Reuse Recycle. 3R adalah istilah untuk menyebut konsep yang mempromosikan kehidupan berkelanjutan dengan mengelola sampah plastik secara lebih baik."
+  }
+]

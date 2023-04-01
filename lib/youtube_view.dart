@@ -7,7 +7,8 @@ class ViewYoutube extends StatefulWidget {
   //final String videoId;
   final String url;
   final int id;
-  const ViewYoutube({required this.url, required this.id});
+  final String desc;
+  const ViewYoutube({required this.url, required this.id, required this.desc});
 
   @override
   _ViewYoutubeState createState() => _ViewYoutubeState();
@@ -129,13 +130,12 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                       children: [
                         SizedBox(height: 10),
                         RichText(
-                          text: const TextSpan(
+                          text: TextSpan(
                             style: TextStyle(
                                 fontSize: 15.0, color: Colors.black54),
                             children: <TextSpan>[
                               TextSpan(
-                                text:
-                                    'Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan, mendaur ulang dari material sampah. Kalimat ini biasanya mengacu pada material sampah yang dihasilkan dari kegiatan manusia, dan biasanya dikelola untuk mengurangi dampaknya terhadap kesehatan, lingkungan, atau estetika. Pengelolaan sampah juga dilakukan untuk memulihkan sumber daya alam (resources recovery). Pengelolaan sampah bisa melibatkan zat padat, cair, gas, atau radioaktif dengan metode dan keterampilan khusus untuk masing-masing jenis zat. Praktik pengelolaan sampah berbeda beda antara negara maju dan negara berkembang, berbeda juga antara daerah perkotaan dengan daerah pedesaan dan antara daerah perumahan dengan daerah industri. Pengelolaan sampah yang tidak berbahaya dari pemukiman dan institusi di area metropolitan biasanya menjadi tanggung jawab pemerintah daerah, sedangkan untuk sampah dari area komersial dan industri biasanya ditangani oleh perusahaan pengolah sampah. Metode pengelolaan sampah berbeda-beda tergantung banyak hal, di antaranya tipe zat sampah, lahan yang digunakan untuk mengolah, dan ketersediaan lahan',
+                                text: widget.desc,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "Poppins",

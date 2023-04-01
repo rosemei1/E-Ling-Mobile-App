@@ -2,21 +2,21 @@
         {
             "id": 1,
             "jenis_kategori": "waste management",
-            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
+            "desc" : "Waste management atau pengelolaan sampah adalah suatu sistem yang dirancang untuk mengumpulkan, mengangkut, mengolah, dan membuang sampah secara efektif dan efisien untuk mengurangi dampak negatif terhadap lingkungan dan kesehatan manusia."
         },
         {
             "id": 2,
             "jenis_kategori": "Jenis sampah",
-            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
+            "desc" : "Jenis sampah dapat dikelompokkan berdasarkan sifatnya, seperti organik atau anorganik, atau berdasarkan asal dan sumbernya, seperti sampah rumah tangga, sampah industri, dan sampah medis."
         },
         {
             "id": 3,
             "jenis_kategori": "Teknik Pengelolaan Sampah",
-            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
+            "desc" : "Teknik pengolahan sampah adalah cara atau metode untuk mengolah sampah menjadi bahan yang berguna kembali atau meminimalkan dampak negatifnya pada lingkungan. Teknik pengolahan sampah dapat dibedakan menjadi dua jenis, yaitu pengolahan sampah organik dan pengolahan sampah anorganik."
         },
         {
             "id": 4,
             "jenis_kategori": "Prinsip Pengelolaan Sampah",
-            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
+            "desc" : "Prinsip pengolahan sampah adalah panduan atau aturan yang harus diikuti dalam pengelolaan sampah agar prosesnya efektif, efisien, dan berkelanjutan. "
         }
     ]

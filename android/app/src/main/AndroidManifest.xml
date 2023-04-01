@@ -2,7 +2,7 @@
     package="com.example.proto">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="proto"
+        android:label="E-Ling"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

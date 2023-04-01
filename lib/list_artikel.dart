@@ -200,7 +200,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
           title: Text(article.nama),
           subtitle: Text(
             article.desc,
-            maxLines: 1, // membatasi subtitle pada satu baris
+            maxLines: 1, //// membatasi subtitle pada satu baris
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -253,7 +253,11 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
             size: 40,
           ),
           title: Text(materi.nama),
-          subtitle: Text(materi.desc),
+            subtitle: Text(
+              materi.desc,
+              maxLines: 1, //// membatasi subtitle pada satu baris
+              overflow: TextOverflow.ellipsis,
+            ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -274,6 +278,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
                         builder: (context) => ViewYoutube(
                               url: materi.link,
                               id: materi.idKategory,
+                              desc: materi.desc,
                             )));
               },
             ),
@@ -346,13 +351,7 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              const SizedBox(width: 8),
-              const SizedBox(width: 8),
-            ],
-          ),
+          SizedBox(height: 10,)
         ],
       ));
 }
