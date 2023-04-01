@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
 import 'package:proto/bottombar.dart';
-import 'package:proto/model/article.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/model/kategori.dart';

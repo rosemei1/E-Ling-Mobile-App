@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:proto/list_artikel.dart';
+import 'package:proto/model/artikel.dart';
+import 'package:proto/web_view.dart';
 
 class home extends StatelessWidget {
   const home({super.key});
@@ -253,7 +257,7 @@ class home extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => NewsListPage(
-                                id: 1,
+                                id: 3,
                               )));
                 },
                 child: Card(
@@ -292,7 +296,7 @@ class home extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => NewsListPage(
-                                id: 1,
+                                id: 4,
                               )));
                 },
                 child: Card(
@@ -357,36 +361,92 @@ class home extends StatelessWidget {
           //article card
           Container(
             margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-            child: Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const ListTile(
-                    title: Text('The Enchanted Nightingale'),
-                    subtitle:
-                        Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        child: const Text('BUY TICKETS'),
-                        onPressed: () {/* ... */},
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        child: const Text('LISTEN'),
-                        onPressed: () {/* ... */},
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ],
-              ),
+            child: FutureBuilder<String>(
+              future: DefaultAssetBundle.of(context)
+                  .loadString('assets/json/artikel.json'),
+              builder: (context, snapshot) {
+                final List articles = parseArticles(snapshot.data);
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: articles.length,
+                  itemBuilder: (context, index) {
+                    return _buildArticleItem(context, articles[index]!);
+                  },
+                );
+              },
             ),
           ),
         ],
       )),
     );
   }
+
+  List parseArticles(String? json) {
+    if (json == null) {
+      return [];
+    }
+    // final List parsed = jsonDecode(json);
+    // return parsed.map((json) => Artikel.fromJson(json)).toList();
+    final List parsed = jsonDecode(json);
+    final List<Artikel> articles =
+        parsed.map((json) => Artikel.fromJson(json)).toList();
+    final List<Artikel> top3 = articles.reversed
+        .take(3)
+        .toList(); // menambahkan parameter reversed: true
+    return top3;
+  }
+}
+
+Widget _buildArticleItem(BuildContext context, Artikel article) {
+  return Card(
+    elevation: 3,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        SizedBox(height: 8),
+        ListTile(
+          leading: Icon(
+            Icons.article,
+            color: Color.fromARGB(255, 28, 140, 36),
+            size: 30,
+          ),
+          title: Text(article.nama),
+          subtitle: Text(
+            article.desc,
+            maxLines: 1, // membatasi subtitle pada satu baris
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            TextButton(
+              child: const Text(
+                'Baca Lebih Lanjut',
+                style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    color: Color.fromARGB(255, 28, 140, 36),
+                    fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ArticleWebView(
+                              url: article.link,
+                              id: article.idKategori,
+                            )));
+              },
+            ),
+            const SizedBox(width: 8),
+          ],
+        ),
+      ],
+    ),
+  );
 }
