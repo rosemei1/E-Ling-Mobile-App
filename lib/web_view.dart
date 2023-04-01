@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:proto/homepage.dart';
+import 'package:proto/list_artikel.dart';
 import 'package:proto/web_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -9,7 +10,8 @@ class ArticleWebView extends StatefulWidget {
   // static const routeName = '/article_web';
 
   final String url;
-  const ArticleWebView({required this.url});
+  final int id;
+  const ArticleWebView({required this.url, required this.id});
 
   @override
   State<ArticleWebView> createState() => _ArticleWebViewState();
@@ -27,29 +29,30 @@ class _ArticleWebViewState extends State<ArticleWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text(
-            "Ini judul artikel",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 154, 191, 21),
-              fontFamily: "WorkSans",
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          leading: IconButton(
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text(
+          "Ini judul artikel",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Artikel()),
-              );
-            },
+            fontFamily: "WorkSans",
           ),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          color: Color.fromARGB(255, 154, 191, 21),
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NewsListPage(id: widget.id)),
+            );
+          },
+        ),
+      ),
       body: WebView(
         javascriptMode: JavascriptMode.unrestricted,
         initialUrl: widget.url,

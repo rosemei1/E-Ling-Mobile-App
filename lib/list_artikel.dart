@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:proto/model/article.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/model/kategori.dart';
 import 'package:proto/model/materi.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/youtube_view.dart';
@@ -17,7 +18,22 @@ class NewsListPage extends StatefulWidget {
 }
 
 class _NewsListPageState extends State<NewsListPage> {
+  List<dynamic> data = [];
+
   @override
+  void initState() {
+    loadJsonData();
+    super.initState();
+  }
+
+  void loadJsonData() async {
+    String jsonString = await DefaultAssetBundle.of(context)
+        .loadString('assets/json/kategori.json');
+    setState(() {
+      data = parseKategori(jsonString);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,7 +174,7 @@ class _NewsListPageState extends State<NewsListPage> {
             Container(
               margin: EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Materi Bacaan',
@@ -206,6 +222,17 @@ class _NewsListPageState extends State<NewsListPage> {
         .toList();
   }
 
+  List parseKategori(String? json) {
+    if (json == null) {
+      return [];
+    }
+    final List parsed = jsonDecode(json);
+    return parsed
+        .map((json) => Kategori.fromJson(json))
+        .where((kategori) => kategori.id == widget.id)
+        .toList();
+  }
+
   List parseMateri(String? json) {
     if (json == null) {
       return [];
@@ -231,7 +258,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
             size: 40,
           ),
           title: Text(article.nama),
-          subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+          subtitle: Text(article.desc),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -244,6 +271,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                     MaterialPageRoute(
                         builder: (context) => ArticleWebView(
                               url: article.link,
+                              id: article.idKategori,
                             )));
               },
             ),
