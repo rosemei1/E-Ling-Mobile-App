@@ -197,11 +197,11 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                           fontSize: 14,
                           fontFamily: "Poppins",
                           color: Colors.white),
-                      maxLines: 1, // membatasi teks pada satu baris
-                      overflow: TextOverflow.ellipsis, //
                     ),
                   ],
                 ),
+                maxLines: 2, // membatasi teks pada satu baris
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
