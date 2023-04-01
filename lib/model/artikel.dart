@@ -17,18 +17,21 @@ class Artikel {
     required this.nama,
     required this.idKategori,
     required this.link,
+    required this.desc,
   });
 
   int id;
   String nama;
   int idKategori;
   String link;
+  String desc;
 
   factory Artikel.fromJson(Map<String, dynamic> json) => Artikel(
         id: json["id"],
         nama: json["nama"],
         idKategori: json["id_kategori"],
         link: json["link"],
+        desc: json["desc"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -36,5 +39,6 @@ class Artikel {
         "nama": nama,
         "id_kategori": idKategori,
         "link": link,
+        "desc": desc,
       };
 }

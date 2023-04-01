@@ -3,31 +3,36 @@
             "id": 1,
             "nama": "waste managemen",
             "id_kategori": 1,
-            "link": "https://id.wikipedia.org/wiki/Sampah"
+            "link": "https://id.wikipedia.org/wiki/Sampah",
+            "desc" : ""
         },
         {
             "id": 2,
             "nama": "pengelolaan sampah",
             "id_kategori": 2,
-            "link": "https://www.bbc.com"
+            "link": "https://www.bbc.com",
+            "desc" : ""
         },
         {
             "id": 3,
             "nama": "pengelolaan sampah",
             "id_kategori": 3,
-            "link": "https://www.bbc.com"
+            "link": "https://www.bbc.com",
+            "desc" : ""
         },
         {
             "id": 4,
             "nama": "pengelolaan sampah",
             "id_kategori": 4,
-            "link": "https://www.bbc.com"
+            "link": "https://www.bbc.com",
+            "desc" : ""
         },
         {
             "id": 5,
             "nama": "pengelolaan sampah",
             "id_kategori": 2,
-            "link": "https://www.bbc.com"
+            "link": "https://www.bbc.com",
+            "desc" : ""
         }
 
 ]

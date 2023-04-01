@@ -19,6 +19,7 @@ class Materi {
     required this.link,
     required this.createdAt,
     required this.updatedAt,
+    required this.desc,
   });
 
   int id;
@@ -27,6 +28,7 @@ class Materi {
   String link;
   dynamic createdAt;
   dynamic updatedAt;
+  String desc;
 
   factory Materi.fromJson(Map<String, dynamic> json) => Materi(
         id: json["id"],
@@ -35,6 +37,7 @@ class Materi {
         link: json["link"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
+        desc: json["desc"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +47,6 @@ class Materi {
         "link": link,
         "created_at": createdAt,
         "updated_at": updatedAt,
+        "desc": desc,
       };
 }

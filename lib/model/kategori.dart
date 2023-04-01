@@ -15,18 +15,22 @@ class Kategori {
   Kategori({
     required this.id,
     required this.jenisKategori,
+    required this.desc,
   });
 
   int id;
   String jenisKategori;
+  String desc;
 
   factory Kategori.fromJson(Map<String, dynamic> json) => Kategori(
         id: json["id"],
         jenisKategori: json["jenis_kategori"],
+        desc: json["desc"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "jenis_kategori": jenisKategori,
+        "desc": desc,
       };
 }

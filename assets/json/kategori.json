@@ -1,18 +1,22 @@
 [
         {
             "id": 1,
-            "jenis_kategori": "waste management"
+            "jenis_kategori": "waste management",
+            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
         },
         {
             "id": 2,
-            "jenis_kategori": "Jenis sampah"
+            "jenis_kategori": "Jenis sampah",
+            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
         },
         {
             "id": 3,
-            "jenis_kategori": "Teknik Pengelolaan Sampah"
+            "jenis_kategori": "Teknik Pengelolaan Sampah",
+            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
         },
         {
             "id": 4,
-            "jenis_kategori": "Prinsip Pengelolaan Sampah\r\n"
+            "jenis_kategori": "Prinsip Pengelolaan Sampah\r\n",
+            "desc" : "Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ..."
         }
     ]
