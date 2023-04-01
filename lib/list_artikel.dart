@@ -9,6 +9,7 @@ import 'package:proto/youtube_view.dart';
 
 class NewsListPage extends StatefulWidget {
   static const routeName = '/article_list';
+
   final int id;
   const NewsListPage({required this.id});
   @override
@@ -16,6 +17,7 @@ class NewsListPage extends StatefulWidget {
 }
 
 class _NewsListPageState extends State<NewsListPage> {
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -251,18 +253,6 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
       ],
     ),
   );
-  // return ListTile(
-  //   contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-  //   title: Text(article.nama),
-  //   onTap: () {
-  //     Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //             builder: (context) => ArticleWebView(
-  //                   url: article.link,
-  //                 )));
-  //   },
-  // );
 }
 
 Widget _buildMateriItem(BuildContext context, Materi materi) {
