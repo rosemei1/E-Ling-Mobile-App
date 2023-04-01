@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proto/list_artikel.dart';
 
-class Artikel extends StatelessWidget {
-  const Artikel({super.key});
+class home extends StatelessWidget {
+  const home({super.key});
 
   @override
   Widget build(BuildContext context) {

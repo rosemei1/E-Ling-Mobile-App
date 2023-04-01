@@ -15,7 +15,7 @@ class _botNavState extends State<botNav> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Artikel(),
+    home(),
     topikList(),
     ProfilPage(),
   ];
