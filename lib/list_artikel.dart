@@ -208,13 +208,13 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('Baca Lebih Lanjut',
-                style:TextStyle(
+              child: const Text(
+                'Baca Lebih Lanjut',
+                style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 11,
                     color: Color.fromARGB(255, 28, 140, 36),
-                    fontWeight: FontWeight.bold
-                ),
+                    fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 Navigator.push(
@@ -223,9 +223,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                         builder: (context) => ArticleWebView(
                               url: article.link,
                               id: article.idKategori,
-                            )
-                    )
-                );
+                            )));
               },
             ),
             const SizedBox(width: 8),
@@ -259,13 +257,13 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('Tonton',
-              style:TextStyle(
-              fontFamily: "Poppins",
-              fontSize: 11,
-              color: Color.fromARGB(255, 28, 140, 36),
-              fontWeight: FontWeight.bold
-                ),
+              child: const Text(
+                'Tonton',
+                style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    color: Color.fromARGB(255, 28, 140, 36),
+                    fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 Navigator.push(
