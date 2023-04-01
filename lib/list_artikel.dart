@@ -183,15 +183,19 @@ class _NewsListPageState extends State<NewsListPage> {
 
 Widget _buildArticleItem(BuildContext context, Artikel article) {
   return Card(
+    elevation: 3,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         SizedBox(height: 8),
         ListTile(
           leading: Icon(
-            Icons.play_arrow,
+            Icons.article,
             color: Color.fromARGB(255, 28, 140, 36),
-            size: 40,
+            size: 30,
           ),
           title: Text(article.nama),
           subtitle: Text(
@@ -204,7 +208,14 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('LISTEN'),
+              child: const Text('Baca Lebih Lanjut',
+                style:TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    color: Color.fromARGB(255, 28, 140, 36),
+                    fontWeight: FontWeight.bold
+                ),
+              ),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -212,7 +223,9 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                         builder: (context) => ArticleWebView(
                               url: article.link,
                               id: article.idKategori,
-                            )));
+                            )
+                    )
+                );
               },
             ),
             const SizedBox(width: 8),
@@ -225,6 +238,10 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
 
 Widget _buildMateriItem(BuildContext context, Materi materi) {
   return Card(
+    elevation: 3,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -242,7 +259,14 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('LISTEN'),
+              child: const Text('Tonton',
+              style:TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 11,
+              color: Color.fromARGB(255, 28, 140, 36),
+              fontWeight: FontWeight.bold
+                ),
+              ),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -326,14 +350,6 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               const SizedBox(width: 8),
-              TextButton(
-                child: const Text(
-                  'Baca lebih lanjut',
-                  style: TextStyle(
-                      fontFamily: "Poppins", fontSize: 13, color: Colors.white),
-                ),
-                onPressed: () {/* ... */},
-              ),
               const SizedBox(width: 8),
             ],
           ),
