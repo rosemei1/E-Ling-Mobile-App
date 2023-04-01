@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
 import 'package:proto/homepage.dart';
 import 'package:proto/model/kategori.dart';
+import 'package:proto/web_view.dart';
 
 import 'list_artikel.dart';
 
@@ -111,7 +112,16 @@ class _topikListState extends State<topikList> {
                                   color: Colors.black54,
                                   fontWeight: FontWeight.bold),
                             ),
-                            onPressed: () {/* ... */},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ArticleWebView(
+                                            url:
+                                                "https://docs.google.com/forms/d/e/1FAIpQLScja_mCufEjMOk6-jzU3v_X1_yAfIgA9RYYhqyX3sSHSBh6uQ/viewform",
+                                            id: 1,
+                                          )));
+                            },
                           ),
                           const SizedBox(width: 8),
                         ],
@@ -187,6 +197,8 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                           fontSize: 14,
                           fontFamily: "Poppins",
                           color: Colors.white),
+                      maxLines: 1, // membatasi teks pada satu baris
+                      overflow: TextOverflow.ellipsis, //
                     ),
                   ],
                 ),

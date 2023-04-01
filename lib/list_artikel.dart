@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
+import 'package:proto/bottombar.dart';
 import 'package:proto/model/article.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:flutter/material.dart';
@@ -21,26 +22,13 @@ class _NewsListPageState extends State<NewsListPage> {
   List<dynamic> data = [];
 
   @override
-  void initState() {
-    loadJsonData();
-    super.initState();
-  }
-
-  void loadJsonData() async {
-    String jsonString = await DefaultAssetBundle.of(context)
-        .loadString('assets/json/kategori.json');
-    setState(() {
-      data = parseKategori(jsonString);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          "Ini judul artikel",
+          "list materi",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
@@ -52,7 +40,10 @@ class _NewsListPageState extends State<NewsListPage> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => botNav()));
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -61,75 +52,20 @@ class _NewsListPageState extends State<NewsListPage> {
             //card
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: Card(
-                color: Color.fromARGB(255, 28, 140, 36),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    SizedBox(height: 8.0),
-                    ListTile(
-                      title: RichText(
-                        text: TextSpan(
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Apa sih itu Waste Management?',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 10),
-                          RichText(
-                            text: TextSpan(
-                              style: TextStyle(
-                                  fontSize: 15.0, color: Colors.black),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text:
-                                      'Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan ...',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: "Poppins",
-                                      color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        const SizedBox(width: 8),
-                        TextButton(
-                          child: const Text(
-                            'Baca lebih lanjut',
-                            style: TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 13,
-                                color: Colors.white),
-                          ),
-                          onPressed: () {/* ... */},
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
-                  ],
-                ),
+              child: FutureBuilder<String>(
+                future: DefaultAssetBundle.of(context)
+                    .loadString('assets/json/kategori.json'),
+                builder: (context, snapshot) {
+                  final List material = parseKategori(snapshot.data);
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: material.length,
+                    itemBuilder: (context, index) {
+                      return _buildKategori(context, material[index]!);
+                    },
+                  );
+                },
               ),
             ),
             //title
@@ -258,7 +194,11 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
             size: 40,
           ),
           title: Text(article.nama),
-          subtitle: Text(article.desc),
+          subtitle: Text(
+            article.desc,
+            maxLines: 1, // membatasi subtitle pada satu baris
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -331,4 +271,72 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
   //                 )));
   //   },
   // );
+}
+
+Widget _buildKategori(BuildContext context, Kategori kategori) {
+  return Card(
+      color: Color.fromARGB(255, 28, 140, 36),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(height: 8.0),
+          ListTile(
+            title: RichText(
+              text: TextSpan(
+                style: TextStyle(fontSize: 16.0, color: Colors.black),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: kategori.jenisKategori,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(fontSize: 15.0, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: kategori.desc,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: "Poppins",
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              const SizedBox(width: 8),
+              TextButton(
+                child: const Text(
+                  'Baca lebih lanjut',
+                  style: TextStyle(
+                      fontFamily: "Poppins", fontSize: 13, color: Colors.white),
+                ),
+                onPressed: () {/* ... */},
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+        ],
+      ));
 }

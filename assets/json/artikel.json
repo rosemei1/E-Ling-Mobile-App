@@ -1,38 +1,37 @@
 [
         {
             "id": 1,
-            "nama": "waste managemen",
+            "nama": "Pengolahan Sampah",
             "id_kategori": 1,
-            "link": "https://id.wikipedia.org/wiki/Sampah",
-            "desc" : ""
+		"desc": "Pengelolaan sampah adalah pengumpulan, pengangkutan, pemrosesan, daur ulang, atau pembuangan dari material sampah. Kalimat ini biasanya mengacu pada material sampah yang dihasilkan dari kegiatan manusia, dan biasanya dikelola untuk mengurangi dampaknya terhadap kesehatan, lingkungan, atau estetika.",
+            "link": "http://dlh.samarindakota.go.id/tentang-kami/kelembagaan/bidang-pengendalian-pencemaran-dan-kerusakan-lingkungan/item/122-artikel-pengelolaan-sampah.html"
         },
         {
             "id": 2,
-            "nama": "pengelolaan sampah",
-            "id_kategori": 2,
-            "link": "https://www.bbc.com",
-            "desc" : ""
+            "nama": "Pnegolahan Sampah di Indonesia",
+            "id_kategori": 1,
+		    "desc": "Sampah yang kita hasilkan biasanya kita buang ke tempat sampah dan kemudian kita bawa ke Tempat Penampungan Sementara (TPS). TPS yaitu tempat sebelum sampah diangkut ke tempat pendauran ulang, pengolahan, dan/atau tempat pengolahan sampah terpadu. Dari TPS, sampah akan diangkut dan dibawa oleh Dinas Lingkungan menggunakan truk sampah ke Tempat Pemrosesan Akhir (TPA). TPA adalah tempat untuk memproses dan mengembalikan sampah ke media lingkungan secara aman bagi manusia dan lingkungan.",
+            "link": "https://www.djkn.kemenkeu.go.id/kpknl-lahat/baca-artikel/14891/Pengelolaan-Sampah-di-Indonesia.html"
         },
         {
             "id": 3,
-            "nama": "pengelolaan sampah",
-            "id_kategori": 3,
-            "link": "https://www.bbc.com",
-            "desc" : ""
+            "nama": "Jenis-jenis Sampah",
+            "id_kategori": 2,
+		    "desc": "Sampah menjadi permasalahan yang sejak dahulu belum terselesaikan. Pertambahan penduduk membuat jumlah sampah bertambah terus menerus. Ada banyak jenis sampah yang dihasilkan manusia setiap harinya.",
+            "link": "https://katadata.co.id/sitinuraeni/berita/61a43d511dd49/10-jenis-sampah-yang-ada-di-lingkungan-sekitar"
         },
         {
             "id": 4,
-            "nama": "pengelolaan sampah",
-            "id_kategori": 4,
-            "link": "https://www.bbc.com",
-            "desc" : ""
+            "nama": "Penggunaan Teknologi Pengolahan Sampah",
+            "id_kategori": 3,
+		    "desc": "Teknologi pengolahan sampah sangat berpengaruh bagi kenyamanan dan kesehatan manusia. Bagaimana suatu daerah atau tempat menerapkan teknologi pengolahan sampah ini dengan tepat guna dan sebaik-baiknya.",
+            "link": "https://dlh.semarangkota.go.id/penggunaan-teknologi-pengolahan-sampah/"
         },
         {
-            "id": 5,
-            "nama": "pengelolaan sampah",
-            "id_kategori": 2,
-            "link": "https://www.bbc.com",
-            "desc" : ""
+           	"id": 5,
+           	"nama": "Prinsip Pengolahan Limbah yang Baik Bagi Lingkungan",
+           	"id_kategori": 4,
+		    "desc": "Dilansir dari situs resmi United Nations Environment Programme (UNEP), yang merupakan organisasi PBB di bidang lingkungan hidup, disebutkan bahwa sekitar 7 miliar dari 9,2 miliar ton plastik yang dihasilkan dari tahun 1950-2017 telah menjadi limbah plastik. UNEP juga mengatakan bahwa setiap menit setara dengan satu truk sampah plastik dibuang ke laut kita.",
+           	"link": "https://ditsmp.kemdikbud.go.id/prinsip-pengolahan-limbah-yang-baik-bagi-lingkungan/"
         }
-
 ]
