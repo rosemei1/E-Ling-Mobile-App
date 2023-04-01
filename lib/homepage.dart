@@ -152,7 +152,7 @@ class home extends StatelessWidget {
               // ),
               //topik
               SizedBox(
-                height: 8,
+                height: 15,
               ),
               Container(
                 margin:
@@ -345,7 +345,7 @@ class home extends StatelessWidget {
               // ),
               //bacaan terbaru
               SizedBox(
-                height: 18,
+                height: 15,
               ),
               Container(
                 margin:
@@ -361,7 +361,7 @@ class home extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 18,
+                height: 8,
               ),
               //article card
               Container(
@@ -381,6 +381,9 @@ class home extends StatelessWidget {
                     );
                   },
                 ),
+              ),
+              SizedBox(
+                height: 8,
               ),
             ],
           )),
