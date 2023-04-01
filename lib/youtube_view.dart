@@ -53,43 +53,56 @@ class _ViewYoutubeState extends State<ViewYoutube> {
           },
         ),
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 8.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                border: Border.all(color: Colors.black54, width: 1.0),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    'Apa sih Waste Management?',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.left,
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black54,
+                    width: 1,
                   ),
-                  YoutubePlayer(
-                    controller: _controller,
-                    showVideoProgressIndicator: true,
-                    onReady: () => debugPrint('Ready'),
-                    bottomActions: [
-                      CurrentPosition(),
-                      ProgressBar(
-                        isExpanded: true,
-                        colors: const ProgressBarColors(
-                          playedColor: Colors.green,
-                          handleColor: Colors.green,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 8,),
+                    Text(
+                      'Apa sih Waste Management?',
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 8,),
+                    Padding(
+                    padding: EdgeInsets.all(10.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: YoutubePlayer(
+                          controller: _controller,
+                          showVideoProgressIndicator: true,
+                          onReady: () => debugPrint('Ready'),
+                          bottomActions: [
+                            CurrentPosition(),
+                            ProgressBar(
+                              isExpanded: true,
+                              colors: const ProgressBarColors(
+                                playedColor: Colors.green,
+                                handleColor: Colors.green,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                ),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -111,7 +124,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                         RichText(
                           text: const TextSpan(
                             style:
-                                TextStyle(fontSize: 15.0, color: Colors.green),
+                                TextStyle(fontSize: 15.0, color: Colors.black54),
                             children: <TextSpan>[
                               TextSpan(
                                 text:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto/bottombar.dart';
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({super.key});
@@ -27,7 +28,12 @@ class _ProfilPageState extends State<ProfilPage> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => botNav()),
+            );
+          },
         ),
       ),
       body: SafeArea(

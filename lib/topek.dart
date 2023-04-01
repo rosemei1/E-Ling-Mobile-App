@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proto/bottombar.dart';
+import 'package:proto/homepage.dart';
 
 class topikList extends StatelessWidget {
   const topikList({Key? key}) : super(key: key);
@@ -15,6 +17,10 @@ class topikList extends StatelessWidget {
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
           onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => botNav()),
+            );
           },
         ),
       ),

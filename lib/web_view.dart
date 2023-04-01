@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:proto/homepage.dart';
 import 'package:proto/web_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -26,9 +27,29 @@ class _ArticleWebViewState extends State<ArticleWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('News App'),
-      ),
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text(
+            "Ini judul artikel",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 154, 191, 21),
+              fontFamily: "WorkSans",
+            ),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            color: Color.fromARGB(255, 154, 191, 21),
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Artikel()),
+              );
+            },
+          ),
+        ),
       body: WebView(
         javascriptMode: JavascriptMode.unrestricted,
         initialUrl: widget.url,
