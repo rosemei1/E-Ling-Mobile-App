@@ -1,12 +1,12 @@
 [
         {
             "id": 1,
-            "jenis_kategori": "waste management",
+            "jenis_kategori": "Waste Management",
             "desc" : "Waste management atau pengelolaan sampah adalah suatu sistem yang dirancang untuk mengumpulkan, mengangkut, mengolah, dan membuang sampah secara efektif dan efisien untuk mengurangi dampak negatif terhadap lingkungan dan kesehatan manusia."
         },
         {
             "id": 2,
-            "jenis_kategori": "Jenis sampah",
+            "jenis_kategori": "Jenis Sampah",
             "desc" : "Jenis sampah dapat dikelompokkan berdasarkan sifatnya, seperti organik atau anorganik, atau berdasarkan asal dan sumbernya, seperti sampah rumah tangga, sampah industri, dan sampah medis."
         },
         {

@@ -28,7 +28,7 @@ class _NewsListPageState extends State<NewsListPage> {
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          "list materi",
+          "List Materi",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
@@ -70,6 +70,9 @@ class _NewsListPageState extends State<NewsListPage> {
               ),
             ),
             //title
+            SizedBox(
+              height: 18,
+            ),
             Container(
               margin: EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
@@ -78,7 +81,7 @@ class _NewsListPageState extends State<NewsListPage> {
                 child: Text(
                   'Video Materi',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
@@ -116,7 +119,7 @@ class _NewsListPageState extends State<NewsListPage> {
                 child: Text(
                   'Materi Bacaan',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
@@ -202,7 +205,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
               article.nama,
               style:TextStyle(
                 fontFamily: "Poppins",
-                fontSize: 13,
+                fontSize: 14,
                 color: Colors.black,
                   fontWeight: FontWeight.w600
               ),
@@ -213,7 +216,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
             overflow: TextOverflow.ellipsis,
             style:TextStyle(
                 fontFamily: "Poppins",
-                fontSize: 8,
+                fontSize: 11,
                 color: Colors.black,
 
             ),
@@ -226,7 +229,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
               child: const Text('Baca Lebih Lanjut',
                 style:TextStyle(
                     fontFamily: "Poppins",
-                    fontSize: 8,
+                    fontSize: 10,
                     color: Color.fromARGB(255, 28, 140, 36),
                     fontWeight: FontWeight.bold
                 ),
@@ -271,7 +274,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
               materi.nama,
             style:TextStyle(
                 fontFamily: "Poppins",
-                fontSize: 13,
+                fontSize: 14,
                 color: Colors.black,
                 fontWeight: FontWeight.w600
             ),
@@ -282,7 +285,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
               overflow: TextOverflow.ellipsis,
               style:TextStyle(
                   fontFamily: "Poppins",
-                  fontSize: 8,
+                  fontSize: 11,
                   color: Colors.black,
               ),
             ),
@@ -351,8 +354,8 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
                     text: kategori.jenisKategori,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       fontFamily: "Poppins",
                     ),
                   ),
@@ -370,7 +373,7 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
                       TextSpan(
                         text: kategori.desc,
                         style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 12,
                             fontFamily: "Poppins",
                             color: Colors.white),
                       ),

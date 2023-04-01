@@ -65,14 +65,14 @@ class _topikListState extends State<topikList> {
                         title: Text('Ayo Berikan Masukanmu!',
                             style: TextStyle(
                               color: Color.fromARGB(255, 28, 140, 36),
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.w600,
                               fontFamily: "Poppins",
                             )),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 10),
+                            const SizedBox(height: 5),
                             RichText(
                               text: const TextSpan(
                                 style: TextStyle(
@@ -82,14 +82,14 @@ class _topikListState extends State<topikList> {
                                     text:
                                         'Dengan mengisi survei singkat ini kamu membantu ELing untuk menyebarkan ',
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 14,
                                       fontFamily: "Poppins",
                                     ),
                                   ),
                                   TextSpan(
                                     text: 'Edukasi Lingkungan.',
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Poppins",
                                     ),
@@ -103,13 +103,13 @@ class _topikListState extends State<topikList> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 3),
                           TextButton(
                             child: const Text(
                               'Ikuti Survey!',
                               style: TextStyle(
                                   fontFamily: "Poppins",
-                                  fontSize: 10,
+                                  fontSize: 11,
                                   color: Colors.black54,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -124,7 +124,7 @@ class _topikListState extends State<topikList> {
                                           )));
                             },
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 5),
                         ],
                       ),
                     ],
@@ -180,14 +180,14 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
           title: Text(kategori.jenisKategori,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
                 fontFamily: "Poppins",
               )),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
+              SizedBox(height: 8),
               RichText(
                 text: TextSpan(
                   style: TextStyle(fontSize: 15.0, color: Colors.black),
@@ -195,7 +195,7 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                     TextSpan(
                       text: kategori.desc,
                       style: TextStyle(
-                          fontSize: 10,
+                          fontSize: 12,
                           fontFamily: "Poppins",
                           color: Colors.white),
                     ),
@@ -231,7 +231,7 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                     'Pelajari',
                     style: TextStyle(
                         fontFamily: "Poppins",
-                        fontSize: 8,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold),
                   )),
             ),
