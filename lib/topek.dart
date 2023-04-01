@@ -119,7 +119,7 @@ class _topikListState extends State<topikList> {
                                       builder: (context) => ArticleWebView(
                                             url:
                                                 "https://docs.google.com/forms/d/e/1FAIpQLScja_mCufEjMOk6-jzU3v_X1_yAfIgA9RYYhqyX3sSHSBh6uQ/viewform",
-                                            id: 1,
+                                            id: 0,
                                           )));
                             },
                           ),

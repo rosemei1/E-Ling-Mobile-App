@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:proto/homepage.dart';
 import 'package:proto/list_artikel.dart';
+import 'package:proto/topek.dart';
 import 'package:proto/web_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -31,8 +32,17 @@ class _ArticleWebViewState extends State<ArticleWebView> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          "Artikel",
+        title: widget.id == 0
+            ? const Text(
+          "Survey",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 154, 191, 21),
+            fontFamily: "WorkSans",
+          ),
+        )
+            : const Text(
+          "artikel",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
@@ -45,11 +55,21 @@ class _ArticleWebViewState extends State<ArticleWebView> {
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => NewsListPage(id: widget.id)),
-            );
+            if (widget.id == 0) {
+              // navigasi ke halaman SurveyPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => topikList(),
+                ),
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => NewsListPage(id: widget.id)),
+              );
+            }
           },
         ),
       ),
