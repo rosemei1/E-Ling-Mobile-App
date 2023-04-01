@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:proto/topek.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'list_artikel.dart';
 
 class ViewYoutube extends StatefulWidget {
   //final String videoId;
   final String url;
-  const ViewYoutube({required this.url});
+  final int id;
+  const ViewYoutube({required this.url, required this.id});
 
   @override
   _ViewYoutubeState createState() => _ViewYoutubeState();
@@ -48,7 +50,9 @@ class _ViewYoutubeState extends State<ViewYoutube> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => topikList()),
+              MaterialPageRoute(
+                  builder: (context) => NewsListPage(id: widget.id)
+              ),
             );
           },
         ),
@@ -81,7 +85,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                     ),
                     SizedBox(height: 8,),
                     Padding(
-                    padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: YoutubePlayer(
@@ -100,7 +104,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                           ],
                         ),
                       ),
-                ),
+                    ),
                   ],
                 ),
               ),
@@ -124,11 +128,11 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                         RichText(
                           text: const TextSpan(
                             style:
-                                TextStyle(fontSize: 15.0, color: Colors.black54),
+                            TextStyle(fontSize: 15.0, color: Colors.black54),
                             children: <TextSpan>[
                               TextSpan(
                                 text:
-                                    'Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan, mendaur ulang dari material sampah. Kalimat ini biasanya mengacu pada material sampah yang dihasilkan dari kegiatan manusia, dan biasanya dikelola untuk mengurangi dampaknya terhadap kesehatan, lingkungan, atau estetika. Pengelolaan sampah juga dilakukan untuk memulihkan sumber daya alam (resources recovery). Pengelolaan sampah bisa melibatkan zat padat, cair, gas, atau radioaktif dengan metode dan keterampilan khusus untuk masing-masing jenis zat. Praktik pengelolaan sampah berbeda beda antara negara maju dan negara berkembang, berbeda juga antara daerah perkotaan dengan daerah pedesaan dan antara daerah perumahan dengan daerah industri. Pengelolaan sampah yang tidak berbahaya dari pemukiman dan institusi di area metropolitan biasanya menjadi tanggung jawab pemerintah daerah, sedangkan untuk sampah dari area komersial dan industri biasanya ditangani oleh perusahaan pengolah sampah. Metode pengelolaan sampah berbeda-beda tergantung banyak hal, di antaranya tipe zat sampah, lahan yang digunakan untuk mengolah, dan ketersediaan lahan',
+                                'Pengelolaan sampah adalah pengumpulan, pengangkutan, pengolahan, mendaur ulang dari material sampah. Kalimat ini biasanya mengacu pada material sampah yang dihasilkan dari kegiatan manusia, dan biasanya dikelola untuk mengurangi dampaknya terhadap kesehatan, lingkungan, atau estetika. Pengelolaan sampah juga dilakukan untuk memulihkan sumber daya alam (resources recovery). Pengelolaan sampah bisa melibatkan zat padat, cair, gas, atau radioaktif dengan metode dan keterampilan khusus untuk masing-masing jenis zat. Praktik pengelolaan sampah berbeda beda antara negara maju dan negara berkembang, berbeda juga antara daerah perkotaan dengan daerah pedesaan dan antara daerah perumahan dengan daerah industri. Pengelolaan sampah yang tidak berbahaya dari pemukiman dan institusi di area metropolitan biasanya menjadi tanggung jawab pemerintah daerah, sedangkan untuk sampah dari area komersial dan industri biasanya ditangani oleh perusahaan pengolah sampah. Metode pengelolaan sampah berbeda-beda tergantung banyak hal, di antaranya tipe zat sampah, lahan yang digunakan untuk mengolah, dan ketersediaan lahan',
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "Poppins",

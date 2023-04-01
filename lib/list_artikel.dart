@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
-import 'package:proto/model/article.dart';
+import 'package:proto/bottombar.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/model/kategori.dart';
@@ -40,7 +40,7 @@ class _NewsListPageState extends State<NewsListPage> {
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          "Ini judul artikel",
+          "Materi",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
@@ -52,7 +52,12 @@ class _NewsListPageState extends State<NewsListPage> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => botNav()),
+            );
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -253,9 +258,9 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
         SizedBox(height: 8),
         ListTile(
           leading: Icon(
-            Icons.play_arrow,
+            Icons.article,
             color: Color.fromARGB(255, 28, 140, 36),
-            size: 40,
+            size: 30,
           ),
           title: Text(article.nama),
           subtitle: Text(article.desc),
@@ -264,7 +269,14 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('LISTEN'),
+              child: const Text('Baca Lebih Lanjut',
+                style:TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 11,
+                  color: Color.fromARGB(255, 28, 140, 36),
+                  fontWeight: FontWeight.bold
+                ),
+              ),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -302,13 +314,21 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('LISTEN'),
+              child: const Text('Tonton',
+                style:TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 12,
+                    color: Color.fromARGB(255, 28, 140, 36),
+                    fontWeight: FontWeight.bold
+                ),
+              ),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => ViewYoutube(
                               url: materi.link,
+                              id: materi.idKategory,
                             )));
               },
             ),

@@ -32,7 +32,7 @@ class _ArticleWebViewState extends State<ArticleWebView> {
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          "Ini judul artikel",
+          "Artikel",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
