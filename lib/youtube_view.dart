@@ -8,7 +8,8 @@ class ViewYoutube extends StatefulWidget {
   final String url;
   final int id;
   final String desc;
-  const ViewYoutube({required this.url, required this.id, required this.desc});
+  final String nama;
+  const ViewYoutube({required this.url, required this.id, required this.desc, required this.nama});
 
   @override
   _ViewYoutubeState createState() => _ViewYoutubeState();
@@ -41,6 +42,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
             fontFamily: "Poppins",
+            fontSize: 22,
           ),
         ),
         centerTitle: true,
@@ -77,10 +79,10 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                       height: 8,
                     ),
                     Text(
-                      'Apa sih Waste Management?',
+                      widget.nama,
                       style: TextStyle(
                         color: Colors.green,
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                       textAlign: TextAlign.left,
@@ -120,9 +122,9 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                   ListTile(
                     title: Text('Deskripsi',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 28, 140, 36),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 154, 191, 21),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
                           fontFamily: "Poppins",
                         )),
                     subtitle: Column(
@@ -137,7 +139,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                               TextSpan(
                                 text: widget.desc,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 10,
                                   fontFamily: "Poppins",
                                 ),
                               ),

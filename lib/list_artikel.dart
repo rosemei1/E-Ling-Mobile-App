@@ -33,6 +33,7 @@ class _NewsListPageState extends State<NewsListPage> {
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
             fontFamily: "WorkSans",
+            fontSize: 22,
           ),
         ),
         centerTitle: true,
@@ -77,8 +78,8 @@ class _NewsListPageState extends State<NewsListPage> {
                 child: Text(
                   'Video Materi',
                   style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
                   ),
@@ -115,8 +116,8 @@ class _NewsListPageState extends State<NewsListPage> {
                 child: Text(
                   'Materi Bacaan',
                   style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
                   ),
@@ -197,11 +198,25 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
             color: Color.fromARGB(255, 28, 140, 36),
             size: 30,
           ),
-          title: Text(article.nama),
+          title: Text(
+              article.nama,
+              style:TextStyle(
+                fontFamily: "Poppins",
+                fontSize: 13,
+                color: Colors.black,
+                  fontWeight: FontWeight.w600
+              ),
+          ),
           subtitle: Text(
             article.desc,
-            maxLines: 1, //// membatasi subtitle pada satu baris
+            maxLines: 2, //// membatasi subtitle pada satu baris
             overflow: TextOverflow.ellipsis,
+            style:TextStyle(
+                fontFamily: "Poppins",
+                fontSize: 8,
+                color: Colors.black,
+
+            ),
           ),
         ),
         Row(
@@ -211,7 +226,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
               child: const Text('Baca Lebih Lanjut',
                 style:TextStyle(
                     fontFamily: "Poppins",
-                    fontSize: 11,
+                    fontSize: 8,
                     color: Color.fromARGB(255, 28, 140, 36),
                     fontWeight: FontWeight.bold
                 ),
@@ -252,11 +267,24 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
             color: Color.fromARGB(255, 28, 140, 36),
             size: 40,
           ),
-          title: Text(materi.nama),
+          title: Text(
+              materi.nama,
+            style:TextStyle(
+                fontFamily: "Poppins",
+                fontSize: 13,
+                color: Colors.black,
+                fontWeight: FontWeight.w600
+            ),
+              ),
             subtitle: Text(
               materi.desc,
-              maxLines: 1, //// membatasi subtitle pada satu baris
+              maxLines: 2, //// membatasi subtitle pada satu baris
               overflow: TextOverflow.ellipsis,
+              style:TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 8,
+                  color: Colors.black,
+              ),
             ),
         ),
         Row(
@@ -279,6 +307,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
                               url: materi.link,
                               id: materi.idKategory,
                               desc: materi.desc,
+                              nama: materi.nama
                             )));
               },
             ),
@@ -322,8 +351,8 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
                     text: kategori.jenisKategori,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                       fontFamily: "Poppins",
                     ),
                   ),
@@ -341,7 +370,7 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
                       TextSpan(
                         text: kategori.desc,
                         style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 10,
                             fontFamily: "Poppins",
                             color: Colors.white),
                       ),

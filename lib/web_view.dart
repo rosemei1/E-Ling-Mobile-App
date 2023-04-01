@@ -39,6 +39,7 @@ class _ArticleWebViewState extends State<ArticleWebView> {
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
             fontFamily: "WorkSans",
+            fontSize: 22,
           ),
         )
             : const Text(

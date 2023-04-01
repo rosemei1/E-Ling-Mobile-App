@@ -38,7 +38,7 @@ class home extends StatelessWidget {
                 child: const Text(
                   'Selamat datang, Darla!',
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black54,
                     fontFamily: "Poppins",
@@ -46,6 +46,7 @@ class home extends StatelessWidget {
                 ),
               ),
               //card pertama
+              SizedBox(height: 8,),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 decoration: BoxDecoration(
@@ -60,6 +61,7 @@ class home extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
+                      SizedBox(height: 8),
                       ListTile(
                         title: RichText(
                           text: TextSpan(
@@ -69,7 +71,7 @@ class home extends StatelessWidget {
                                 text: 'Platform edukasi ',
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 28, 140, 36),
-                                  fontSize: 20,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Poppins",
                                 ),
@@ -78,7 +80,7 @@ class home extends StatelessWidget {
                                 text: 'Lingkungan',
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 154, 191, 21),
-                                  fontSize: 20,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Poppins",
                                 ),
@@ -98,14 +100,14 @@ class home extends StatelessWidget {
                                   TextSpan(
                                     text: 'Yuk, mulai perjalananmu belajar ',
                                     style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 12,
                                       fontFamily: "Poppins",
                                     ),
                                   ),
                                   TextSpan(
-                                    text: 'waste management !',
+                                    text: 'waste\nmanagement !',
                                     style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Poppins",
                                     ),
@@ -158,8 +160,8 @@ class home extends StatelessWidget {
                 child: Text(
                   'Topik',
                   style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
                   ),
@@ -194,13 +196,13 @@ class home extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.assessment_outlined,
-                                size: 40,
+                                size: 30,
                                 color: Colors.white,
                               ),
                               SizedBox(height: 5),
                               Text('Waste Management',
                                   style: TextStyle(
-                                      fontSize: 11,
+                                      fontSize: 10,
                                       fontWeight: FontWeight.normal,
                                       fontFamily: "Poppins",
                                       color: Colors.white),
@@ -231,13 +233,13 @@ class home extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.delete_outline,
-                                size: 40,
+                                size: 30,
                                 color: Colors.white,
                               ),
                               SizedBox(height: 5),
                               Text('Jenis Sampah',
                                   style: TextStyle(
-                                      fontSize: 11,
+                                      fontSize: 10,
                                       fontWeight: FontWeight.normal,
                                       fontFamily: "Poppins",
                                       color: Colors.white),
@@ -273,14 +275,14 @@ class home extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.settings_outlined,
-                                size: 40,
+                                size: 30,
                                 color: Colors.white,
                               ),
                               SizedBox(height: 5),
                               Text(
                                 'Teknik Pengolahan\nSampah',
                                 style: TextStyle(
-                                    fontSize: 11,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.normal,
                                     fontFamily: "Poppins",
                                     color: Colors.white),
@@ -312,13 +314,13 @@ class home extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.wb_sunny_outlined,
-                                size: 40,
+                                size: 30,
                                 color: Colors.white,
                               ),
                               SizedBox(height: 5),
                               Text('Prinsip Pengolahan\nSampah',
                                   style: TextStyle(
-                                    fontSize: 11,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.normal,
                                     fontFamily: "Poppins",
                                     color: Colors.white,
@@ -351,8 +353,8 @@ class home extends StatelessWidget {
                 child: Text(
                   'Bacaan Terbaru',
                   style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
                   ),

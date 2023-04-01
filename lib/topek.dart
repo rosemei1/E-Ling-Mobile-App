@@ -27,6 +27,7 @@ class _topikListState extends State<topikList> {
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
             fontFamily: "WorkSans",
+            fontSize: 22,
           ),
         ),
         centerTitle: true,
@@ -64,8 +65,8 @@ class _topikListState extends State<topikList> {
                         title: Text('Ayo Berikan Masukanmu!',
                             style: TextStyle(
                               color: Color.fromARGB(255, 28, 140, 36),
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                               fontFamily: "Poppins",
                             )),
                         subtitle: Column(
@@ -81,14 +82,14 @@ class _topikListState extends State<topikList> {
                                     text:
                                         'Dengan mengisi survei singkat ini kamu membantu ELing untuk menyebarkan ',
                                     style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       fontFamily: "Poppins",
                                     ),
                                   ),
                                   TextSpan(
                                     text: 'Edukasi Lingkungan.',
                                     style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Poppins",
                                     ),
@@ -108,7 +109,7 @@ class _topikListState extends State<topikList> {
                               'Ikuti Survey!',
                               style: TextStyle(
                                   fontFamily: "Poppins",
-                                  fontSize: 13,
+                                  fontSize: 10,
                                   color: Colors.black54,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -179,8 +180,8 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
           title: Text(kategori.jenisKategori,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
                 fontFamily: "Poppins",
               )),
           subtitle: Column(
@@ -194,7 +195,7 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                     TextSpan(
                       text: kategori.desc,
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 10,
                           fontFamily: "Poppins",
                           color: Colors.white),
                     ),
@@ -230,7 +231,7 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                     'Pelajari',
                     style: TextStyle(
                         fontFamily: "Poppins",
-                        fontSize: 13,
+                        fontSize: 8,
                         fontWeight: FontWeight.bold),
                   )),
             ),
