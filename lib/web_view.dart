@@ -20,6 +20,9 @@ class ArticleWebView extends StatefulWidget {
 
 class _ArticleWebViewState extends State<ArticleWebView> {
   late WebViewController webViewController;
+
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -58,7 +61,7 @@ class _ArticleWebViewState extends State<ArticleWebView> {
           onPressed: () {
             if (widget.id == 0) {
               // navigasi ke halaman SurveyPage
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => topikList(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/homepage.dart';
-import 'package:proto/profil.dart';
+import 'package:proto/list_pengepul.dart';
 import 'package:proto/topek.dart';
 
 class botNav extends StatefulWidget {
@@ -17,7 +17,7 @@ class _botNavState extends State<botNav> {
   static const List<Widget> _widgetOptions = <Widget>[
     home(),
     topikList(),
-    ProfilPage(),
+    pengepulList(),
   ];
 
   void _onItemTapped(int index) {

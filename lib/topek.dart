@@ -16,6 +16,7 @@ class topikList extends StatefulWidget {
 }
 
 class _topikListState extends State<topikList> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,7 @@ class _topikListState extends State<topikList> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                margin: EdgeInsets.symmetric(horizontal: 16.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                   border: Border.all(color: Colors.black54, width: 1.0),
@@ -119,7 +120,7 @@ class _topikListState extends State<topikList> {
                                   MaterialPageRoute(
                                       builder: (context) => ArticleWebView(
                                             url:
-                                                "https://docs.google.com/forms/d/e/1FAIpQLScja_mCufEjMOk6-jzU3v_X1_yAfIgA9RYYhqyX3sSHSBh6uQ/viewform",
+                                                "https://docs.google.com/forms/d/e/1FAIpQLSdJtfnud6GZnnV_V5yrxamCK9rN-NgK7CHH6eVYqIRVc1jVaA/viewform",
                                             id: 0,
                                           )));
                             },
@@ -131,8 +132,9 @@ class _topikListState extends State<topikList> {
                   ),
                 ),
               ),
+              SizedBox(height: 8,),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                margin: EdgeInsets.symmetric(horizontal: 16.0),
                 child: FutureBuilder<String>(
                   future: DefaultAssetBundle.of(context)
                       .loadString('assets/json/kategori.json'),
@@ -166,80 +168,85 @@ class _topikListState extends State<topikList> {
 }
 
 Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
-  return Card(
-    color: Color.fromARGB(255, 28, 140, 36),
-    elevation: 0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.0),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(height: 10),
-        ListTile(
-          title: Text(kategori.jenisKategori,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                fontFamily: "Poppins",
-              )),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 8),
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: kategori.desc,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontFamily: "Poppins",
-                          color: Colors.white),
-                    ),
-                  ],
-                ),
-                maxLines: 2, // membatasi teks pada satu baris
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
+  return Column(
+    children: [
+      SizedBox(height: 8,),
+      Card(
+        color: Color.fromARGB(255, 28, 140, 36),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const SizedBox(width: 8),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  primary: Colors.white,
-                  onPrimary: Color.fromARGB(255, 28, 140, 36)),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NewsListPage(
+            SizedBox(height: 10),
+            ListTile(
+              title: Text(kategori.jenisKategori,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins",
+                  )),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 15.0, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: kategori.desc,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: "Poppins",
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    maxLines: 2, // membatasi teks pada satu baris
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      primary: Colors.white,
+                      onPrimary: Color.fromARGB(255, 28, 140, 36)),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewsListPage(
                               id: kategori.id,
                             )));
-              },
-              child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    'Pelajari',
-                    style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold),
-                  )),
+                  },
+                  child: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        'Pelajari',
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold),
+                      )),
+                ),
+                const SizedBox(width: 25),
+              ],
             ),
-            const SizedBox(width: 25),
+            const SizedBox(height: 8)
           ],
         ),
-        const SizedBox(height: 8)
-      ],
-    ),
+      ),
+    ],
   );
 }

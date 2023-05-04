@@ -64,7 +64,7 @@ class home extends StatelessWidget {
                       SizedBox(height: 8),
                       ListTile(
                         title: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             style: TextStyle(fontSize: 16.0, color: Colors.black),
                             children: <TextSpan>[
                               TextSpan(
@@ -93,7 +93,7 @@ class home extends StatelessWidget {
                           children: [
                             SizedBox(height: 10),
                             RichText(
-                              text: TextSpan(
+                              text: const TextSpan(
                                 style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                                 children: <TextSpan>[
@@ -151,13 +151,13 @@ class home extends StatelessWidget {
               //   ),
               // ),
               //topik
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Container(
                 margin:
                 EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
-                child: Text(
+                child: const Text(
                   'Topik',
                   style: TextStyle(
                     fontSize: 27,
@@ -168,7 +168,7 @@ class home extends StatelessWidget {
                 ),
               ),
               //    2x2 card
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Row(
@@ -179,7 +179,7 @@ class home extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => NewsListPage(
+                              builder: (context) => const NewsListPage(
                                 id: 1,
                               )));
                     },
@@ -193,7 +193,7 @@ class home extends StatelessWidget {
                         height: 125,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.assessment_outlined,
                                 size: 35,
@@ -216,7 +216,7 @@ class home extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => NewsListPage(
+                              builder: (context) => const NewsListPage(
                                 id: 2,
                               )));
                     },
@@ -230,7 +230,7 @@ class home extends StatelessWidget {
                         height: 125,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.delete_outline,
                                 size: 35,

@@ -21,7 +21,7 @@ class NewsListPage extends StatefulWidget {
 class _NewsListPageState extends State<NewsListPage> {
   List<dynamic> data = [];
 
-  @override
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -51,7 +51,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => NewsListPage(id: widget.id)),
