@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
 import 'package:proto/homepage.dart';
-import 'package:proto/model/kategori.dart';
+import 'package:proto/model/pengepul.dart';
 import 'package:proto/web_view.dart';
 
 import 'list_artikel.dart';
@@ -15,7 +15,6 @@ class pengepulList extends StatefulWidget {
 }
 
 class _pengepulListState extends State<pengepulList> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +46,16 @@ class _pengepulListState extends State<pengepulList> {
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
                 child: FutureBuilder<String>(
                   future: DefaultAssetBundle.of(context)
-                      .loadString('assets/json/kategori.json'),
+                      .loadString('assets/json/pengepul.json'),
                   builder: (context, snapshot) {
-                    final List material = parseKategori(snapshot.data);
+                    final List material = parsePengepul(snapshot.data);
                     return SizedBox(
                       width: 700,
                       height: 700,
@@ -65,7 +66,7 @@ class _pengepulListState extends State<pengepulList> {
                         ),
                         itemCount: material.length,
                         itemBuilder: (context, index) {
-                          return _buildKategoriItem(context, material[index]!);
+                          return _buildPengepulItem(context, material[index]!);
                         },
                       ),
                     );
@@ -79,72 +80,79 @@ class _pengepulListState extends State<pengepulList> {
     );
   }
 
-  List parseKategori(String? json) {
+  List parsePengepul(String? json) {
     if (json == null) {
       return [];
     }
     final List parsed = jsonDecode(json);
-    return parsed.map((json) => Kategori.fromJson(json)).toList();
+    return parsed.map((json) => Pengepul.fromJson(json)).toList();
   }
 }
 
-Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
+Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
   return Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        color: Color.fromARGB(255, 28, 140, 36),
-        child: SizedBox(
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  "assets/images/earth.png",
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                bottom: 10,
-                left: 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4), // Add some padding to the container
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.7), // Set the desired color here
-                        borderRadius: BorderRadius.circular(4), // Add some border radius to the container
-                      ),
-                      child: Text(
-                        kategori.jenisKategori,
-                        style: const TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.black54,
-                            fontFamily: 'Poppins'
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 4), // Add some spacing between the two Text widgets
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4), // Add some padding to the container
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.7), // Set the desired color here
-                        borderRadius: BorderRadius.circular(4), // Add some border radius to the container
-                      ),
-                      child: Text(
-                        "AAAAA",
-                        style: const TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.black54,
-                            fontFamily: 'Poppins'
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20.0),
+    ),
+    color: Color.fromARGB(255, 28, 140, 36),
+    child: SizedBox(
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/earth.png",
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-      );
+          Positioned(
+            bottom: 10,
+            left: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4), // Add some padding to the container
+                  decoration: BoxDecoration(
+                    color: Colors.white
+                        .withOpacity(0.7), // Set the desired color here
+                    borderRadius: BorderRadius.circular(
+                        4), // Add some border radius to the container
+                  ),
+                  child: Text(
+                    pengepul.nama,
+                    style: const TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.black54,
+                        fontFamily: 'Poppins'),
+                  ),
+                ),
+                SizedBox(
+                    height: 4), // Add some spacing between the two Text widgets
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4), // Add some padding to the container
+                  decoration: BoxDecoration(
+                    color: Colors.white
+                        .withOpacity(0.7), // Set the desired color here
+                    borderRadius: BorderRadius.circular(
+                        4), // Add some border radius to the container
+                  ),
+                  child: Text(
+                    "AAAAA",
+                    style: const TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black54,
+                        fontFamily: 'Poppins'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
