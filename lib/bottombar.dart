@@ -43,7 +43,7 @@ class _botNavState extends State<botNav> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: Icon(Icons.location_on_outlined),
             label: '',
           ),
         ],

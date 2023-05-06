@@ -52,7 +52,8 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                     widget.pengepul.nama,
                     style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "Poppins",
                     ),
                   ),
                 ),

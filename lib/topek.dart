@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
-import 'package:proto/homepage.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/web_view.dart';
 
@@ -49,84 +48,61 @@ class _topikListState extends State<topikList> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
-                  border: Border.all(color: Colors.black54, width: 1.0),
-                ),
+                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                // decoration: BoxDecoration(
+                //   borderRadius: BorderRadius.circular(16.0),
+                //   border: Border.all(color: Colors.black54, width: 1.0),
+                // ),
                 child: Card(
+                  color: Color.fromARGB(255, 154, 191, 21),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text('Ayo Berikan Masukanmu!',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 28, 140, 36),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Poppins",
-                            )),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 5),
-                            RichText(
-                              text: const TextSpan(
-                                style: TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text:
-                                        'Dengan mengisi survei singkat ini kamu membantu ELing untuk menyebarkan ',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Edukasi Lingkungan.',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                  child: Stack(
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          const SizedBox(width: 3),
-                          TextButton(
-                            child: const Text(
-                              'Ikuti Survey!',
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 11,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold),
+                          SizedBox(height: 8),
+                          ListTile(
+                            title: Text(
+                              "Apa yang ingin\nkamu pelajari?",
+                              style: TextStyle(fontSize: 20.0, color: Colors.white, fontWeight:FontWeight.w600, fontFamily: "Poppins",),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ArticleWebView(
-                                            url:
-                                                "https://docs.google.com/forms/d/e/1FAIpQLSdJtfnud6GZnnV_V5yrxamCK9rN-NgK7CHH6eVYqIRVc1jVaA/viewform",
-                                            id: 0,
-                                          )));
-                            },
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 4),
+                                SizedBox(height: 10,),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20)),
+                                      primary: Colors.white,
+                                      onPrimary: Color.fromARGB(255, 28, 140, 36)),
+                                  child: const Text(
+                                    'Ayo mulai pelajari',
+                                    style: TextStyle(
+                                        fontFamily: "Poppins",
+                                        fontSize: 12,
+                                        color: Colors.black54),
+                                  ),
+                                  onPressed: () {/* ... */},
+                                ),
+                              ],
+                            ),
                           ),
-                          const SizedBox(width: 5),
+                          SizedBox(height: 10,)
                         ],
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Image.asset(
+                          'assets/images/godong.png', // change this to your image path
+                          width: 200, // set the width and height of the imag
+                        ),
                       ),
                     ],
                   ),

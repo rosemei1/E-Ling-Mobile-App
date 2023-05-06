@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
+import 'package:proto/splashscreen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
-      home: botNav(),
+      home: SplashScreen(),
     );
   }
 }

@@ -22,7 +22,7 @@ class _pengepulListState extends State<pengepulList> {
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          "Topik",
+          "Pengepul",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 154, 191, 21),
@@ -133,7 +133,7 @@ Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
                       color: Colors.white
                           .withOpacity(0.7), // Set the desired color here
                       borderRadius: BorderRadius.circular(
-                          4), // Add some border radius to the container
+                          15), // Add some border radius to the container
                     ),
                     child: Text(
                       pengepul.nama,
@@ -145,24 +145,6 @@ Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
                   ),
                   SizedBox(
                       height: 4), // Add some spacing between the two Text widgets
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4), // Add some padding to the container
-                    decoration: BoxDecoration(
-                      color: Colors.white
-                          .withOpacity(0.7), // Set the desired color here
-                      borderRadius: BorderRadius.circular(
-                          4), // Add some border radius to the container
-                    ),
-                    child: Text(
-                      "AAAAA",
-                      style: const TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black54,
-                          fontFamily: 'Poppins'),
-                    ),
-                  ),
                 ],
               ),
             ),
