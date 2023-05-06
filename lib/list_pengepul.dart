@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
 import 'package:proto/homepage.dart';
 import 'package:proto/model/pengepul.dart';
+import 'package:proto/pengepul_view.dart';
 import 'package:proto/web_view.dart';
 
 import 'list_artikel.dart';
@@ -90,68 +91,78 @@ class _pengepulListState extends State<pengepulList> {
 }
 
 Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
-  return Card(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.0),
-    ),
-    color: Color.fromARGB(255, 28, 140, 36),
-    child: SizedBox(
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              "assets/images/earth.png",
-              fit: BoxFit.cover,
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DetailPengepul(),
+        ),
+      );
+    },
+    child: Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      color: Color.fromARGB(255, 28, 140, 36),
+      child: SizedBox(
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/earth.png",
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 10,
-            left: 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4), // Add some padding to the container
-                  decoration: BoxDecoration(
-                    color: Colors.white
-                        .withOpacity(0.7), // Set the desired color here
-                    borderRadius: BorderRadius.circular(
-                        4), // Add some border radius to the container
+            Positioned(
+              bottom: 10,
+              left: 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4), // Add some padding to the container
+                    decoration: BoxDecoration(
+                      color: Colors.white
+                          .withOpacity(0.7), // Set the desired color here
+                      borderRadius: BorderRadius.circular(
+                          4), // Add some border radius to the container
+                    ),
+                    child: Text(
+                      pengepul.nama,
+                      style: const TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black54,
+                          fontFamily: 'Poppins'),
+                    ),
                   ),
-                  child: Text(
-                    pengepul.nama,
-                    style: const TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black54,
-                        fontFamily: 'Poppins'),
+                  SizedBox(
+                      height: 4), // Add some spacing between the two Text widgets
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4), // Add some padding to the container
+                    decoration: BoxDecoration(
+                      color: Colors.white
+                          .withOpacity(0.7), // Set the desired color here
+                      borderRadius: BorderRadius.circular(
+                          4), // Add some border radius to the container
+                    ),
+                    child: Text(
+                      "AAAAA",
+                      style: const TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.black54,
+                          fontFamily: 'Poppins'),
+                    ),
                   ),
-                ),
-                SizedBox(
-                    height: 4), // Add some spacing between the two Text widgets
-                Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4), // Add some padding to the container
-                  decoration: BoxDecoration(
-                    color: Colors.white
-                        .withOpacity(0.7), // Set the desired color here
-                    borderRadius: BorderRadius.circular(
-                        4), // Add some border radius to the container
-                  ),
-                  child: Text(
-                    "AAAAA",
-                    style: const TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.black54,
-                        fontFamily: 'Poppins'),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
