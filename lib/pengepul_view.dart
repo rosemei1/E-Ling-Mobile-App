@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:proto/bottombar.dart';
 import 'package:proto/list_pengepul.dart';
+import 'package:proto/model/pengepul.dart';
 
 class DetailPengepul extends StatefulWidget{
-  final String judul;
-  final String alamat;
-  final String sedia;
-  final String kontak;
+  final Pengepul pengepul;
 
-  const DetailPengepul({super.key, required this.judul, required this.alamat, required this.sedia, required this.kontak});
+
+  const DetailPengepul({super.key, required this.pengepul});
 
 
   @override
@@ -34,13 +34,8 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => pengepulList()),
-            );
-          },
+          onPressed: () => Navigator.of(context).pop(),
+
         ),
       ),
       body: SingleChildScrollView(
@@ -54,7 +49,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
                   child: Text(
-                    widget.judul,
+                    widget.pengepul.nama,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -66,8 +61,8 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                   height: 178,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/jambangan.jpg',
+                    child: Image.network(
+                     widget.pengepul.gambar,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -85,7 +80,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                   ),
                 ),
                 Text(
-                  widget.alamat,
+                  widget.pengepul.alamat,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 12,
@@ -103,7 +98,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 ),
                 SizedBox(height: 2),
                 Text(
-                 widget.sedia,
+                 widget.pengepul.ketersediaan,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 12,
@@ -121,7 +116,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 ),
                 SizedBox(height: 2),
                 Text(
-                  widget.kontak,
+                  widget.pengepul.kontak,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 12,
@@ -148,8 +143,8 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
 
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'assets/images/jambangan.jpg',
+                        child: Image.network(
+                          "https://cdn-2.tstatic.net/surabaya/foto/bank/images/sampah-daur-ulang-dimanfaatkan-warga-kampung-di-rt-1-rw-3-kelurahan-jambangan.jpg",
                           fit: BoxFit.cover,
                           width: 118,
                           height: 222,

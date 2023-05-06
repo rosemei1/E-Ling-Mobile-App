@@ -97,9 +97,7 @@ Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
         context,
         MaterialPageRoute(
           builder: (context) => DetailPengepul(
-            judul: pengepul.nama,
-            alamat: pengepul.alamat,
-            sedia: pengepul.ketersediaan, kontak: pengepul.kontak,
+            pengepul: pengepul,
           ),
         ),
       );
@@ -113,9 +111,12 @@ Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
         child: Stack(
           children: [
             Positioned.fill(
-              child: Image.asset(
-                "assets/images/earth.png",
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: Image.network(
+                  pengepul.gambar,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Positioned(

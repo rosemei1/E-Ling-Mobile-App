@@ -2,14 +2,11 @@
 //
 //     final pengepul = pengepulFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<Pengepul> pengepulFromJson(String str) =>
-    List<Pengepul>.from(json.decode(str).map((x) => Pengepul.fromJson(x)));
+List<Pengepul> pengepulFromJson(String str) => List<Pengepul>.from(json.decode(str).map((x) => Pengepul.fromJson(x)));
 
-String pengepulToJson(List<Pengepul> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String pengepulToJson(List<Pengepul> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Pengepul {
   int id;
@@ -17,6 +14,7 @@ class Pengepul {
   String alamat;
   String ketersediaan;
   String kontak;
+  String gambar;
 
   Pengepul({
     required this.id,
@@ -24,21 +22,24 @@ class Pengepul {
     required this.alamat,
     required this.ketersediaan,
     required this.kontak,
+    required this.gambar,
   });
 
   factory Pengepul.fromJson(Map<String, dynamic> json) => Pengepul(
-        id: json["id"],
-        nama: json["nama"],
-        alamat: json["alamat"],
-        ketersediaan: json["ketersediaan"],
-        kontak: json["kontak"],
-      );
+    id: json["id"],
+    nama: json["nama"],
+    alamat: json["alamat"],
+    ketersediaan: json["ketersediaan"],
+    kontak: json["kontak"],
+    gambar: json["gambar"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "nama": nama,
-        "alamat": alamat,
-        "ketersediaan": ketersediaan,
-        "kontak": kontak,
-      };
+    "id": id,
+    "nama": nama,
+    "alamat": alamat,
+    "ketersediaan": ketersediaan,
+    "kontak": kontak,
+    "gambar": gambar,
+  };
 }
