@@ -64,6 +64,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
+    - assets/images/jambangan.jpg
     - assets/images/earth.png
     - assets/json/artikel.json
     - assets/json/kategori.json

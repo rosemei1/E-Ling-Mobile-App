@@ -36,128 +36,125 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Pusat Daur Ulang Jambangan',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-              height: 200,
-              child: Image.asset(
-                'assets/images/pengepul_image.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-            Divider(color: Colors.black),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Alamat',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 8),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'MPM8+2PJ, Jambangan, Kec. Jambangan, Kota SBY, Jawa Timur 60232',
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ),
-            Divider(color: Colors.black),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Ketersediaan',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 8),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Senin - Sabtu',
-              ),
-            ),
-            Divider(color: Colors.black),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Kontak',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 8),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Telepon ',
-              ),
-            ),
-            Divider(color: Colors.black),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Gallery',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 8),
-            SizedBox(
-              height: 100,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  SizedBox(width: 16),
-                  Image.asset(
-                    'assets/images/related_image_1.png',
-                    width: 100,
-                    height: 100,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
+                  child: Text(
+                    'Pusat Daur Ulang Jambangan',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(width: 16),
-                  Image.asset(
-                    'assets/images/related_image_2.png',
-                    width: 100,
-                    height: 100,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+                  height: 178,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/jambangan.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  SizedBox(width: 16),
-                  Image.asset(
-                    'assets/images/related_image_3.png',
-                    width: 100,
-                    height: 100,
+                ),
+
+                SizedBox(height: 8),
+                Divider(color: Colors.black),
+                SizedBox(height: 10),
+                Text(
+                  'Alamat',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(width: 16),
-                ],
-              ),
+                ),
+                Text(
+                  'MPM8+2PJ, Jambangan, Kec. Jambangan, Kota SBY, Jawa Timur 60232',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 12,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Divider(color: Colors.black),
+                Text(
+                  'Ketersediaan',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 2),
+                Text(
+                  'Senin - Sabtu ',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 12,
+                  ),
+                ),
+                SizedBox(height: 6),
+                Divider(color: Colors.black),
+                Text(
+                  'Kontak',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 2),
+                Text(
+                  'Telepon',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 12,
+                  ),
+                ),
+                SizedBox(height: 6),
+                Divider(color: Colors.black),
+
+
+                Text(
+                  'Gallery',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8),
+                SizedBox(
+                  height: 80,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'assets/images/jambangan.jpg',
+                          fit: BoxFit.cover,
+                          width: 118,
+                          height: 222,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
