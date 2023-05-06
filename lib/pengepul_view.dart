@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:proto/list_pengepul.dart';
 
 class DetailPengepul extends StatefulWidget{
+  final String judul;
+  final String alamat;
+  final String sedia;
+  final String kontak;
+
+  const DetailPengepul({super.key, required this.judul, required this.alamat, required this.sedia, required this.kontak});
+
 
   @override
   _ViewDetailPengepul createState() => _ViewDetailPengepul();
@@ -47,7 +54,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
                   child: Text(
-                    'Pusat Daur Ulang Jambangan',
+                    widget.judul,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -78,7 +85,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                   ),
                 ),
                 Text(
-                  'MPM8+2PJ, Jambangan, Kec. Jambangan, Kota SBY, Jawa Timur 60232',
+                  widget.alamat,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 12,
@@ -96,7 +103,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 ),
                 SizedBox(height: 2),
                 Text(
-                  'Senin - Sabtu ',
+                 widget.sedia,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 12,
@@ -114,7 +121,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 ),
                 SizedBox(height: 2),
                 Text(
-                  'Telepon',
+                  widget.kontak,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 12,

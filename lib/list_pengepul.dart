@@ -96,7 +96,11 @@ Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DetailPengepul(),
+          builder: (context) => DetailPengepul(
+            judul: pengepul.nama,
+            alamat: pengepul.alamat,
+            sedia: pengepul.ketersediaan, kontak: pengepul.kontak,
+          ),
         ),
       );
     },
