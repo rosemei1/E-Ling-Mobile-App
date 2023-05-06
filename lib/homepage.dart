@@ -437,16 +437,27 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
       children: <Widget>[
         SizedBox(height: 8),
         ListTile(
-          leading: Icon(
-            Icons.article,
-            color: Color.fromARGB(255, 28, 140, 36),
-            size: 30,
+          // leading: Icon(
+          //   Icons.article,
+          //   color: Color.fromARGB(255, 28, 140, 36),
+          //   size: 30,
+          // ),
+          title: Text(
+            article.nama,
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontFamily: "Poppins",
+              fontSize: 14
+            ),
           ),
-          title: Text(article.nama),
           subtitle: Text(
             article.desc,
-            maxLines: 1, // membatasi subtitle pada satu baris
+            maxLines: 2, // membatasi subtitle pada satu baris
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontFamily: "Poppins",
+              fontSize: 11
+            ),
           ),
         ),
         Row(

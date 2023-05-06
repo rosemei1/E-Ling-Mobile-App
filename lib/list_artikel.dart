@@ -196,29 +196,26 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
       children: <Widget>[
         SizedBox(height: 8),
         ListTile(
-          leading: Icon(
-            Icons.article,
-            color: Color.fromARGB(255, 28, 140, 36),
-            size: 30,
-          ),
+          // leading: Icon(
+          //   Icons.article,
+          //   color: Color.fromARGB(255, 28, 140, 36),
+          //   size: 30,
+          // ),
           title: Text(
-              article.nama,
-              style:TextStyle(
+            article.nama,
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
                 fontFamily: "Poppins",
-                fontSize: 14,
-                color: Colors.black,
-                  fontWeight: FontWeight.w600
-              ),
+                fontSize: 14
+            ),
           ),
           subtitle: Text(
             article.desc,
-            maxLines: 2, //// membatasi subtitle pada satu baris
+            maxLines: 2, // membatasi subtitle pada satu baris
             overflow: TextOverflow.ellipsis,
-            style:TextStyle(
+            style: TextStyle(
                 fontFamily: "Poppins",
-                fontSize: 11,
-                color: Colors.black,
-
+                fontSize: 11
             ),
           ),
         ),
@@ -226,24 +223,22 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('Baca Lebih Lanjut',
-                style:TextStyle(
+              child: const Text(
+                'Baca Lebih Lanjut',
+                style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 10,
                     color: Color.fromARGB(255, 28, 140, 36),
-                    fontWeight: FontWeight.bold
-                ),
+                    fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => ArticleWebView(
-                              url: article.link,
-                              id: article.idKategori,
-                            )
-                    )
-                );
+                          url: article.link,
+                          id: article.idKategori,
+                        )));
               },
             ),
             const SizedBox(width: 8),

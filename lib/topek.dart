@@ -108,7 +108,6 @@ class _topikListState extends State<topikList> {
                   ),
                 ),
               ),
-              SizedBox(height: 8,),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
                 child: FutureBuilder<String>(

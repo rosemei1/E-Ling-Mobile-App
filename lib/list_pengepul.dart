@@ -144,7 +144,22 @@ Widget _buildPengepulItem(BuildContext context, Pengepul pengepul) {
                     ),
                   ),
                   SizedBox(
-                      height: 4), // Add some spacing between the two Text widgets
+                      height: 4),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4), // Add some padding to the container
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.7), // Set the desired color here
+                      borderRadius: BorderRadius.circular(15), // Add some border radius to the container
+                    ),
+                    child: Text(
+                      pengepul.jenis,
+                      style: const TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.black54,
+                          fontFamily: 'Poppins'
+                      ),
+                    ),
+                  ),// Add some spacing between the two Text widgets
                 ],
               ),
             ),

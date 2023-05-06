@@ -15,6 +15,7 @@ class Pengepul {
   String ketersediaan;
   String kontak;
   String gambar;
+  String jenis;
 
   Pengepul({
     required this.id,
@@ -23,6 +24,7 @@ class Pengepul {
     required this.ketersediaan,
     required this.kontak,
     required this.gambar,
+    required this.jenis,
   });
 
   factory Pengepul.fromJson(Map<String, dynamic> json) => Pengepul(
@@ -32,6 +34,7 @@ class Pengepul {
     ketersediaan: json["ketersediaan"],
     kontak: json["kontak"],
     gambar: json["gambar"],
+    jenis: json["jenis"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -41,5 +44,6 @@ class Pengepul {
     "ketersediaan": ketersediaan,
     "kontak": kontak,
     "gambar": gambar,
+    "jenis": jenis,
   };
 }

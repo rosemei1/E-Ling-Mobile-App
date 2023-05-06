@@ -1,7 +1,8 @@
 [
         {
             "id": 1,
-            "nama": "Pusat Daur Ulang Jambangan",
+            "nama": "Jambangan",
+            "jenis": "Pusat Daur Ulang ",
             "alamat" : "MPM8+2PJ, Jambangan, Kec. Jambangan, Kota SBY, Jawa Timur 60232",
             "ketersediaan"  : "Buka ⋅ Tutup pukul 16.00",
             "kontak"  : "0851-0009-0858",
@@ -9,7 +10,8 @@
         },
         {
             "id": 2,
-            "nama": "Bank Sampah Induk Surabaya",
+            "nama": "Induk Surabaya",
+            "jenis": "Bank Sampah ",
             "alamat" : "Jl. Ngagel Tim No.26, RT.009/RW.06, Pucang Sewu, Kec. Gubeng, Kota SBY, Jawa Timur 60283",
             "ketersediaan"  : "Buka ⋅ Tutup pukul 17.00",
             "kontak"  : "0851-0009-0858",

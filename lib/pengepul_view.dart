@@ -49,7 +49,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
                   child: Text(
-                    widget.pengepul.nama,
+                    widget.pengepul.jenis + widget.pengepul.nama,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
