@@ -127,35 +127,35 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 Divider(color: Colors.black),
 
 
-                Text(
-                  'Gallery',
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8),
-                SizedBox(
-                  height: 80,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          "https://cdn-2.tstatic.net/surabaya/foto/bank/images/sampah-daur-ulang-dimanfaatkan-warga-kampung-di-rt-1-rw-3-kelurahan-jambangan.jpg",
-                          fit: BoxFit.cover,
-                          width: 118,
-                          height: 222,
-                        ),
-                      ),
-                      SizedBox(width: 16),
-
-                    ],
-                  ),
-                ),
+                // Text(
+                //   'Gallery',
+                //   style: TextStyle(
+                //     fontFamily: "Poppins",
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+                // SizedBox(height: 8),
+                // SizedBox(
+                //   height: 80,
+                //   child: ListView(
+                //     scrollDirection: Axis.horizontal,
+                //     children: [
+                //
+                //       ClipRRect(
+                //         borderRadius: BorderRadius.circular(10),
+                //         child: Image.network(
+                //           "https://cdn-2.tstatic.net/surabaya/foto/bank/images/sampah-daur-ulang-dimanfaatkan-warga-kampung-di-rt-1-rw-3-kelurahan-jambangan.jpg",
+                //           fit: BoxFit.cover,
+                //           width: 118,
+                //           height: 222,
+                //         ),
+                //       ),
+                //       SizedBox(width: 16),
+                //
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
