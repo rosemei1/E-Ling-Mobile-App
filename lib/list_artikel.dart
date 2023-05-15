@@ -41,10 +41,7 @@ class _NewsListPageState extends State<NewsListPage> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => botNav()));
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: SingleChildScrollView(

@@ -58,23 +58,6 @@ class _ArticleWebViewState extends State<ArticleWebView> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          // onPressed: () {
-          //   if (widget.id == 0) {
-          //     // navigasi ke halaman SurveyPage
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => topikList(),
-          //       ),
-          //     );
-          //   } else {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (context) => NewsListPage(id: widget.id)),
-          //     );
-          //   }
-          // },
           onPressed: () => Navigator.of(context).pop(),
 
         ),
