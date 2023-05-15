@@ -1,36 +1,53 @@
 // To parse this JSON data, do
 //
-//     final kategori = kategoriFromJson(jsonString);
+//     final welcome = welcomeFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<Kategori> kategoriFromJson(String str) =>
-    List<Kategori>.from(json.decode(str).map((x) => Kategori.fromJson(x)));
+Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
 
-String kategoriToJson(List<Kategori> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
-class Kategori {
-  Kategori({
-    required this.id,
-    required this.jenisKategori,
-    required this.desc,
-  });
+class Welcome {
+    List<Datum> data;
 
-  int id;
-  String jenisKategori;
-  String desc;
+    Welcome({
+        required this.data,
+    });
 
-  factory Kategori.fromJson(Map<String, dynamic> json) => Kategori(
+    factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+    };
+}
+
+class Datum {
+    int id;
+    String jenisKategori;
+    DateTime createdAt;
+    DateTime updatedAt;
+
+    Datum({
+        required this.id,
+        required this.jenisKategori,
+        required this.createdAt,
+        required this.updatedAt,
+    });
+
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         jenisKategori: json["jenis_kategori"],
-        desc: json["desc"],
-      );
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "jenis_kategori": jenisKategori,
-        "desc": desc,
-      };
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+    };
 }

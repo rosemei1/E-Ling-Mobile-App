@@ -21,7 +21,6 @@ class NewsListPage extends StatefulWidget {
 class _NewsListPageState extends State<NewsListPage> {
   List<dynamic> data = [];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,7 +167,7 @@ class _NewsListPageState extends State<NewsListPage> {
     }
     final List parsed = jsonDecode(json);
     return parsed
-        .map((json) => Kategori.fromJson(json))
+        .map((json) => Datum.fromJson(json))
         .where((kategori) => kategori.id == widget.id)
         .toList();
   }
@@ -206,17 +205,13 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
             style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontFamily: "Poppins",
-                fontSize: 14
-            ),
+                fontSize: 14),
           ),
           subtitle: Text(
             article.desc,
             maxLines: 2, // membatasi subtitle pada satu baris
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontFamily: "Poppins",
-                fontSize: 11
-            ),
+            style: TextStyle(fontFamily: "Poppins", fontSize: 11),
           ),
         ),
         Row(
@@ -236,9 +231,9 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ArticleWebView(
-                          url: article.link,
-                          id: article.idKategori,
-                        )));
+                              url: article.link,
+                              id: article.idKategori,
+                            )));
               },
             ),
             const SizedBox(width: 8),
@@ -266,47 +261,45 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
             size: 40,
           ),
           title: Text(
-              materi.nama,
-            style:TextStyle(
+            materi.nama,
+            style: TextStyle(
                 fontFamily: "Poppins",
                 fontSize: 14,
                 color: Colors.black,
-                fontWeight: FontWeight.w600
+                fontWeight: FontWeight.w600),
+          ),
+          subtitle: Text(
+            materi.desc,
+            maxLines: 2, //// membatasi subtitle pada satu baris
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 11,
+              color: Colors.black,
             ),
-              ),
-            subtitle: Text(
-              materi.desc,
-              maxLines: 2, //// membatasi subtitle pada satu baris
-              overflow: TextOverflow.ellipsis,
-              style:TextStyle(
-                  fontFamily: "Poppins",
-                  fontSize: 11,
-                  color: Colors.black,
-              ),
-            ),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextButton(
-              child: const Text('Tonton',
-              style:TextStyle(
-              fontFamily: "Poppins",
-              fontSize: 11,
-              color: Color.fromARGB(255, 28, 140, 36),
-              fontWeight: FontWeight.bold
-                ),
+              child: const Text(
+                'Tonton',
+                style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    color: Color.fromARGB(255, 28, 140, 36),
+                    fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => ViewYoutube(
-                              url: materi.link,
-                              id: materi.idKategory,
-                              desc: materi.desc,
-                              nama: materi.nama
-                            )));
+                            url: materi.link,
+                            id: materi.idKategory,
+                            desc: materi.desc,
+                            nama: materi.nama)));
               },
             ),
             const SizedBox(width: 8),
@@ -329,7 +322,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
   // );
 }
 
-Widget _buildKategori(BuildContext context, Kategori kategori) {
+Widget _buildKategori(BuildContext context, Datum kategori) {
   return Card(
       color: Color.fromARGB(255, 28, 140, 36),
       elevation: 0,
@@ -365,20 +358,22 @@ Widget _buildKategori(BuildContext context, Kategori kategori) {
                   text: TextSpan(
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                     children: <TextSpan>[
-                      TextSpan(
-                        text: kategori.desc,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Poppins",
-                            color: Colors.white),
-                      ),
+                      // TextSpan(
+                      //   text: kategori.desc,
+                      //   style: TextStyle(
+                      //       fontSize: 12,
+                      //       fontFamily: "Poppins",
+                      //       color: Colors.white),
+                      // ),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 10,)
+          SizedBox(
+            height: 10,
+          )
         ],
       ));
 }

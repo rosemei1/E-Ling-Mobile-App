@@ -19,7 +19,7 @@
         },
   {
     "id": 3,
-    "nama": "Pusat Pengolahan Sampah dan Kompos ITS",
+    "nama": "Rumah Kompos ITS",
     "jenis": "Pengolahan Sampah ",
     "alamat" : "Jl. Arief Rahman Hakim No.193, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60111",
     "ketersediaan"  : "Buka ⋅ Tutup pukul 16.00",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "nama": "Kantor Tabungan Sampah Terpadu (TaSTe) ITS",
-    "jenis":  "Bank Sampah",
+    "jenis":  "Bank Sampah ",
     "alamat" : "PQ8X+36Q, Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60117",
     "ketersediaan"  : "Selasa,Rabu,Jumat - pukul 10.00 - 15.00",
     "kontak"  : "-",
@@ -37,8 +37,8 @@
   },
   {
   "id": 5,
-    "nama": "Bank Sampah Makmur 5 Surabaya",
-    "jenis":  "Bank Sampah",
+    "nama": "Makmur 5 Surabaya",
+    "jenis":  "Bank Sampah ",
     "alamat" : "Jl. Demak Timur V No.5, Gundih, Kec. Bubutan, Kota SBY, Jawa Timur 60172",
     "ketersediaan"  : "Minggu,07.00–12.00",
     "kontak"  : "082141669033",
@@ -46,8 +46,8 @@
   },
   {
   "id": 6,
-    "nama": "Bank Sampah Pesepan",
-    "jenis":  "Bank Sampah",
+    "nama": "Pesepan",
+    "jenis":  "Bank Sampah ",
     "alamat" : "Jl. Sumur Welut No.130, Sumur Welut, Kec. Lakarsantri, Kota SBY, Jawa Timur 60215",
     "ketersediaan"  : "Buka 24 jam",
     "kontak"  : "-",
