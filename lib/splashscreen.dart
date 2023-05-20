@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:proto/bottombar.dart';
 import 'package:proto/homepage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => botNav()),
+        MaterialPageRoute(builder: (context) => home()),
       );
     });
   }

@@ -5,7 +5,7 @@ import 'package:proto/homepage.dart';
 import 'package:proto/model/pengepul.dart';
 import 'package:proto/pengepul_view.dart';
 import 'package:proto/web_view.dart';
-
+import 'botnav.dart';
 import 'list_artikel.dart';
 
 class pengepulList extends StatefulWidget {
@@ -19,30 +19,31 @@ class _pengepulListState extends State<pengepulList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text(
-          "Pengepul",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 154, 191, 21),
-            fontFamily: "WorkSans",
-            fontSize: 22,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: Color.fromARGB(255, 154, 191, 21),
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => botNav()),
-            );
-          },
-        ),
-      ),
+      extendBody: true,
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   title: const Text(
+      //     "Pengepul",
+      //     style: TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       color: Color.fromARGB(255, 154, 191, 21),
+      //       fontFamily: "WorkSans",
+      //       fontSize: 22,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      //   leading: IconButton(
+      //     color: Color.fromARGB(255, 154, 191, 21),
+      //     icon: Icon(Icons.arrow_back),
+      //     onPressed: () {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (context) => botNav()),
+      //       );
+      //     },
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -77,6 +78,9 @@ class _pengepulListState extends State<pengepulList> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 2,
       ),
     );
   }
