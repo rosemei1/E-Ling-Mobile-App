@@ -45,56 +45,60 @@ class home extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             SizedBox(height: 15),
-                            ListTile(
-                              title: Text(
-                                "Selamat Datang!",
-                                style: TextStyle(
-                                  fontSize: 21.0,
-                                  color: Color.fromARGB(255, 154, 191, 21),
-                                  fontWeight: FontWeight.w900,
-                                  fontFamily: "Poppins",
-                                ),
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                    text: const TextSpan(
-                                      style: TextStyle(fontSize: 15.0, color: Color.fromARGB(255, 154, 191, 21)),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: 'Yuk, belajar waste manajemen\ndan cari bank sampah\nterdekatmu! ',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontFamily: "Poppins",
-                                            color: Color.fromARGB(255, 154, 191, 21),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: ListTile(
+                                title: Text(
+                                  "Selamat Datang!",
+                                  style: TextStyle(
+                                    fontSize: 21.0,
+                                    color: Color.fromARGB(255, 154, 191, 21),
+                                    fontWeight: FontWeight.w900,
+                                    fontFamily: "Poppins",
                                   ),
-                                  SizedBox(height: 10),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                      primary: Color.fromARGB(255, 154, 191, 21),
-                                      onPrimary: Color.fromARGB(255, 28, 140, 36),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 10, right: 10),
-                                      child: Text(
-                                        'Cari Pengepul',
-                                        style: TextStyle(
-                                            fontFamily: "Poppins",
-                                            fontSize: 11,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold
-                                        ),
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 7,),
+                                    RichText(
+                                      text: const TextSpan(
+                                        style: TextStyle(fontSize: 15.0, color: Color.fromARGB(255, 154, 191, 21)),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'Yuk, belajar waste manajemen\ndan cari bank sampah\nterdekatmu! ',
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              fontFamily: "Poppins",
+                                              color: Color.fromARGB(255, 154, 191, 21),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    onPressed: () {/* ... */},
-                                  ),
-                                ],
+                                    SizedBox(height: 10),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                        primary: Color.fromARGB(255, 154, 191, 21),
+                                        onPrimary: Color.fromARGB(255, 28, 140, 36),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 10, right: 10),
+                                        child: Text(
+                                          'Cari Pengepul',
+                                          style: TextStyle(
+                                              fontFamily: "Poppins",
+                                              fontSize: 11,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {/* ... */},
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(height: 20),
@@ -315,78 +319,92 @@ class home extends StatelessWidget {
 }
 
 Widget _buildArticleItem(BuildContext context, Artikel article) {
-  return Card(
-    elevation: 3,
-    shape: RoundedRectangleBorder(
+  return Container(
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16.0),
-    ),
-    child: Stack(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 80,
-              height: 80,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16.0),
-                child: Image.asset(
-                  'assets/images/logo.png', // Replace with the actual path of your image asset
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(width: 16.0),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(top: 10, right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      article.nama,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontFamily: "Poppins",
-                          fontSize: 12
-                      ),
-                    ),
-                    Text(
-                      'tanggal',
-                      style: TextStyle(
-                        fontSize: 10.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          spreadRadius: 0.01,
+          blurRadius: 6,
+          offset: Offset(0, 0),
         ),
-        Positioned(
-          bottom: -5,
-          right: 8.0,
-          child: TextButton(
-            onPressed: () {
-            },
-            child: Text(
-              'Baca Lebih Lanjut',
-              style: TextStyle(
-                  color: Color.fromARGB(255, 154, 191, 21),
-                  decoration: TextDecoration.underline,
-                  fontFamily: "Poppins",
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold
+      ],
+    ),
+    child: Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Stack(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: 80,
+                height: 80,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: Image.asset(
+                    'assets/images/logo.png', // Replace with the actual path of your image asset
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(width: 16.0),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(top: 10, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        article.nama,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Poppins",
+                            fontSize: 12
+                        ),
+                      ),
+                      Text(
+                        'tanggal',
+                        style: TextStyle(
+                          fontSize: 10.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: -5,
+            right: 8.0,
+            child: TextButton(
+              onPressed: () {
+              },
+              child: Text(
+                'Baca Lebih Lanjut',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 154, 191, 21),
+                    decoration: TextDecoration.underline,
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
 Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
   return Container(
+    padding: EdgeInsets.only(left: 10),
     child: Column(
       children: [
         SizedBox(height: 8),
@@ -401,43 +419,57 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
               ),
             );
           },
-          child: Card(
-            shape: RoundedRectangleBorder(
+          child: Container(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  spreadRadius: 0.01,
+                  blurRadius: 6,
+                  offset: Offset(0, 0),
+                ),
+              ],
             ),
-            child: SizedBox(
-              width: 200,
-              height: 175,
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
+            child: Card(
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: SizedBox(
+                width: 200,
+                height: 175,
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16.0),
+                        topRight: Radius.circular(16.0),
+                      ),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: 100,
+                      ),
                     ),
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 100,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft, // Align text to the left
-                      child: Text(
-                        kategori.jenisKategori,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Poppins",
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft, // Align text to the left
+                        child: Text(
+                          kategori.jenisKategori,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 25, 25, 27),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Poppins",
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

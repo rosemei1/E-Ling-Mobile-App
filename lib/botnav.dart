@@ -58,9 +58,29 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           // Show a snackbar with the warning message
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Press back once again to exit'),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              content: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                child: Text(
+                  'Press back once again to exit',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+              behavior: SnackBarBehavior.floating,
               duration: Duration(seconds: 2),
             ),
+
           );
 
           // Record the current time when back button is pressed

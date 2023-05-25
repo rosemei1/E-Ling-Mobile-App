@@ -37,14 +37,31 @@ class _NewsListPageState extends State<NewsListPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: Color.fromARGB(255, 154, 191, 21),
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+        backgroundColor: Colors.transparent,
+        leading: Container(
+          margin: EdgeInsets.only(left: 10, top: 10), // Adjust the margin values as needed
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 90,
+                height: 90,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(13), // Adjust the border radius as needed
+                  color: Color.fromARGB(255, 154, 191, 21),
+                ),
+              ),
+              IconButton(
+                color: Colors.white,
+                icon: Icon(Icons.arrow_back, size: 30,),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
         ),
       ),
-      body: SingleChildScrollView(
+        body: SingleChildScrollView(
         child: Column(
           children: [
             //card
@@ -78,8 +95,8 @@ class _NewsListPageState extends State<NewsListPage> {
                 child: Text(
                   'Video Materi',
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
                   ),
@@ -116,8 +133,8 @@ class _NewsListPageState extends State<NewsListPage> {
                 child: Text(
                   'Materi Bacaan',
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900,
                     color: Color.fromARGB(255, 154, 191, 21),
                     fontFamily: "WorkSans",
                   ),
@@ -188,58 +205,73 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16.0),
     ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(height: 8),
-        ListTile(
-          // leading: Icon(
-          //   Icons.article,
-          //   color: Color.fromARGB(255, 28, 140, 36),
-          //   size: 30,
-          // ),
-          title: Text(
-            article.nama,
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontFamily: "Poppins",
-                fontSize: 14
-            ),
-          ),
-          subtitle: Text(
-            article.desc,
-            maxLines: 2, // membatasi subtitle pada satu baris
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontFamily: "Poppins",
-                fontSize: 11
-            ),
-          ),
-        ),
+    child: Stack(
+      children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            TextButton(
-              child: const Text(
-                'Baca Lebih Lanjut',
-                style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 10,
-                    color: Color.fromARGB(255, 28, 140, 36),
-                    fontWeight: FontWeight.bold),
+            Container(
+              width: 100,
+              height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Image.asset(
+                  'assets/images/logo.png', // Replace with the actual path of your image asset
+                  fit: BoxFit.cover,
+                ),
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ArticleWebView(
-                          url: article.link,
-                          id: article.idKategori,
-                        )));
-              },
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 16.0),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.only(top: 10, right: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        article.nama,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Poppins",
+                            fontSize: 14
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 4,),
+                    Text(
+                      'tanggal',
+                      style: TextStyle(
+                          fontSize: 11.0,
+                          fontFamily: "Poppins",
+                          color: Colors.black38,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
+        ),
+        Positioned(
+          bottom: -3,
+          right: 12.0,
+          child: TextButton(
+            onPressed: () {
+            },
+            child: Text(
+              'Baca Lebih Lanjut',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 154, 191, 21),
+                  decoration: TextDecoration.underline,
+                  fontFamily: "Poppins",
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+          ),
         ),
       ],
     ),
@@ -247,69 +279,59 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
 }
 
 Widget _buildMateriItem(BuildContext context, Materi materi) {
-  return Card(
-    elevation: 3,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.0),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(height: 8),
-        ListTile(
-          leading: Icon(
-            Icons.play_arrow,
-            color: Color.fromARGB(255, 28, 140, 36),
-            size: 40,
-          ),
-          title: Text(
-              materi.nama,
-            style:TextStyle(
-                fontFamily: "Poppins",
-                fontSize: 14,
-                color: Colors.black,
-                fontWeight: FontWeight.w600
-            ),
-              ),
-            subtitle: Text(
-              materi.desc,
-              maxLines: 2, //// membatasi subtitle pada satu baris
-              overflow: TextOverflow.ellipsis,
-              style:TextStyle(
-                  fontFamily: "Poppins",
-                  fontSize: 11,
-                  color: Colors.black,
-              ),
-            ),
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ViewYoutube(
+                  url: materi.link,
+                  id: materi.idKategory,
+                  desc: materi.desc,
+                  nama: materi.nama
+              )));
+    },
+    child: Container(
+      height: 100,
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            TextButton(
-              child: const Text('Tonton',
-              style:TextStyle(
-              fontFamily: "Poppins",
-              fontSize: 11,
-              color: Color.fromARGB(255, 28, 140, 36),
-              fontWeight: FontWeight.bold
+            SizedBox(height: 8),
+            ListTile(
+              leading: Icon(
+                Icons.play_arrow_rounded,
+                color: Color.fromARGB(255, 154, 191, 21),
+                size: 40,
+              ),
+              title: Text(
+                materi.nama,
+                style:TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600
                 ),
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ViewYoutube(
-                              url: materi.link,
-                              id: materi.idKategory,
-                              desc: materi.desc,
-                              nama: materi.nama
-                            )));
-              },
+              subtitle: Text(
+                "Oleh Eling",
+                maxLines: 2, //// membatasi subtitle pada satu baris
+                overflow: TextOverflow.ellipsis,
+                style:TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
             ),
-            const SizedBox(width: 8),
           ],
         ),
-      ],
+      ),
     ),
   );
   // return ListTile(
@@ -328,54 +350,94 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
 
 Widget _buildKategori(BuildContext context, Kategori kategori) {
   return Card(
-      color: Color.fromARGB(255, 28, 140, 36),
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          SizedBox(height: 8.0),
-          ListTile(
-            title: RichText(
-              text: TextSpan(
-                style: TextStyle(fontSize: 16.0, color: Colors.black),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: kategori.jenisKategori,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-                ],
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+    child: SizedBox(
+      height: 150, // Set the height of the card here
+      child: Stack(
+        children: [
+          // Image
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.asset(
+                "assets/images/gunung.png",
+                fit: BoxFit.cover,
               ),
             ),
-            subtitle: Column(
+          ),
+
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.25),
+                  borderRadius: BorderRadius.circular(16.0)// Adjust the opacity as desired
+              ),
+            ),
+          ),
+
+          // Name and tema
+          Positioned(
+            top: 10,
+            left: 25,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: kategori.desc,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Poppins",
-                            color: Colors.white),
-                      ),
-                    ],
+                SizedBox(height: 8,),
+                Text(
+                  kategori.jenisKategori,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                SizedBox(height: 4),
+                Container(
+                  width: 250,
+                  height: 100,
+                  child: Text(
+                    "Kamu bisa membaca atau menonton konten adukasi yang kami siapkan khusus untukmu.",
+                    style: const TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 10,)
+
+          // Rounded Button
+          Positioned(
+            bottom: 12,
+            right: 25,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                    child: Text(
+                      "Mulai Belajar",
+                      style: TextStyle(
+                          fontSize: 11.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 154, 191, 21),
+                          fontFamily: "Poppins"
+                      ),
+                    ),
+                  )
+              ),
+            ),
+          ),
         ],
-      ));
+      ),
+    ),
+  );
 }
