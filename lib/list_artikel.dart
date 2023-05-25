@@ -167,7 +167,7 @@ class _NewsListPageState extends State<NewsListPage> {
     }
     final List parsed = jsonDecode(json);
     return parsed
-        .map((json) => Datum.fromJson(json))
+        .map((json) => Kategori.fromJson(json))
         .where((kategori) => kategori.id == widget.id)
         .toList();
   }
@@ -322,7 +322,7 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
   // );
 }
 
-Widget _buildKategori(BuildContext context, Datum kategori) {
+Widget _buildKategori(BuildContext context, Kategori kategori) {
   return Card(
       color: Color.fromARGB(255, 28, 140, 36),
       elevation: 0,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proto/homepage.dart';
 import 'package:proto/list_pengepul.dart';
+import 'package:proto/list_topik.dart';
 import 'package:proto/topek.dart';
 
 class botNav extends StatefulWidget {
@@ -16,7 +17,7 @@ class _botNavState extends State<botNav> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     home(),
-    topikList(),
+    ListTopik(),
     pengepulList(),
   ];
 
