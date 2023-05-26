@@ -202,35 +202,39 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                     ],
                   ),
                 )),
-            Positioned(
+            Positioned.fill(
                 left: 160,
                 top: 650,
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        color: Color.fromARGB(255, 154, 191, 21),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              color: Colors.white,
-                              icon: Icon(Icons.map_outlined),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
-                            Text(
-                              'Peta',
-                              style: TextStyle(
-                                fontSize: 14.0,
+                child: Align(
+                  // alignment: Alignment.bottomCenter,
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          color: Color.fromARGB(255, 154, 191, 21),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                padding: EdgeInsets.all(0),
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                                icon: Icon(Icons.map_outlined),
+                                onPressed: () => Navigator.of(context).pop(),
                               ),
-                            )
-                          ],
+                              Text(
+                                'Peta',
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )),
           ],
         ),

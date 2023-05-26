@@ -31,7 +31,7 @@ class _ListTopikState extends State<ListTopik> {
                 height: 280,
                 child: ColorFiltered(
                  colorFilter: ColorFilter.mode(
-                     Colors.black.withOpacity(0.2),
+                     Colors.black.withOpacity(0.4),
                      BlendMode.srcOver),
                   child: Image.asset(
                     'assets/images/jambangan.jpg',
@@ -90,21 +90,21 @@ class _ListTopikState extends State<ListTopik> {
                 )),
             Positioned(
               top: 260,
-                child: Container(
-              width: MediaQuery.of(context).size.width,
-                  height: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)
-                    )
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 500,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
                   ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-                        child: Card(
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+                      child: Card(
                         elevation: 3,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
@@ -114,42 +114,43 @@ class _ListTopikState extends State<ListTopik> {
                           children: <Widget>[
                             SizedBox(height: 8),
                             ListTile(
-                              leading: Image.asset(
-                                'assets/images/jambangan.jpg',
+                              leading: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Image.asset(
+                                  'assets/images/jambangan.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              // Icon(
-                              //   Icons.article,
-                              //   color: Color.fromARGB(255, 28, 140, 36),
-                              //   size: 30,
-                              // ),
-
                               title: Text(
                                 'Waste Management',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Poppins",
-                                    fontSize: 14
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "Poppins",
+                                  fontSize: 14,
                                 ),
                               ),
                               subtitle: Text(
                                 '10 Materi Pembelajaran',
                                 style: TextStyle(
-                                    fontFamily: "Poppins",
-                                    fontSize: 11
+                                  fontFamily: "Poppins",
+                                  fontSize: 11,
                                 ),
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                TextButton(
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
                                   child: const Text(
                                     'Pelajari',
                                     style: TextStyle(
-                                        fontFamily: "Poppins",
-                                        fontSize: 10,
-                                        color: Color.fromARGB(255, 28, 140, 36),
-                                        fontWeight: FontWeight.bold),
+                                      fontFamily: "Poppins",
+                                      fontSize: 10,
+                                      color: Color.fromARGB(255, 28, 140, 36),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   onPressed: () {
                                     // Navigator.push(
@@ -161,17 +162,17 @@ class _ListTopikState extends State<ListTopik> {
                                     //         )));
                                   },
                                 ),
-                                const SizedBox(width: 8),
-                              ],
+                              ),
                             ),
                           ],
                         ),
+                      ),
                     ),
-                      )
+                  ],
+                ),
+              ),
+            ),
 
-                    ],
-                  ),
-            ))
           ],
         ),
       ),
