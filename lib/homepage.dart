@@ -216,83 +216,49 @@ class home extends StatelessWidget {
                             ),
                           ),
 
-                          // Rounded Button
-                          Positioned(
-                            bottom: 12,
-                            right: 25,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16.0),
-                              child: Container(
-                                  color: Colors.white,
-                                  padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
-                                    child: Text(
-                                      "Ikuti Survey",
-                                      style: TextStyle(
-                                          fontSize: 11.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 154, 191, 21),
-                                          fontFamily: "Poppins"
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  margin:
-                  EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
-                  child: Text(
-                    'Bacaan Terbaru',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromARGB(255, 154, 191, 21),
-                      fontFamily: "WorkSans",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-
-                //article card
-                Container(
-                  margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-                  child: FutureBuilder<String>(
-                    future: DefaultAssetBundle.of(context)
-                        .loadString('assets/json/artikel.json'),
-                    builder: (context, snapshot) {
-                      final List articles = parseArticles(snapshot.data);
-                      return ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: articles.length,
-                        itemBuilder: (context, index) {
-                          return _buildArticleItem(context, articles[index]!);
-                        },
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-              ],
-            )),
-      ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: 0,
-      ),
+          SizedBox(
+            height: 15,
+          ),
+          Container(
+            margin:
+                EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
+            child: Text(
+              'Bacaan Terbaru',
+              style: TextStyle(
+                fontSize: 27,
+                fontWeight: FontWeight.w900,
+                color: Color.fromARGB(255, 154, 191, 21),
+                fontFamily: "WorkSans",
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          //article card
+          Container(
+            margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
+            child: FutureBuilder<String>(
+              future: DefaultAssetBundle.of(context)
+                  .loadString('assets/json/artikel.json'),
+              builder: (context, snapshot) {
+                final List articles = parseArticles(snapshot.data);
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: articles.length,
+                  itemBuilder: (context, index) {
+                    return _buildArticleItem(context, articles[index]!);
+                  },
+                );
+              },
+            ),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+        ],
+      )),
     );
   }
   List parseKategori(String? json) {
