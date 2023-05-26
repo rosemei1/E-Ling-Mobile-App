@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/web_view.dart';
 import 'botnav.dart';
+import 'package:proto/service/kategoriservice.dart';
 
 import 'list_artikel.dart';
 
@@ -111,19 +112,22 @@ class _topikListState extends State<topikList> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
-                child: FutureBuilder<String>(
-                  future: DefaultAssetBundle.of(context)
-                      .loadString('assets/json/kategori.json'),
+                child: FutureBuilder<List<Datum>>(
+                  future: KategoriService().getKategori(),
                   builder: (context, snapshot) {
-                    final List material = parseKategori(snapshot.data);
-                    return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: material.length,
-                      itemBuilder: (context, index) {
-                        return _buildKategoriItem(context, material[index]!);
-                      },
-                    );
+                    if (snapshot.hasData) {
+                      final material = snapshot.data!;
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: material.map((kategori) => _buildKategoriItem(context, kategori)).toList(),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load data');
+                    } else {
+                      return CircularProgressIndicator();
+                    }
                   },
                 ),
               ),
@@ -146,7 +150,7 @@ class _topikListState extends State<topikList> {
   }
 }
 
-Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
+Widget _buildKategoriItem(BuildContext context, Datum kategori) {
   return Column(
     children: [
       SizedBox(height: 8,),
@@ -177,7 +181,7 @@ Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
                       style: TextStyle(fontSize: 15.0, color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
-                          text: kategori.desc,
+                          text: kategori.deskripsi,
                           style: TextStyle(
                               fontSize: 12,
                               fontFamily: "Poppins",
