@@ -8,6 +8,7 @@ import 'package:proto/model/kategori.dart';
 import 'package:proto/model/materi.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/youtube_view.dart';
+import 'package:proto/service/kategoriservice.dart';
 
 class NewsListPage extends StatefulWidget {
   static const routeName = '/article_list';
@@ -67,19 +68,22 @@ class _NewsListPageState extends State<NewsListPage> {
             //card
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: FutureBuilder<String>(
-                future: DefaultAssetBundle.of(context)
-                    .loadString('assets/json/kategori.json'),
+              child: FutureBuilder<List<Datum>>(
+                future: KategoriService().getKategori(),
                 builder: (context, snapshot) {
-                  final List material = parseKategori(snapshot.data);
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: material.length,
-                    itemBuilder: (context, index) {
-                      return _buildKategori(context, material[index]!);
-                    },
-                  );
+                  if (snapshot.hasData) {
+                    final material = snapshot.data!;
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: material.map((kategori) => _buildKategoriItem(context, kategori)).toList(),
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Failed to load data');
+                  } else {
+                    return CircularProgressIndicator();
+                  }
                 },
               ),
             ),
@@ -173,17 +177,6 @@ class _NewsListPageState extends State<NewsListPage> {
     return parsed
         .map((json) => Artikel.fromJson(json))
         .where((article) => article.idKategori == widget.id)
-        .toList();
-  }
-
-  List parseKategori(String? json) {
-    if (json == null) {
-      return [];
-    }
-    final List parsed = jsonDecode(json);
-    return parsed
-        .map((json) => Kategori.fromJson(json))
-        .where((kategori) => kategori.id == widget.id)
         .toList();
   }
 
@@ -348,96 +341,79 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
   // );
 }
 
-Widget _buildKategori(BuildContext context, Kategori kategori) {
-  return Card(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.0),
-    ),
-    child: SizedBox(
-      height: 150, // Set the height of the card here
-      child: Stack(
-        children: [
-          // Image
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image.asset(
-                "assets/images/gunung.png",
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(16.0)// Adjust the opacity as desired
-              ),
-            ),
-          ),
-
-          // Name and tema
-          Positioned(
-            top: 10,
-            left: 25,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 8,),
-                Text(
-                  kategori.jenisKategori,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontFamily: 'Poppins',
-                  ),
+Widget _buildKategoriItem(BuildContext context, Datum kategori) {
+  return Container(
+    padding: EdgeInsets.only(left: 10),
+    child: Column(
+      children: [
+        SizedBox(height: 8),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NewsListPage(
+                  id: kategori.id,
                 ),
-                SizedBox(height: 4),
-                Container(
-                  width: 250,
-                  height: 100,
-                  child: Text(
-                    "Kamu bisa membaca atau menonton konten adukasi yang kami siapkan khusus untukmu.",
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontFamily: 'Poppins',
-                    ),
-                  ),
+              ),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  spreadRadius: 0.01,
+                  blurRadius: 6,
+                  offset: Offset(0, 0),
                 ),
               ],
             ),
-          ),
-
-          // Rounded Button
-          Positioned(
-            bottom: 12,
-            right: 25,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
-                    child: Text(
-                      "Mulai Belajar",
-                      style: TextStyle(
-                          fontSize: 11.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 154, 191, 21),
-                          fontFamily: "Poppins"
+            child: Card(
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: SizedBox(
+                width: 200,
+                height: 175,
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16.0),
+                        topRight: Radius.circular(16.0),
+                      ),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: 100,
                       ),
                     ),
-                  )
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft, // Align text to the left
+                        child: Text(
+                          kategori.jenisKategori,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 25, 25, 27),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Poppins",
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

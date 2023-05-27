@@ -6,6 +6,7 @@ import 'package:proto/list_artikel.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/model/kategori.dart';
+import 'package:proto/service/kategoriservice.dart';
 
 class home extends StatelessWidget {
   const home({super.key});
@@ -148,19 +149,25 @@ class home extends StatelessWidget {
                   height: 8,
                 ),
                 Container(
-                  child: FutureBuilder<String>(
-                    future: DefaultAssetBundle.of(context)
-                        .loadString('assets/json/kategori.json'),
+                  child: FutureBuilder<List<Datum>>(
+                    future: KategoriService().getKategori(),
                     builder: (context, snapshot) {
-                      final List material = parseKategori(snapshot.data);
-                      return SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: material.map((kategori) => _buildKategoriItem(context, kategori)).toList(),
-                        ),
-                      );
+                      if (snapshot.hasData) {
+                        final List<Datum> material = snapshot.data!;
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: material.map((kategori) => _buildKategoriItem(context, kategori)).toList(),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('Failed to load data');
+                      } else {
+                        return CircularProgressIndicator();
+                      }
                     },
-                  ),
+                  )
+
                 ),
                 SizedBox(
                   height: 15,
@@ -368,7 +375,7 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
     ),
   );
 }
-Widget _buildKategoriItem(BuildContext context, Kategori kategori) {
+Widget _buildKategoriItem(BuildContext context, Datum kategori) {
   return Container(
     padding: EdgeInsets.only(left: 10),
     child: Column(
