@@ -109,60 +109,64 @@ class _ListTopikState extends State<ListTopik> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            SizedBox(height: 8),
-                            ListTile(
-                              leading: SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: Image.asset(
-                                  'assets/images/jambangan.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              title: Text(
-                                'Waste Management',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Poppins",
-                                  fontSize: 14,
-                                ),
-                              ),
-                              subtitle: Text(
-                                '10 Materi Pembelajaran',
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 11,
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/jambangan.jpg',
+                                    width: 105,
+                                    height: 90,
+                                  ),
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextButton(
-                                  child: const Text(
-                                    'Pelajari',
-                                    style: TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontSize: 10,
-                                      color: Color.fromARGB(255, 28, 140, 36),
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                               Text(
+                                  'Chapter 1',
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                    fontSize: 10,
                                   ),
-                                  onPressed: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) => ArticleWebView(
-                                    //           url: article.link,
-                                    //           id: article.idKategori,
-                                    //         )));
-                                  },
                                 ),
-                              ),
+                                Text(
+                                  'Waste Management',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Poppins",
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  '10 Materi Pembelajaran',
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                    fontSize: 11,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(width: 100,),
+                                    TextButton(
+                                      child: const Text(
+                                        'Pelajari',
+                                        style: TextStyle(
+                                          fontFamily: "Poppins",
+                                          fontSize: 10,
+                                          color: Color.fromARGB(255, 28, 140, 36),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      onPressed: () { },
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -172,7 +176,6 @@ class _ListTopikState extends State<ListTopik> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
