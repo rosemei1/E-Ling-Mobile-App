@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/botnav.dart';
 import 'package:proto/list_artikel.dart';
 import 'package:proto/model/artikel.dart';
+import 'package:proto/service/artikelservice.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/service/kategoriservice.dart';
@@ -278,22 +279,34 @@ class home extends StatelessWidget {
                 //article card
                 Container(
                   margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-                  child: FutureBuilder<String>(
-                    future: DefaultAssetBundle.of(context)
-                        .loadString('assets/json/artikel.json'),
+                  child: FutureBuilder<List<Art>>(
+                    future: ArtikelService().getArtikel(), // Call your API to fetch the articles
                     builder: (context, snapshot) {
-                      final List articles = parseArticles(snapshot.data);
-                      return ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: articles.length,
-                        itemBuilder: (context, index) {
-                          return _buildArticleItem(context, articles[index]!);
-                        },
-                      );
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        // While waiting for the data to load, show a loading indicator
+                        return CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                        );
+                      } else if (snapshot.hasData) {
+                        final List<Art> articles = snapshot.data!;
+
+                        return ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: articles.length,
+                          itemBuilder: (context, index) {
+                            return _buildArticleItem(context, articles[index]);
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('Failed to load data: ${snapshot.error}');
+                      } else {
+                        return Text('No data available');
+                      }
                     },
                   ),
                 ),
+
                 SizedBox(
                   height: 8,
                 ),
@@ -304,13 +317,6 @@ class home extends StatelessWidget {
         currentIndex: 0,
       ),
     );
-  }
-  List parseKategori(String? json) {
-    if (json == null) {
-      return [];
-    }
-    final List parsed = jsonDecode(json);
-    return parsed.map((json) => Kategori.fromJson(json)).toList();
   }
   List parseArticles(String? json) {
     if (json == null) {
@@ -328,7 +334,7 @@ class home extends StatelessWidget {
   }
 }
 
-Widget _buildArticleItem(BuildContext context, Artikel article) {
+Widget _buildArticleItem(BuildContext context, Art article) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16.0),
@@ -356,8 +362,8 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                 height: 100,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
-                  child: Image.asset(
-                    'assets/images/logo.png', // Replace with the actual path of your image asset
+                  child: Image.network(
+                    article.foto, // Replace with the actual path of your image asset
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -369,20 +375,24 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        article.nama,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromARGB(204, 25, 25, 27),
-                            fontFamily: "Poppins",
-                            fontSize: 13
+                      Container(
+                        width: 200,
+                        child: Text(
+                          article.nama,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromARGB(204, 25, 25, 27),
+                              fontFamily: "Poppins",
+                              fontSize: 13
+                          ),
                         ),
                       ),
+                      SizedBox(height: 5,),
                       Text(
-                        'tanggal',
+                        article.tanggal,
                         style: TextStyle(
-                          fontSize: 10.0,
-                          fontFamily: "Poppins"
+                            fontSize: 10.0,
+                            fontFamily: "Poppins"
                         ),
                       ),
                     ],

@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:core';
-import 'package:proto/bottombar.dart';
-import 'package:proto/model/article.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/model/materi.dart';
-import 'package:proto/web_view.dart';
+import 'package:proto/service/materiservice.dart';
 import 'package:proto/youtube_view.dart';
 import 'package:proto/service/kategoriservice.dart';
+import 'package:proto/service/materiservice.dart';
+import 'package:proto/service/artikelservice.dart';
+import 'package:proto/artikel_view.dart';
 
 class NewsListPage extends StatefulWidget {
   static const routeName = '/article_list';
@@ -130,20 +131,38 @@ class _NewsListPageState extends State<NewsListPage> {
               height: 15,
             ),
             Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-              child: FutureBuilder<String>(
-                future: DefaultAssetBundle.of(context)
-                    .loadString('assets/json/materi.json'),
+              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: FutureBuilder<List<Mats>>(
+                future: MateriService().getMateri(),
                 builder: (context, snapshot) {
-                  final List material = parseMateri(snapshot.data);
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: material.length,
-                    itemBuilder: (context, index) {
-                      return _buildMateriItem(context, material[index]!);
-                    },
-                  );
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // While waiting for the data to load, show a loading indicator
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                    );
+                  } else if (snapshot.hasData) {
+                    final List<Mats> material = snapshot.data!;
+
+                    // Filter the list based on the specific ID
+                    final filteredMaterial = material.where((item) => item.idKategori == widget.id.toString()).toList();
+
+                    if (filteredMaterial.isEmpty) {
+                      return Text('No data available for the specific ID ${widget.id}');
+                    }
+
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: filteredMaterial.length,
+                      itemBuilder: (context, index) {
+                        return _buildMateriItem(context, filteredMaterial[index]);
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Failed to load data: ${snapshot.error}');
+                  } else {
+                    return Text('No data available');
+                  }
                 },
               ),
             ),
@@ -169,20 +188,38 @@ class _NewsListPageState extends State<NewsListPage> {
             ),
             SizedBox(height: 15),
             Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-              child: FutureBuilder<String>(
-                future: DefaultAssetBundle.of(context)
-                    .loadString('assets/json/artikel.json'),
+              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: FutureBuilder<List<Art>>(
+                future: ArtikelService().getArtikel(),
                 builder: (context, snapshot) {
-                  final List articles = parseArticles(snapshot.data);
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: articles.length,
-                    itemBuilder: (context, index) {
-                      return _buildArticleItem(context, articles[index]!);
-                    },
-                  );
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // While waiting for the data to load, show a loading indicator
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                    );
+                  } else if (snapshot.hasData) {
+                    final List<Art> material = snapshot.data!;
+
+                    // Filter the list based on the specific ID
+                    final filteredMaterial = material.where((item) => item.idKategori == widget.id.toString()).toList();
+
+                    if (filteredMaterial.isEmpty) {
+                      return Text('No data available for the specific ID ${widget.id}');
+                    }
+
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: filteredMaterial.length,
+                      itemBuilder: (context, index) {
+                        return _buildArticleItem(context, filteredMaterial[index]);
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Failed to load data: ${snapshot.error}');
+                  } else {
+                    return Text('No data available');
+                  }
                 },
               ),
             ),
@@ -191,130 +228,121 @@ class _NewsListPageState extends State<NewsListPage> {
       ),
     );
   }
-
-  List parseArticles(String? json) {
-    if (json == null) {
-      return [];
-    }
-    final List parsed = jsonDecode(json);
-    return parsed
-        .map((json) => Artikel.fromJson(json))
-        .where((article) => article.idKategori == widget.id)
-        .toList();
-  }
-
-  List parseMateri(String? json) {
-    if (json == null) {
-      return [];
-    }
-    final List parsed = jsonDecode(json);
-    return parsed
-        .map((json) => Materi.fromJson(json))
-        .where((article) => article.idKategory == widget.id)
-        .toList();
-  }
 }
 
-Widget _buildArticleItem(BuildContext context, Artikel article) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16.0),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.05),
-          spreadRadius: 0.01,
-          blurRadius: 6,
-          offset: Offset(0, 0),
-        ),
-      ],
-    ),
-    child: Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
+Widget _buildArticleItem(BuildContext context, Art article) {
+  return GestureDetector(
+    onTap: (){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ViewArtikel(
+                url: article.link,
+                id: article.idKategori,
+              )
+          )
+      );
+    },
+    child: Container(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            spreadRadius: 0.01,
+            blurRadius: 6,
+            offset: Offset(0, 0),
+          ),
+        ],
       ),
-      child: Stack(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: 100,
-                height: 100,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: Image.asset(
-                    'assets/images/logo.png', // Replace with the actual path of your image asset
-                    fit: BoxFit.cover,
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Stack(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: 100,
+                  height: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.network(
+                      article.foto, // Replace with the actual path of your image asset
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(width: 16.0),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.only(top: 10, right: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        width: 200,
-                        child: Text(
-                          article.nama,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromARGB(204, 25, 25, 27),
-                              fontFamily: "Poppins",
-                              fontSize: 13
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 10, right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: 200,
+                          child: Text(
+                            article.nama,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromARGB(204, 25, 25, 27),
+                                fontFamily: "Poppins",
+                                fontSize: 13
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 5,),
-                      Text(
-                        'tanggal',
-                        style: TextStyle(
-                          fontSize: 10.0,
-                          fontFamily: "Poppins"
+                        SizedBox(height: 5,),
+                        Text(
+                          article.tanggal,
+                          style: TextStyle(
+                              fontSize: 10.0,
+                              fontFamily: "Poppins"
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: -5,
-            right: 8.0,
-            child: TextButton(
-              onPressed: () {
-              },
-              child: Text(
-                'Baca Lebih Lanjut',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 154, 191, 21),
-                    fontFamily: "Poppins",
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500
+              ],
+            ),
+            Positioned(
+              bottom: -5,
+              right: 8.0,
+              child: TextButton(
+                onPressed: () {
+                },
+                child: Text(
+                  'Baca Lebih Lanjut',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 154, 191, 21),
+                      fontFamily: "Poppins",
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
 }
 
-Widget _buildMateriItem(BuildContext context, Materi materi) {
+Widget _buildMateriItem(BuildContext context, Mats materi) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => ViewYoutube(
-                  url: materi.link,
-                  id: materi.idKategory,
-                  desc: materi.desc,
+                  url: materi.linkVideo,
+                  id: materi.id,
+                  desc: materi.deskripsiPanjang,
                   nama: materi.nama
               )));
     },

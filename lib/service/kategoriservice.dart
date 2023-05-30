@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:proto/model/artikel.dart';
 import 'package:proto/model/kategori.dart';
 
 class KategoriService {
