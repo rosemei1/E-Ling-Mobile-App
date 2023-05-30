@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     TextSpan(
                       text: "Platform ",
                       style: TextStyle(
-                          fontFamily: "WorkSans",
+                          fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color.fromARGB(255, 28, 140, 36)
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     TextSpan(
                       text: "Edukasi ",
                       style: TextStyle(
-                          fontFamily: "WorkSans",
+                          fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color.fromARGB(255, 154, 191, 21)
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     TextSpan(
                       text: "Lingkungan",
                       style: TextStyle(
-                          fontFamily: "WorkSans",
+                          fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color.fromARGB(255, 28, 140, 36)

@@ -36,27 +36,40 @@ class _ViewYoutubeState extends State<ViewYoutube> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          "Video Materi",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 154, 191, 21),
-            fontFamily: "Poppins",
-            fontSize: 22,
+        title: Padding(
+          padding: const EdgeInsets.only(top:15.0),
+          child: const Text(
+            "Video Materi",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 154, 191, 21),
+              fontFamily: "WorkSans",
+              fontSize: 22,
+            ),
           ),
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: Color.fromARGB(255, 154, 191, 21),
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => NewsListPage(id: widget.id)),
-            );
-          },
+        backgroundColor: Colors.transparent,
+        leading: Container(
+          margin: EdgeInsets.only(left: 12, top: 12), // Adjust the margin values as needed
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 75,
+                height: 75,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(13), // Adjust the border radius as needed
+                  color: Color.fromARGB(255, 154, 191, 21),
+                ),
+              ),
+              IconButton(
+                color: Colors.white,
+                icon: Icon(Icons.arrow_back, size: 25,),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -64,7 +77,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(20.0),
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -123,7 +136,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                     title: Text('Deskripsi',
                         style: TextStyle(
                           color: Color.fromARGB(255, 154, 191, 21),
-                          fontSize: 18,
+                          fontSize: 25,
                           fontWeight: FontWeight.w600,
                           fontFamily: "Poppins",
                         )),
@@ -132,14 +145,15 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                       children: [
                         SizedBox(height: 10),
                         RichText(
+                          textAlign: TextAlign.justify,
                           text: TextSpan(
                             style: TextStyle(
-                                fontSize: 15.0, color: Colors.black54),
+                                  fontSize: 15.0, color: Colors.black54),
                             children: <TextSpan>[
                               TextSpan(
                                 text: widget.desc,
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 13,
                                   fontFamily: "Poppins",
                                 ),
                               ),

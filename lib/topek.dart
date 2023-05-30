@@ -181,7 +181,7 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                       style: TextStyle(fontSize: 15.0, color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
-                          text: kategori.deskripsi,
+                          text: kategori.deskripsiSingkat,
                           style: TextStyle(
                               fontSize: 12,
                               fontFamily: "Poppins",

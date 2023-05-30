@@ -5,7 +5,7 @@ import 'package:proto/model/kategori.dart';
 
 class KategoriService {
   Future<List<Datum>> getKategori() async {
-    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/kategori'));
+    final response = await http.get(Uri.parse('http://eling.site/api/kategori'));
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       return (jsonData['data'] as List)

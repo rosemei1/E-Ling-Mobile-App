@@ -71,7 +71,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.white,
                     fontFamily: "Poppins",
                   ),

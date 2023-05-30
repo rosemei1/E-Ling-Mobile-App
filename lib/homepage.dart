@@ -52,9 +52,9 @@ class home extends StatelessWidget {
                                 title: Text(
                                   "Selamat Datang!",
                                   style: TextStyle(
-                                    fontSize: 21.0,
+                                    fontSize: 25.0,
                                     color: Color.fromARGB(255, 154, 191, 21),
-                                    fontWeight: FontWeight.w900,
+                                    fontWeight: FontWeight.w600,
                                     fontFamily: "Poppins",
                                   ),
                                 ),
@@ -80,12 +80,13 @@ class home extends StatelessWidget {
                                     SizedBox(height: 10),
                                     ElevatedButton(
                                       style: ElevatedButton.styleFrom(
+                                        elevation: 0,
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                                         primary: Color.fromARGB(255, 154, 191, 21),
                                         onPrimary: Color.fromARGB(255, 28, 140, 36),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 10, right: 10),
+                                        padding: EdgeInsets.only(left: 15, right: 15, top: 4, bottom: 4),
                                         child: Text(
                                           'Cari Pengepul',
                                           style: TextStyle(
@@ -163,14 +164,16 @@ class home extends StatelessWidget {
                       } else if (snapshot.hasError) {
                         return Text('Failed to load data');
                       } else {
-                        return CircularProgressIndicator();
+                        return CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                        );
                       }
                     },
                   )
 
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 16.0),
@@ -179,7 +182,7 @@ class home extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     child: SizedBox(
-                      height: 100, // Set the height of the card here
+                      height: 120, // Set the height of the card here
                       child: Stack(
                         children: [
                           // Image
@@ -196,7 +199,7 @@ class home extends StatelessWidget {
                           Positioned.fill(
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.25),
+                                  color: Colors.black.withOpacity(0.4),
                                   borderRadius: BorderRadius.circular(16.0)// Adjust the opacity as desired
                               ),
                             ),
@@ -204,7 +207,7 @@ class home extends StatelessWidget {
 
                           // Name and tema
                           Positioned(
-                            top: 10,
+                            top: 15,
                             left: 25,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,9 +216,9 @@ class home extends StatelessWidget {
                                   "Yuk, bantu kami meningkatkan ELing\nmenjadi lebih baik!",
                                   style: const TextStyle(
                                     fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                     fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500
                                   ),
                                 ),
                                 SizedBox(height: 4),
@@ -225,15 +228,15 @@ class home extends StatelessWidget {
 
                           // Rounded Button
                           Positioned(
-                            bottom: 12,
+                            bottom: 15,
                             right: 25,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(20.0),
                               child: Container(
                                   color: Colors.white,
                                   padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
                                   child: Padding(
-                                    padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                                    padding: EdgeInsets.only(left: 15, right: 15, top: 3, bottom: 3),
                                     child: Text(
                                       "Ikuti Survey",
                                       style: TextStyle(
@@ -253,7 +256,7 @@ class home extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 Container(
                   margin:
@@ -269,7 +272,7 @@ class home extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 8,
+                  height: 15,
                 ),
 
                 //article card
@@ -349,8 +352,8 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                width: 80,
-                height: 80,
+                width: 100,
+                height: 100,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
                   child: Image.asset(
@@ -369,15 +372,17 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                       Text(
                         article.nama,
                         style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(204, 25, 25, 27),
                             fontFamily: "Poppins",
-                            fontSize: 12
+                            fontSize: 13
                         ),
                       ),
                       Text(
                         'tanggal',
                         style: TextStyle(
                           fontSize: 10.0,
+                          fontFamily: "Poppins"
                         ),
                       ),
                     ],
@@ -396,10 +401,9 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                 'Baca Lebih Lanjut',
                 style: TextStyle(
                     color: Color.fromARGB(255, 154, 191, 21),
-                    decoration: TextDecoration.underline,
                     fontFamily: "Poppins",
                     fontSize: 11,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.w500
                 ),
               ),
             ),
@@ -444,8 +448,8 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: SizedBox(
-                width: 200,
-                height: 175,
+                width: 210,
+                height: 235,
                 child: Column(
                   children: [
                     ClipRRect(
@@ -453,26 +457,38 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                         topLeft: Radius.circular(16.0),
                         topRight: Radius.circular(16.0),
                       ),
-                      child: Image.asset(
-                        'assets/images/logo.png',
+                      child: Image.network(
+                        kategori.foto,
                         fit: BoxFit.cover,
                         width: double.infinity,
-                        height: 100,
+                        height: 150,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.only(left: 5.0, bottom: 10.0, right: 10.0, top: 1.0),
                       child: Align(
                         alignment: Alignment.centerLeft, // Align text to the left
-                        child: Text(
-                          kategori.jenisKategori,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 25, 25, 27),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Poppins",
+                        child: ListTile(
+                          title: Text(
+                            kategori.jenisKategori,
+                            style: TextStyle(
+                              color: Color.fromARGB(204, 25, 25, 27),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "Poppins",
+                            ),
                           ),
-                        ),
+                          subtitle: Text(
+                            kategori.deskripsiSingkat,
+                            //// membatasi subtitle pada satu baris
+                            overflow: TextOverflow.ellipsis,
+                            style:TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 11,
+                              color: Colors.black,
+                            ),
+                          ),
+                        )
                       ),
                     ),
                   ],
