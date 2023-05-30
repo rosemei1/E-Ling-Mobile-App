@@ -100,91 +100,20 @@ class _ListTopikState extends State<ListTopik> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8, left: 8, top: 6, bottom: 6,),
-                          child: Row(
-                            children: [
-                              Card(
-                                child: Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/jambangan.jpg',
-                                      width: 120,
-                                      height: 90,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(height: 8,),
-                                     Text(
-                                        'Chapter 1',
-                                        style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontSize: 10,
-                                        ),
-                                      ),
-                                      SizedBox(height: 8,),
-                                      Text(
-                                        'Waste Management',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Poppins",
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      Text(
-                                        '10 Materi Pembelajaran',
-                                        style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontSize: 11,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          children: [
-                                            SizedBox(
-                                              width: (MediaQuery.of(context).size.width - 100) / 3,
-                                            ),
-                                            const Text(
-                                              'Pelajari',
-                                              style: TextStyle(
-                                                fontFamily: "Poppins",
-                                                fontSize: 10,
-                                                color: Color.fromARGB(255, 28, 140, 36),
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                child: FutureBuilder<String>(
+                  future: DefaultAssetBundle.of(context)
+                      .loadString('assets/json/kategori.json'),
+                  builder: (context, snapshot) {
+                    final List articles = parseKategori(snapshot.data);
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: articles.length,
+                      itemBuilder: (context, index) {
+                        return _buildArticleItem(context, articles[index]!);
+                      },
+                    );
+                  },
                 ),
               ),
             ),
@@ -194,5 +123,106 @@ class _ListTopikState extends State<ListTopik> {
     );
   }
 
+  List parseKategori(String? json) {
+    if (json == null) {
+      return [];
+    }
+    final List parsed = jsonDecode(json);
+    return parsed.map((json) => Kategori.fromJson(json)).toList();
+  }
+
 }
+
+class _buildListTopik extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+          child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8, left: 8, top: 6, bottom: 6,),
+              child: Row(
+                children: [
+                  Card(
+                    child: Container(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/jambangan.jpg',
+                          width: 120,
+                          height: 90,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 8,),
+                         Text(
+                            'Chapter 1',
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 10,
+                            ),
+                          ),
+                          SizedBox(height: 8,),
+                          Text(
+                            'Waste Management',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Poppins",
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            '10 Materi Pembelajaran',
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 11,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: (MediaQuery.of(context).size.width - 100) / 3,
+                                ),
+                                const Text(
+                                  'Pelajari',
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                    fontSize: 10,
+                                    color: Color.fromARGB(255, 28, 140, 36),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 
