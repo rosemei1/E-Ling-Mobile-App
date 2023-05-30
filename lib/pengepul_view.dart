@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
 import 'package:proto/list_pengepul.dart';
 import 'package:proto/model/pengepul.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPengepul extends StatefulWidget{
   final Pengepul pengepul;
@@ -202,24 +203,42 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                     ],
                   ),
                 )),
-            Positioned.fill(
-                left: 160,
-                top: 650,
-                child: Align(
-                  // alignment: Alignment.bottomCenter,
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
+            Positioned(
+              left: (MediaQuery.of(context).size.width - 100) / 2,
+              bottom: (MediaQuery.of(context).size.height - 100) / 10,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Container(
+                        height: 40,
+                        width: 100,
+                        decoration: BoxDecoration(
                           color: Color.fromARGB(255, 154, 191, 21),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 154, 191, 21),
+                              spreadRadius: 9,
+                              blurRadius: 15,
+                              offset: Offset(9, 9),
+                            ),
+                          ],
+                        ),
+                        child: GestureDetector(
+                          onTap: () async {
+                            await openGoogleMaps('https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
+                          },
                           child: Row(
                             children: [
                               IconButton(
                                 padding: EdgeInsets.all(0),
                                 color: Colors.white,
                                 icon: Icon(Icons.map_outlined),
-                                onPressed: () => Navigator.of(context).pop(),
+                                onPressed: () async{
+                                  // await openGoogleMaps('https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
+                                },
                               ),
                               Text(
                                 'Peta',
@@ -228,17 +247,28 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                )),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
           ],
         ),
       ),
     );
+  }
+}
+
+Future<void> openGoogleMaps(String mapsUrl) async {
+  if (await canLaunch(mapsUrl)) {
+    await launch(mapsUrl);
+  } else {
+    throw 'Could not launch $mapsUrl';
   }
 }
