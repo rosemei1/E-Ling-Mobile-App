@@ -16,5 +16,42 @@
             "ketersediaan"  : "Buka ⋅ Tutup pukul 17.00",
             "kontak"  : "0851-0009-0858",
             "gambar"  : "https://www.yayasanbinabhaktilingkungan.or.id/wp-content/uploads/2022/01/bank-sampah-induk-surabaya.jpg"
-        }
+        },
+  {
+    "id": 3,
+    "nama": "Rumah Kompos ITS",
+    "jenis": "Pengolahan Sampah ",
+    "alamat" : "Jl. Arief Rahman Hakim No.193, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60111",
+    "ketersediaan"  : "Buka ⋅ Tutup pukul 16.00",
+    "kontak"  : "0838-5601-0405",
+    "gambar"  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRs3Y9z4K-gvMrQ8gkawL6tR4DiMfHSKair4eLaRt-fZfaPHTdFFfisbLfjbwDDEj-Piw&usqp=CAU"
+  },
+  {
+    "id": 4,
+    "nama": "Kantor Tabungan Sampah Terpadu (TaSTe) ITS",
+    "jenis":  "Bank Sampah ",
+    "alamat" : "PQ8X+36Q, Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60117",
+    "ketersediaan"  : "Selasa,Rabu,Jumat - pukul 10.00 - 15.00",
+    "kontak"  : "-",
+    "gambar"  : "https://www.its.ac.id/news/wp-content/uploads/sites/2/2022/04/Serah-terima-sampah.jpeg"
+  },
+  {
+  "id": 5,
+    "nama": "Makmur 5 Surabaya",
+    "jenis":  "Bank Sampah ",
+    "alamat" : "Jl. Demak Timur V No.5, Gundih, Kec. Bubutan, Kota SBY, Jawa Timur 60172",
+    "ketersediaan"  : "Minggu,07.00–12.00",
+    "kontak"  : "082141669033",
+    "gambar"  : "https://lh3.googleusercontent.com/p/AF1QipNin6Let41IwKUXKuri5lFfWUOvMb7I5Vn2Hcvm=w768-h768-n-o-v1"
+  },
+  {
+  "id": 6,
+    "nama": "Pesepan",
+    "jenis":  "Bank Sampah ",
+    "alamat" : "Jl. Sumur Welut No.130, Sumur Welut, Kec. Lakarsantri, Kota SBY, Jawa Timur 60215",
+    "ketersediaan"  : "Buka 24 jam",
+    "kontak"  : "-",
+    "gambar"  : "https://cdn.antaranews.com/cache/800x533/2019/03/08/sampah-lagi.jpg"
+  }
+
 ] 

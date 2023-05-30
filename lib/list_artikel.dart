@@ -22,7 +22,6 @@ class NewsListPage extends StatefulWidget {
 class _NewsListPageState extends State<NewsListPage> {
   List<dynamic> data = [];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,8 +197,30 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16.0),
     ),
-    child: Stack(
-      children: [
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        SizedBox(height: 8),
+        ListTile(
+          // leading: Icon(
+          //   Icons.article,
+          //   color: Color.fromARGB(255, 28, 140, 36),
+          //   size: 30,
+          // ),
+          title: Text(
+            article.nama,
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontFamily: "Poppins",
+                fontSize: 14),
+          ),
+          subtitle: Text(
+            article.desc,
+            maxLines: 2, // membatasi subtitle pada satu baris
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontFamily: "Poppins", fontSize: 11),
+          ),
+        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -245,6 +266,15 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
                   ],
                 ),
               ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ArticleWebView(
+                              url: article.link,
+                              id: article.idKategori,
+                            )));
+              },
             ),
           ],
         ),
@@ -272,55 +302,62 @@ Widget _buildArticleItem(BuildContext context, Artikel article) {
 }
 
 Widget _buildMateriItem(BuildContext context, Materi materi) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ViewYoutube(
-                  url: materi.link,
-                  id: materi.idKategory,
-                  desc: materi.desc,
-                  nama: materi.nama
-              )));
-    },
-    child: Container(
-      height: 100,
-      child: Card(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+  return Card(
+    elevation: 3,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        SizedBox(height: 8),
+        ListTile(
+          leading: Icon(
+            Icons.play_arrow,
+            color: Color.fromARGB(255, 28, 140, 36),
+            size: 40,
+          ),
+          title: Text(
+            materi.nama,
+            style: TextStyle(
+                fontFamily: "Poppins",
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.w600),
+          ),
+          subtitle: Text(
+            materi.desc,
+            maxLines: 2, //// membatasi subtitle pada satu baris
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 11,
+              color: Colors.black,
+            ),
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(height: 8),
-            ListTile(
-              leading: Icon(
-                Icons.play_arrow_rounded,
-                color: Color.fromARGB(255, 154, 191, 21),
-                size: 40,
-              ),
-              title: Text(
-                materi.nama,
-                style:TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600
-                ),
-              ),
-              subtitle: Text(
-                "Oleh Eling",
-                maxLines: 2, //// membatasi subtitle pada satu baris
-                overflow: TextOverflow.ellipsis,
-                style:TextStyle(
+            TextButton(
+              child: const Text(
+                'Tonton',
+                style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 11,
-                    color: Colors.black38,
-                    fontWeight: FontWeight.bold
-                ),
+                    color: Color.fromARGB(255, 28, 140, 36),
+                    fontWeight: FontWeight.bold),
               ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewYoutube(
+                            url: materi.link,
+                            id: materi.idKategory,
+                            desc: materi.desc,
+                            nama: materi.nama)));
+              },
             ),
           ],
         ),
@@ -356,17 +393,24 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                   id: kategori.id,
                 ),
               ),
-            );
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  spreadRadius: 0.01,
-                  blurRadius: 6,
-                  offset: Offset(0, 0),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(fontSize: 15.0, color: Colors.black),
+                    children: <TextSpan>[
+                      // TextSpan(
+                      //   text: kategori.desc,
+                      //   style: TextStyle(
+                      //       fontSize: 12,
+                      //       fontFamily: "Poppins",
+                      //       color: Colors.white),
+                      // ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -412,8 +456,9 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
               ),
             ),
           ),
-        ),
-      ],
-    ),
-  );
+          SizedBox(
+            height: 10,
+          )
+        ],
+      ));
 }

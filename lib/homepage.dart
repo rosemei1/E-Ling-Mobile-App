@@ -268,6 +268,7 @@ class home extends StatelessWidget {
       )),
     );
   }
+
   List parseKategori(String? json) {
     if (json == null) {
       return [];
