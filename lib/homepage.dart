@@ -326,29 +326,6 @@ class home extends StatelessWidget {
       ),
     );
   }
-
-  // List parseKategori(String? json) {
-  //   if (json == null) {
-  //     return [];
-  //   }
-  //   final List parsed = jsonDecode(json);
-  //   return parsed.map((json) => Kategori.fromJson(json)).toList();
-  // }
-
-  // List parseArticles(String? json) {
-  //   if (json == null) {
-  //     return [];
-  //   }
-  //   // final List parsed = jsonDecode(json);
-  //   // return parsed.map((json) => Artikel.fromJson(json)).toList();
-  //   final List parsed = jsonDecode(json);
-  //   final List<Artikel> articles =
-  //       parsed.map((json) => Artikel.fromJson(json)).toList();
-  //   final List<Artikel> top3 = articles.reversed
-  //       .take(3)
-  //       .toList(); // menambahkan parameter reversed: true
-  //   return top3;
-  // }
 }
 
 Widget _buildArticleItem(BuildContext context, Art article) {
