@@ -16,8 +16,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  DateTime?
-      _currentBackPressTime; // Track the last time back button was pressed
+  DateTime? _currentBackPressTime;
 
   void _navigateToPage(int pageIndex) {
     Widget? page;
@@ -58,7 +57,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         if (_currentBackPressTime == null ||
             DateTime.now().difference(_currentBackPressTime!) >
                 Duration(seconds: 2)) {
-          // Show a snackbar with the warning message
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               backgroundColor: Colors.transparent,
@@ -85,12 +83,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             ),
           );
 
-          // Record the current time when back button is pressed
           _currentBackPressTime = DateTime.now();
 
           return false;
         } else {
-          return true; // Allow the app to be closed when back button is pressed again within 2 seconds
+          return true;
         }
       },
       child: Container(
@@ -106,49 +103,54 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             ),
           ],
         ),
-        margin: EdgeInsets.symmetric(
-          vertical: 15.0,
-          horizontal: 16.0,
-        ),
-        padding: EdgeInsets.symmetric(
-          vertical: 3.0,
-          horizontal: 5.0,
-        ),
-        // Bottom navigation bar content
+        margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 16.0),
+        padding: EdgeInsets.only(left: 3.0, right: 3.0, bottom: 6),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-              onPressed: () => _navigateToPage(0),
-              icon: Icon(
-                Icons.home_outlined,
-                color: widget.currentIndex == 0 ? Colors.white : Colors.white54,
-                size: 25,
-              ),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            IconButton(
-              onPressed: () => _navigateToPage(1),
-              icon: Icon(Icons.article_outlined,
-                  color:
-                      widget.currentIndex == 1 ? Colors.white : Colors.white54,
-                  size: 25),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            IconButton(
-              onPressed: () => _navigateToPage(2),
-              icon: Icon(Icons.location_on_outlined,
-                  color:
-                      widget.currentIndex == 2 ? Colors.white : Colors.white54,
-                  size: 25),
-            ),
+            buildNavigationItem(Icons.home_outlined, 'Home', 0),
+            buildNavigationItem(Icons.article_outlined, 'Articles', 1),
+            buildNavigationItem(Icons.location_on_outlined, 'Locations', 2),
           ],
         ),
       ),
     );
   }
+
+  Widget buildNavigationItem(IconData icon, String label, int index) {
+    final isSelected = widget.currentIndex == index;
+
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => _navigateToPage(index),
+        child: Container(
+          padding: EdgeInsets.only(top: 8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                color: isSelected ? Colors.white : Colors.white54,
+                size: 25,
+              ),
+              if (isSelected)
+                SizedBox(height: 4),
+              if (isSelected)
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 11,
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+

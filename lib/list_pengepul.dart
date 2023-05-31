@@ -6,6 +6,7 @@ import 'package:proto/homepage.dart';
 import 'package:proto/model/pengepul.dart';
 import 'package:proto/pengepul_view.dart';
 import 'package:proto/web_view.dart';
+import 'package:proto/botnav.dart';
 
 import 'list_artikel.dart';
 
@@ -20,47 +21,6 @@ class _pengepulListState extends State<pengepulList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text(
-          "Pengepul",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 154, 191, 21),
-            fontFamily: "WorkSans",
-            fontSize: 22,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        leading: Container(
-          margin: EdgeInsets.only(
-              left: 10, top: 10), // Adjust the margin values as needed
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: 90,
-                height: 90,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(
-                      13), // Adjust the border radius as needed
-                  color: Color.fromARGB(255, 154, 191, 21),
-                ),
-              ),
-              IconButton(
-                color: Colors.white,
-                icon: Icon(
-                  Icons.arrow_back,
-                  size: 30,
-                ),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -95,6 +55,9 @@ class _pengepulListState extends State<pengepulList> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 2,
       ),
     );
   }
