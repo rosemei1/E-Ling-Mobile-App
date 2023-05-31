@@ -4,12 +4,10 @@ import 'package:proto/list_pengepul.dart';
 import 'package:proto/model/pengepul.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DetailPengepul extends StatefulWidget{
+class DetailPengepul extends StatefulWidget {
   final Pengepul pengepul;
 
-
   const DetailPengepul({super.key, required this.pengepul});
-
 
   @override
   _ViewDetailPengepul createState() => _ViewDetailPengepul();
@@ -32,8 +30,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 height: 260,
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.2),
-                      BlendMode.srcOver),
+                      Colors.black.withOpacity(0.2), BlendMode.srcOver),
                   child: Image.network(
                     widget.pengepul.gambar,
                     fit: BoxFit.cover,
@@ -74,7 +71,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                           fontFamily: 'Poppins'),
                     ),
                     Text(
-                       widget.pengepul.nama,
+                      widget.pengepul.nama,
                       style: const TextStyle(
                           fontSize: 24.0,
                           color: Colors.white,
@@ -92,17 +89,15 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30)
-                      )
-                  ),
+                          topRight: Radius.circular(30))),
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10.0),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             SizedBox(height: 20),
                             Text(
                               'Alamat',
@@ -175,31 +170,27 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                               ),
                             ),
                             SizedBox(height: 8),
-                        SizedBox(
-                            height: 120,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    widget.pengepul.gambar,
-                                    fit: BoxFit.cover,
-                                    width: 240,
-                                    height: 150,
+                            SizedBox(
+                              height: 120,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      widget.pengepul.gambar,
+                                      fit: BoxFit.cover,
+                                      width: 240,
+                                      height: 150,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: 16),
-
-
-                              ],
+                                  SizedBox(width: 16),
+                                ],
+                              ),
                             ),
-                          ),
-
                           ],
                         ),
                       )
-
                     ],
                   ),
                 )),
@@ -228,7 +219,8 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                         ),
                         child: GestureDetector(
                           onTap: () async {
-                            await openGoogleMaps('https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
+                            await openGoogleMaps(
+                                'https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
                           },
                           child: Row(
                             children: [
@@ -236,7 +228,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                                 padding: EdgeInsets.all(0),
                                 color: Colors.white,
                                 icon: Icon(Icons.map_outlined),
-                                onPressed: () async{
+                                onPressed: () async {
                                   // await openGoogleMaps('https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
                                 },
                               ),
@@ -257,7 +249,6 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

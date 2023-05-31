@@ -27,41 +27,48 @@ class _NewsListPageState extends State<NewsListPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          "List Materi",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 154, 191, 21),
-            fontFamily: "WorkSans",
-            fontSize: 22,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: const Text(
+            "List Materi",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 154, 191, 21),
+              fontFamily: "WorkSans",
+              fontSize: 22,
+            ),
           ),
         ),
-        centerTitle: true,
         backgroundColor: Colors.transparent,
         leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 10), // Adjust the margin values as needed
+          margin: EdgeInsets.only(
+              left: 12, top: 12), // Adjust the margin values as needed
           child: Stack(
             alignment: Alignment.center,
             children: [
               Container(
-                width: 90,
-                height: 90,
+                width: 75,
+                height: 75,
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(13), // Adjust the border radius as needed
+                  borderRadius: BorderRadius.circular(
+                      13), // Adjust the border radius as needed
                   color: Color.fromARGB(255, 154, 191, 21),
                 ),
               ),
               IconButton(
                 color: Colors.white,
-                icon: Icon(Icons.arrow_back, size: 30,),
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: 25,
+                ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ],
           ),
         ),
       ),
-        body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             //card
@@ -70,25 +77,42 @@ class _NewsListPageState extends State<NewsListPage> {
               child: FutureBuilder<List<Datum>>(
                 future: KategoriService().getKategori(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final material = snapshot.data!;
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: material.map((kategori) => _buildKategoriItem(context, kategori)).toList(),
-                      ),
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // While waiting for the data to load, show a loading indicator
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                    );
+                  } else if (snapshot.hasData) {
+                    final List<Datum> material = snapshot.data!;
+
+                    // Filter the list based on the specific ID
+                    final filteredMaterial =
+                        material.where((item) => item.id == widget.id).toList();
+
+                    if (filteredMaterial.isEmpty) {
+                      return Text('No data available for the specific ID');
+                    }
+
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: filteredMaterial.length,
+                      itemBuilder: (context, index) {
+                        return _buildKategori(context, filteredMaterial[index]);
+                      },
                     );
                   } else if (snapshot.hasError) {
-                    return Text('Failed to load data');
+                    return Text('Failed to load data: ${snapshot.error}');
                   } else {
-                    return CircularProgressIndicator();
+                    return Text('No data available');
                   }
                 },
               ),
             ),
+
             //title
             SizedBox(
-              height: 18,
+              height: 15,
             ),
             Container(
               margin: EdgeInsets.only(
@@ -105,6 +129,9 @@ class _NewsListPageState extends State<NewsListPage> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 15,
             ),
             Container(
               margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
@@ -124,7 +151,7 @@ class _NewsListPageState extends State<NewsListPage> {
                 },
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 15),
             //vid
 
             //artikel
@@ -144,6 +171,7 @@ class _NewsListPageState extends State<NewsListPage> {
                 ),
               ),
             ),
+            SizedBox(height: 15),
             Container(
               margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
               child: FutureBuilder<String>(
@@ -192,172 +220,138 @@ class _NewsListPageState extends State<NewsListPage> {
 }
 
 Widget _buildArticleItem(BuildContext context, Artikel article) {
-  return Card(
-    elevation: 3,
-    shape: RoundedRectangleBorder(
+  return Container(
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16.0),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(height: 8),
-        ListTile(
-          // leading: Icon(
-          //   Icons.article,
-          //   color: Color.fromARGB(255, 28, 140, 36),
-          //   size: 30,
-          // ),
-          title: Text(
-            article.nama,
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontFamily: "Poppins",
-                fontSize: 14),
-          ),
-          subtitle: Text(
-            article.desc,
-            maxLines: 2, // membatasi subtitle pada satu baris
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontFamily: "Poppins", fontSize: 11),
-          ),
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 100,
-              height: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16.0),
-                child: Image.asset(
-                  'assets/images/logo.png', // Replace with the actual path of your image asset
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(width: 16.0),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(top: 10, right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text(
-                        article.nama,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Poppins",
-                            fontSize: 14
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 4,),
-                    Text(
-                      'tanggal',
-                      style: TextStyle(
-                          fontSize: 11.0,
-                          fontFamily: "Poppins",
-                          color: Colors.black38,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ArticleWebView(
-                              url: article.link,
-                              id: article.idKategori,
-                            )));
-              },
-            ),
-          ],
-        ),
-        Positioned(
-          bottom: -3,
-          right: 12.0,
-          child: TextButton(
-            onPressed: () {
-            },
-            child: Text(
-              'Baca Lebih Lanjut',
-              style: TextStyle(
-                  color: Color.fromARGB(255, 154, 191, 21),
-                  decoration: TextDecoration.underline,
-                  fontFamily: "Poppins",
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-          ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          spreadRadius: 0.01,
+          blurRadius: 6,
+          offset: Offset(0, 0),
         ),
       ],
+    ),
+    child: Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Stack(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: 100,
+                height: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: Image.asset(
+                    'assets/images/logo.png', // Replace with the actual path of your image asset
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(width: 16.0),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(top: 10, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: 200,
+                        child: Text(
+                          article.nama,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromARGB(204, 25, 25, 27),
+                              fontFamily: "Poppins",
+                              fontSize: 13),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'tanggal',
+                        style: TextStyle(fontSize: 10.0, fontFamily: "Poppins"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: -5,
+            right: 8.0,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'Baca Lebih Lanjut',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 154, 191, 21),
+                    fontFamily: "Poppins",
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
 
 Widget _buildMateriItem(BuildContext context, Materi materi) {
-  return Card(
-    elevation: 3,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.0),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(height: 8),
-        ListTile(
-          leading: Icon(
-            Icons.play_arrow,
-            color: Color.fromARGB(255, 28, 140, 36),
-            size: 40,
-          ),
-          title: Text(
-            materi.nama,
-            style: TextStyle(
-                fontFamily: "Poppins",
-                fontSize: 14,
-                color: Colors.black,
-                fontWeight: FontWeight.w600),
-          ),
-          subtitle: Text(
-            materi.desc,
-            maxLines: 2, //// membatasi subtitle pada satu baris
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontFamily: "Poppins",
-              fontSize: 11,
-              color: Colors.black,
-            ),
-          ),
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ViewYoutube(
+                  url: materi.link,
+                  id: materi.idKategory,
+                  desc: materi.desc,
+                  nama: materi.nama)));
+    },
+    child: Container(
+      height: 100,
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            TextButton(
-              child: const Text(
-                'Tonton',
+            SizedBox(height: 8),
+            ListTile(
+              leading: Icon(
+                Icons.play_arrow_rounded,
+                color: Color.fromARGB(255, 154, 191, 21),
+                size: 40,
+              ),
+              title: Text(
+                materi.nama,
                 style: TextStyle(
                     fontFamily: "Poppins",
-                    fontSize: 11,
-                    color: Color.fromARGB(255, 28, 140, 36),
-                    fontWeight: FontWeight.bold),
+                    fontSize: 13,
+                    color: Color.fromARGB(204, 25, 25, 27),
+                    fontWeight: FontWeight.w600),
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ViewYoutube(
-                            url: materi.link,
-                            id: materi.idKategory,
-                            desc: materi.desc,
-                            nama: materi.nama)));
-              },
+              subtitle: Text(
+                "Oleh Eling",
+                maxLines: 2, //// membatasi subtitle pada satu baris
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 11,
+                  color: Colors.black,
+                ),
+              ),
             ),
           ],
         ),
@@ -378,87 +372,98 @@ Widget _buildMateriItem(BuildContext context, Materi materi) {
   // );
 }
 
-Widget _buildKategoriItem(BuildContext context, Datum kategori) {
-  return Container(
-    padding: EdgeInsets.only(left: 10),
-    child: Column(
-      children: [
-        SizedBox(height: 8),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NewsListPage(
-                  id: kategori.id,
-                ),
+Widget _buildKategori(BuildContext context, Datum kategori) {
+  return Card(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+    child: SizedBox(
+      height: 175, // Set the height of the card here
+      child: Stack(
+        children: [
+          // Image
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.asset(
+                "assets/images/gunung.png",
+                fit: BoxFit.cover,
               ),
             ),
-            subtitle: Column(
+          ),
+
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.40),
+                  borderRadius: BorderRadius.circular(
+                      16.0) // Adjust the opacity as desired
+                  ),
+            ),
+          ),
+
+          // Name and tema
+          Positioned(
+            top: 13,
+            left: 25,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                    children: <TextSpan>[
-                      // TextSpan(
-                      //   text: kategori.desc,
-                      //   style: TextStyle(
-                      //       fontSize: 12,
-                      //       fontFamily: "Poppins",
-                      //       color: Colors.white),
-                      // ),
-                    ],
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  kategori.jenisKategori,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                SizedBox(height: 4),
+                Container(
+                  width: 300,
+                  height: 100,
+                  child: Text(
+                    "Kamu bisa membaca atau menonton konten adukasi yang kami siapkan khusus untukmu.",
+                    style: const TextStyle(
+                      fontSize: 13.0,
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                    ),
                   ),
                 ),
               ],
             ),
-            child: Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              child: SizedBox(
-                width: 200,
-                height: 175,
-                child: Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16.0),
-                        topRight: Radius.circular(16.0),
-                      ),
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: 100,
-                      ),
+          ),
+
+          // Rounded Button
+          Positioned(
+            bottom: 15,
+            right: 25,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Container(
+                  color: Colors.white,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 17, right: 17, top: 4, bottom: 4),
+                    child: Text(
+                      "Mulai Belajar",
+                      style: TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 154, 191, 21),
+                          fontFamily: "Poppins"),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft, // Align text to the left
-                        child: Text(
-                          kategori.jenisKategori,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 25, 25, 27),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  )),
             ),
           ),
-          SizedBox(
-            height: 10,
-          )
         ],
-      ));
+      ),
+    ),
+  );
 }
