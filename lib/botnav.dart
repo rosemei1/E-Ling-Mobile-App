@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/homepage.dart';
-import 'package:proto/topek.dart';
+import 'package:proto/list_topik.dart';
 import 'package:proto/list_pengepul.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -26,7 +26,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         page = home();
         break;
       case 1:
-        page = topikList();
+        page = ListTopik();
         break;
       case 2:
         page = pengepulList();
