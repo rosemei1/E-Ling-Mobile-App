@@ -7,6 +7,7 @@ import 'package:proto/model/artikel.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/service/kategoriservice.dart';
+import 'package:proto/service/artikelservice.dart';
 
 class home extends StatelessWidget {
   const home({super.key});
@@ -288,23 +289,32 @@ class home extends StatelessWidget {
 
             //article card
             Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-              child: FutureBuilder<String>(
-                future: DefaultAssetBundle.of(context)
-                    .loadString('assets/json/artikel.json'),
-                builder: (context, snapshot) {
-                  final List articles = parseArticles(snapshot.data);
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: articles.length,
-                    itemBuilder: (context, index) {
-                      return _buildArticleItem(context, articles[index]!);
-                    },
-                  );
-                },
-              ),
-            ),
+                margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
+                child: FutureBuilder<List<Art>>(
+                  future: ArtikelService().getArtikel(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final List<Art> material = snapshot.data!;
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: material
+                              .map((articles) =>
+                                  _buildArticleItem(context, articles))
+                              .toList(),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load data');
+                    } else {
+                      return CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.black54),
+                      );
+                    }
+                  },
+                )),
+
             SizedBox(
               height: 8,
             ),
@@ -317,31 +327,31 @@ class home extends StatelessWidget {
     );
   }
 
-  List parseKategori(String? json) {
-    if (json == null) {
-      return [];
-    }
-    final List parsed = jsonDecode(json);
-    return parsed.map((json) => Kategori.fromJson(json)).toList();
-  }
+  // List parseKategori(String? json) {
+  //   if (json == null) {
+  //     return [];
+  //   }
+  //   final List parsed = jsonDecode(json);
+  //   return parsed.map((json) => Kategori.fromJson(json)).toList();
+  // }
 
-  List parseArticles(String? json) {
-    if (json == null) {
-      return [];
-    }
-    // final List parsed = jsonDecode(json);
-    // return parsed.map((json) => Artikel.fromJson(json)).toList();
-    final List parsed = jsonDecode(json);
-    final List<Artikel> articles =
-        parsed.map((json) => Artikel.fromJson(json)).toList();
-    final List<Artikel> top3 = articles.reversed
-        .take(3)
-        .toList(); // menambahkan parameter reversed: true
-    return top3;
-  }
+  // List parseArticles(String? json) {
+  //   if (json == null) {
+  //     return [];
+  //   }
+  //   // final List parsed = jsonDecode(json);
+  //   // return parsed.map((json) => Artikel.fromJson(json)).toList();
+  //   final List parsed = jsonDecode(json);
+  //   final List<Artikel> articles =
+  //       parsed.map((json) => Artikel.fromJson(json)).toList();
+  //   final List<Artikel> top3 = articles.reversed
+  //       .take(3)
+  //       .toList(); // menambahkan parameter reversed: true
+  //   return top3;
+  // }
 }
 
-Widget _buildArticleItem(BuildContext context, Artikel article) {
+Widget _buildArticleItem(BuildContext context, Art article) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16.0),
