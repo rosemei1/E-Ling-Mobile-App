@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proto/bottombar.dart';
 import 'package:proto/list_pengepul.dart';
+import 'package:proto/model/galeri.dart';
 import 'package:proto/model/pengepul.dart';
+import 'package:proto/service/galeriservice.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPengepul extends StatefulWidget {
@@ -179,21 +181,29 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                             SizedBox(height: 8),
                             SizedBox(
                               height: 120,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      'https://eling.site/../storage/images/1685613488.jpg',
-                                      fit: BoxFit.cover,
-                                      width: 240,
-                                      height: 150,
-                                    ),
-                                  ),
-                                  SizedBox(width: 16),
-                                ],
-                              ),
+                              child: FutureBuilder<List<Gal>>(
+                                future: GaleriService().getGaleri(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    final List<Gal> material = snapshot.data!;
+                                    return SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: material
+                                            .map((galery) =>
+                                            _buildGaleriItem(context, galery))
+                                            .toList(),
+                                      ),
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return Text('Failed to load data');
+                                  } else {
+                                    return CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                                    );
+                                  }
+                                },
+                              )),
                             ),
                           ],
                         ),
@@ -269,3 +279,16 @@ Future<void> openGoogleMaps(String mapsUrl) async {
     throw 'Could not launch $mapsUrl';
   }
 }
+Widget _buildGaleriItem(BuildContext context, Gal galery) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(8),
+    child: Image.network(
+      'https://eling.site/../storage/images/1685613488.jpg',
+      fit: BoxFit.cover,
+      width: 240,
+      height: 150,
+    ),
+  ),
+}
+
+
