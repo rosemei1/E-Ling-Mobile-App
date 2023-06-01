@@ -441,7 +441,7 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
                   kategori.jenisKategori,
                   style: const TextStyle(
                     fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w900,
                     color: Colors.white,
                     fontFamily: 'Poppins',
                   ),
