@@ -70,174 +70,177 @@ class _NewsListPageState extends State<NewsListPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //card
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: FutureBuilder<List<Datum>>(
-                future: KategoriService().getKategori(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    // While waiting for the data to load, show a loading indicator
-                    return CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
-                    );
-                  } else if (snapshot.hasData) {
-                    final List<Datum> material = snapshot.data!;
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              //card
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: FutureBuilder<List<Datum>>(
+                  future: KategoriService().getKategori(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // While waiting for the data to load, show a loading indicator
+                      return CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                      );
+                    } else if (snapshot.hasData) {
+                      final List<Datum> material = snapshot.data!;
 
-                    // Filter the list based on the specific ID
-                    final filteredMaterial =
-                        material.where((item) => item.id == widget.id).toList();
+                      // Filter the list based on the specific ID
+                      final filteredMaterial =
+                          material.where((item) => item.id == widget.id).toList();
 
-                    if (filteredMaterial.isEmpty) {
-                      return Text('No data available for the specific ID');
+                      if (filteredMaterial.isEmpty) {
+                        return Text('No data available for the specific ID');
+                      }
+
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: filteredMaterial.length,
+                        itemBuilder: (context, index) {
+                          return _buildKategori(context, filteredMaterial[index]);
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load data: ${snapshot.error}');
+                    } else {
+                      return Text('No data available');
                     }
-
-                    return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: filteredMaterial.length,
-                      itemBuilder: (context, index) {
-                        return _buildKategori(context, filteredMaterial[index]);
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('Failed to load data: ${snapshot.error}');
-                  } else {
-                    return Text('No data available');
-                  }
-                },
+                  },
+                ),
               ),
-            ),
 
-            //title
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Video Materi',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900,
-                    color: Color.fromARGB(255, 154, 191, 21),
-                    fontFamily: "WorkSans",
+              //title
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                    left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Video Materi',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Color.fromARGB(255, 154, 191, 21),
+                      fontFamily: "WorkSans",
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: FutureBuilder<List<Mats>>(
-                future: MateriService().getMateri(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    // While waiting for the data to load, show a loading indicator
-                    return CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
-                    );
-                  } else if (snapshot.hasData) {
-                    final List<Mats> material = snapshot.data!;
-
-                    // Filter the list based on the specific ID
-                    final filteredMaterial = material
-                        .where(
-                            (item) => item.idKategori == widget.id.toString())
-                        .toList();
-
-                    if (filteredMaterial.isEmpty) {
-                      return Text(
-                          'No data available for the specific ID ${widget.id}');
-                    }
-
-                    return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: filteredMaterial.length,
-                      itemBuilder: (context, index) {
-                        return _buildMateriItem(
-                            context, filteredMaterial[index]);
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('Failed to load data: ${snapshot.error}');
-                  } else {
-                    return Text('No data available');
-                  }
-                },
+              SizedBox(
+                height: 15,
               ),
-            ),
-            SizedBox(height: 15),
-            //vid
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: FutureBuilder<List<Mats>>(
+                  future: MateriService().getMateri(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // While waiting for the data to load, show a loading indicator
+                      return CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                      );
+                    } else if (snapshot.hasData) {
+                      final List<Mats> material = snapshot.data!;
 
-            //artikel
-            Container(
-              margin: EdgeInsets.only(
-                  left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
-              child: const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Materi Bacaan',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900,
-                    color: Color.fromARGB(255, 154, 191, 21),
-                    fontFamily: "WorkSans",
+                      // Filter the list based on the specific ID
+                      final filteredMaterial = material
+                          .where(
+                              (item) => item.idKategori == widget.id.toString())
+                          .toList();
+
+                      if (filteredMaterial.isEmpty) {
+                        return Text(
+                            'No data available for the specific ID ${widget.id}');
+                      }
+
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: filteredMaterial.length,
+                        itemBuilder: (context, index) {
+                          return _buildMateriItem(
+                              context, filteredMaterial[index]);
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load data: ${snapshot.error}');
+                    } else {
+                      return Text('No data available');
+                    }
+                  },
+                ),
+              ),
+              SizedBox(height: 15),
+              //vid
+
+              //artikel
+              Container(
+                margin: EdgeInsets.only(
+                    left: 16.0, right: 16.0, top: 2.0, bottom: 2.0),
+                child: const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Materi Bacaan',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Color.fromARGB(255, 154, 191, 21),
+                      fontFamily: "WorkSans",
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 15),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: FutureBuilder<List<Art>>(
-                future: ArtikelService().getArtikel(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    // While waiting for the data to load, show a loading indicator
-                    return CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
-                    );
-                  } else if (snapshot.hasData) {
-                    final List<Art> material = snapshot.data!;
+              SizedBox(height: 15),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: FutureBuilder<List<Art>>(
+                  future: ArtikelService().getArtikel(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // While waiting for the data to load, show a loading indicator
+                      return CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                      );
+                    } else if (snapshot.hasData) {
+                      final List<Art> material = snapshot.data!;
 
-                    // Filter the list based on the specific ID
-                    final filteredMaterial = material
-                        .where(
-                            (item) => item.idKategori == widget.id.toString())
-                        .toList();
+                      // Filter the list based on the specific ID
+                      final filteredMaterial = material
+                          .where(
+                              (item) => item.idKategori == widget.id.toString())
+                          .toList();
 
-                    if (filteredMaterial.isEmpty) {
-                      return Text(
-                          'No data available for the specific ID ${widget.id}');
+                      if (filteredMaterial.isEmpty) {
+                        return Text(
+                            'No data available for the specific ID ${widget.id}');
+                      }
+
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: filteredMaterial.length,
+                        itemBuilder: (context, index) {
+                          return _buildArticleItem(
+                              context, filteredMaterial[index]);
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load data: ${snapshot.error}');
+                    } else {
+                      return Text('No data available');
                     }
-
-                    return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: filteredMaterial.length,
-                      itemBuilder: (context, index) {
-                        return _buildArticleItem(
-                            context, filteredMaterial[index]);
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('Failed to load data: ${snapshot.error}');
-                  } else {
-                    return Text('No data available');
-                  }
-                },
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -426,8 +429,8 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
 
           // Name and tema
           Positioned(
-            top: 13,
-            left: 25,
+            top: MediaQuery.of(context).size.height * 0.03,
+            left: MediaQuery.of(context).size.width * 0.05,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -445,8 +448,8 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
                 ),
                 SizedBox(height: 4),
                 Container(
-                  width: 300,
-                  height: 100,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.1,
                   child: Text(
                     "Kamu bisa membaca atau menonton konten adukasi yang kami siapkan khusus untukmu.",
                     style: const TextStyle(

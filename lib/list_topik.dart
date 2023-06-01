@@ -43,7 +43,7 @@ class _ListTopikState extends State<ListTopik> {
               ),
               Positioned(
                   left: 35,
-                  top: 70,
+                  top: 50,
                   child: Row(
                     children: [
                       Text(
@@ -58,7 +58,7 @@ class _ListTopikState extends State<ListTopik> {
                   )),
               Positioned(
                   left: 35,
-                  top: 105,
+                  top: 90,
                   child: Row(
                     children: [
                       Text(
@@ -72,7 +72,7 @@ class _ListTopikState extends State<ListTopik> {
                     ],
                   )),
               Positioned(
-                top: 220,
+                top: 215,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 500,
@@ -83,34 +83,36 @@ class _ListTopikState extends State<ListTopik> {
                       topRight: Radius.circular(30),
                     ),
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                          child: FutureBuilder<List<Datum>>(
-                            future: KategoriService().getKategori(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                final List<Datum> material = snapshot.data!;
-                                return ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: material.length,
-                                  itemBuilder: (context, index) {
-                                    return _buildKategoriItem(
-                                        context, material[index]);
-                                  },
-                                );
-                              } else if (snapshot.hasError) {
-                                return Text('Failed to load data');
-                              } else {
-                                return CircularProgressIndicator(
-                                  valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.black54),
-                                );
-                              }
-                            },
-                          )),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                            child: FutureBuilder<List<Datum>>(
+                              future: KategoriService().getKategori(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  final List<Datum> material = snapshot.data!;
+                                  return ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: material.length,
+                                    itemBuilder: (context, index) {
+                                      return _buildKategoriItem(
+                                          context, material[index]);
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Text('Failed to load data');
+                                } else {
+                                  return CircularProgressIndicator(
+                                    valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.black54),
+                                  );
+                                }
+                              },
+                            )),
+                      ],
+                    ),
                   ),
                 ),
               ),
