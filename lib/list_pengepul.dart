@@ -31,29 +31,27 @@ class _pengepulListState extends State<pengepulList> {
               ),
               Container(
                   child: FutureBuilder<List<Peng>>(
-                    future: PengepulService().getKategori(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final List<Peng> material = snapshot.data!;
-                        return ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: material.length,
-                          itemBuilder: (context, index) {
-                            return _buildPengepulItem(
-                                context, material[index]);
-                          },
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text('Failed to load data');
-                      } else {
-                        return CircularProgressIndicator(
-                          valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.black54),
-                        );
-                      }
-                    },
-                  )),
+                future: PengepulService().getKategori(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final List<Peng> material = snapshot.data!;
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: material.length,
+                      itemBuilder: (context, index) {
+                        return _buildPengepulItem(context, material[index]);
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Failed to load data');
+                  } else {
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                    );
+                  }
+                },
+              )),
             ],
           ),
         ),
@@ -63,8 +61,6 @@ class _pengepulListState extends State<pengepulList> {
       ),
     );
   }
-
-
 
   Widget _buildPengepulItem(BuildContext context, Peng pengepul) {
     return GestureDetector(
@@ -101,7 +97,7 @@ class _pengepulListState extends State<pengepulList> {
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.2), BlendMode.srcOver),
                       child: Image.network(
-                        pengepul.gambar,
+                        'https://eling.site/../storage/images/1685613488.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -127,7 +123,7 @@ class _pengepulListState extends State<pengepulList> {
                     children: [
                       Padding(
                         padding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

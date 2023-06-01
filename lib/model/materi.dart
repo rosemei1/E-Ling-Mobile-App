@@ -88,7 +88,7 @@ class Kategori {
         jenisKategori: json["jenis_kategori"],
         deskripsiSingkat: json["deskripsi_singkat"],
         deskripsiPanjang: json["deskripsi_panjang"],
-        foto: json["foto"],
+        foto: 'https://eling.site/storage/images/${json["foto"]}',
       );
 
   Map<String, dynamic> toJson() => {

@@ -57,7 +57,7 @@ class Art {
         tanggal: json["tanggal"],
         link: json["link"],
         sumber: json["sumber"],
-        foto: json["foto"],
+        foto: 'https://eling.site/storage/images/${json["foto"]}',
         idKategori: json["id_kategori"],
         kategori: Kategori.fromJson(json["kategori"]),
       );

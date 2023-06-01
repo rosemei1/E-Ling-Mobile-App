@@ -16,12 +16,12 @@ class Pengepul {
   });
 
   factory Pengepul.fromJson(Map<String, dynamic> json) => Pengepul(
-    data: List<Peng>.from(json["data"].map((x) => Peng.fromJson(x))),
-  );
+        data: List<Peng>.from(json["data"].map((x) => Peng.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class Peng {
@@ -46,24 +46,24 @@ class Peng {
   });
 
   factory Peng.fromJson(Map<String, dynamic> json) => Peng(
-    id: json["id"],
-    nama: json["nama"],
-    kategori: json["kategori"],
-    alamat: json["alamat"],
-    ketersediaanHari: json["ketersediaan_hari"],
-    ketersediaanJam: json["ketersediaan_jam"],
-    kontak: json["kontak"],
-    maps: json["maps"],
-  );
+        id: json["id"],
+        nama: json["nama"],
+        kategori: json["kategori"],
+        alamat: json["alamat"],
+        ketersediaanHari: json["ketersediaan_hari"],
+        ketersediaanJam: json["ketersediaan_jam"],
+        kontak: json["kontak"],
+        maps: json["maps"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "nama": nama,
-    "kategori": kategori,
-    "alamat": alamat,
-    "ketersediaan_hari": ketersediaanHari,
-    "ketersediaan_jam": ketersediaanJam,
-    "kontak": kontak,
-    "maps": maps,
-  };
+        "id": id,
+        "nama": nama,
+        "kategori": kategori,
+        "alamat": alamat,
+        "ketersediaan_hari": ketersediaanHari,
+        "ketersediaan_jam": ketersediaanJam,
+        "kontak": kontak,
+        "maps": maps,
+      };
 }
