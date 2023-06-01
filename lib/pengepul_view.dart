@@ -226,8 +226,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                         ),
                         child: GestureDetector(
                           onTap: () async {
-                            await openGoogleMaps(
-                                'https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
+                            await openGoogleMaps(widget.pengepul.maps);
                           },
                           child: Row(
                             children: [
