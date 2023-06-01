@@ -29,28 +29,38 @@ class _pengepulListState extends State<pengepulList> {
                 height: 8,
               ),
               Container(
-                  child: FutureBuilder<List<Peng>>(
-                future: PengepulService().getKategori(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final List<Peng> material = snapshot.data!;
-                    return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: material.length,
-                      itemBuilder: (context, index) {
-                        return _buildPengepulItem(context, material[index]);
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('Failed to load data');
-                  } else {
-                    return CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
-                    );
-                  }
-                },
-              )),
+                margin: EdgeInsets.symmetric(horizontal: 16.0),
+                child: FutureBuilder<List<Peng>>(
+                  future: PengepulService().getPengepul(), // Replace this line with your API call
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load data');
+                    } else if (snapshot.hasData) {
+                      final List<Peng> material = snapshot.data!;
+                      return SizedBox(
+                        width: 700,
+                        height: 700,
+                        child: GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.86,
+                          ),
+                          itemCount: material.length,
+                          itemBuilder: (context, index) {
+                            return _buildPengepulItem(context, material[index]);
+                          },
+                        ),
+                      );
+                    } else {
+                      return Text('No data available');
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ),
@@ -91,12 +101,14 @@ class _pengepulListState extends State<pengepulList> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8)),
+                        topRight: Radius.circular(8)
+                    ),
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.2), BlendMode.srcOver),
+                          Colors.black.withOpacity(0.2),
+                          BlendMode.srcOver),
                       child: Image.network(
-                        pengepul.gambar,
+                        "http://eling.site/storage/images/1685614170.jpg",
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -116,37 +128,36 @@ class _pengepulListState extends State<pengepulList> {
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
                           bottomLeft: Radius.circular(8),
-                          bottomRight: Radius.circular(8))),
+                          bottomRight: Radius.circular(8)
+                      )
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 8,
-                            ),
+                            SizedBox(height: 8,),
                             Text(
                               pengepul.nama,
                               style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
+
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(
-                              height: 6,
-                            ),
+                            SizedBox(height: 6,),
                             Text(
                               pengepul.kategori,
                               style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontSize: 10,
+
                               ),
                             ),
                           ],

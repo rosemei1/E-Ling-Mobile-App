@@ -32,7 +32,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.2), BlendMode.srcOver),
                   child: Image.network(
-                    widget.pengepul.gambar,
+                    "http://eling.site/storage/images/1685614170.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -185,7 +185,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.network(
-                                      widget.pengepul.gambar,
+                                      "http://eling.site/storage/images/1685614170.jpg",
                                       fit: BoxFit.cover,
                                       width: 240,
                                       height: 150,
