@@ -3,6 +3,8 @@ import 'package:proto/bottombar.dart';
 import 'package:proto/list_pengepul.dart';
 import 'package:proto/model/pengepul.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:proto/model/galeri.dart';
+import 'package:proto/service/galeriservice.dart';
 
 class DetailPengepul extends StatefulWidget {
   final Peng pengepul;
@@ -31,9 +33,27 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.2), BlendMode.srcOver),
-                  child: Image.network(
-                    "http://eling.site/storage/images/1685614170.jpg",
-                    fit: BoxFit.cover,
+                  child: FutureBuilder<List<Gal>>(
+                    future: GaleriService().getGaleri(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final List<Gal> galeriList = snapshot.data!;
+                        final galeri = galeriList.firstWhere(
+                              (galeri) => galeri.pengepulId == widget.pengepul.id.toString(),
+                          orElse: () => Gal(id: 0, pengepulId: '', foto: '', createdAt: DateTime.now(), updatedAt: DateTime.now()), // Provide a default empty Gal object if no match is found
+                        );
+                        return Image.network(
+                          galeri.foto,
+                          fit: BoxFit.cover,
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('Failed to load galeri data');
+                      } else {
+                        return CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                        );
+                      }
+                    },
                   ),
                 ),
               ),
@@ -84,7 +104,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                 top: 230,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 500,
+                  height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -177,22 +197,33 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                               ),
                             ),
                             SizedBox(height: 8),
-                            SizedBox(
-                              height: 120,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      "http://eling.site/storage/images/1685614170.jpg",
-                                      fit: BoxFit.cover,
-                                      width: 240,
-                                      height: 150,
-                                    ),
-                                  ),
-                                  SizedBox(width: 16),
-                                ],
+                            Container(
+                              child: FutureBuilder<List<Gal>>(
+                                future: GaleriService().getGaleri(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    final List<Gal> gallery = snapshot.data!;
+                                    // Filter the gallery items based on a specific ID
+                                    final filteredGallery = gallery.where((galeri) => galeri.pengepulId == widget.pengepul.id.toString()).toList();
+                                    return SizedBox(
+                                      height: 120,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: filteredGallery.length,
+                                        itemBuilder: (context, index) {
+                                          final galeri = filteredGallery[index];
+                                          return _buildGaleriItem(context, galeri);
+                                        },
+                                      ),
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return Text('Failed to load data');
+                                  } else {
+                                    return CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                                    );
+                                  }
+                                },
                               ),
                             ),
                           ],
@@ -227,7 +258,8 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                         child: GestureDetector(
                           onTap: () async {
                             await openGoogleMaps(
-                                'https://maps.app.goo.gl/EMPTnfmtbtmYfSt87');
+                                widget.pengepul.maps
+                            );
                           },
                           child: Row(
                             children: [
@@ -270,3 +302,19 @@ Future<void> openGoogleMaps(String mapsUrl) async {
     throw 'Could not launch $mapsUrl';
   }
 }
+
+Widget _buildGaleriItem(BuildContext context, Gal galeri) {
+  return Padding(
+    padding: EdgeInsets.only(right: 16.0),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.network(
+        galeri.foto,
+        fit: BoxFit.cover,
+        width: 240,
+        height: 150,
+      ),
+    ),
+  );
+}
+

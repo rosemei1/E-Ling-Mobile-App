@@ -42,7 +42,7 @@ class Gal {
   factory Gal.fromJson(Map<String, dynamic> json) => Gal(
     id: json["id"],
     pengepulId: json["pengepul_id"],
-    foto: json["foto"],
+    foto: 'https://eling.site/storage/images/${json["foto"]}',
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
   );

@@ -8,6 +8,7 @@ import 'package:proto/service/artikelservice.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/service/kategoriservice.dart';
+import 'package:proto/artikel_view.dart';
 
 class home extends StatelessWidget {
   const home({super.key});
@@ -350,87 +351,83 @@ class home extends StatelessWidget {
 }
 
 Widget _buildArticleItem(BuildContext context, Art article) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16.0),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.05),
-          spreadRadius: 0.01,
-          blurRadius: 6,
-          offset: Offset(0, 0),
-        ),
-      ],
-    ),
-    child: Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ViewArtikel(
+                artikel: article,
+              )));
+    },
+    child: Container(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Stack(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: 100,
-                height: 100,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: Image.network(
-                    article
-                        .foto, // Replace with the actual path of your image asset
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              SizedBox(width: 16.0),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.only(top: 10, right: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        width: 200,
-                        child: Text(
-                          article.nama,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromARGB(204, 25, 25, 27),
-                              fontFamily: "Poppins",
-                              fontSize: 13),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        article.tanggal,
-                        style: TextStyle(fontSize: 10.0, fontFamily: "Poppins"),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: -5,
-            right: 8.0,
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'Baca Lebih Lanjut',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 154, 191, 21),
-                    fontFamily: "Poppins",
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            spreadRadius: 0.01,
+            blurRadius: 6,
+            offset: Offset(0, 0),
           ),
         ],
+      ),
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Stack(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: 100,
+                  height: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.network(
+                      article
+                          .foto, // Replace with the actual path of your image asset
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 10, right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: 200,
+                          child: Text(
+                            article.nama,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromARGB(204, 25, 25, 27),
+                                fontFamily: "Poppins",
+                                fontSize: 13),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          article.tanggal,
+                          style:
+                          TextStyle(fontSize: 10.0, fontFamily: "Poppins"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );
