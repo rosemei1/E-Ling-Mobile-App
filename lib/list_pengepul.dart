@@ -13,7 +13,6 @@ import 'list_artikel.dart';
 
 class pengepulList extends StatefulWidget {
   const pengepulList({Key? key}) : super(key: key);
-
   @override
   State<pengepulList> createState() => _pengepulListState();
 }
@@ -97,7 +96,7 @@ class _pengepulListState extends State<pengepulList> {
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.2), BlendMode.srcOver),
                       child: Image.network(
-                        'https://eling.site/../storage/images/1685613488.jpg',
+                        pengepul.gambar,
                         fit: BoxFit.cover,
                       ),
                     ),

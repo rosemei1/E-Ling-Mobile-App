@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:proto/model/pengepul.dart';
 
 class PengepulService {
-  Future<List<Peng>> getKategori() async {
+  Future<List<Peng>> getPengepul() async {
     final response =
-    await http.get(Uri.parse('https://eling.site/api/pengepul'));
+        await http.get(Uri.parse('https://eling.site/api/pengepul'));
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       return (jsonData['data'] as List)
