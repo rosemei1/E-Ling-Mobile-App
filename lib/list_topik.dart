@@ -88,29 +88,29 @@ class _ListTopikState extends State<ListTopik> {
                       children: [
                         Container(
                             child: FutureBuilder<List<Datum>>(
-                              future: KategoriService().getKategori(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  final List<Datum> material = snapshot.data!;
-                                  return ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: material.length,
-                                    itemBuilder: (context, index) {
-                                      return _buildKategoriItem(
-                                          context, material[index]);
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Text('Failed to load data');
-                                } else {
-                                  return CircularProgressIndicator(
-                                    valueColor:
-                                    AlwaysStoppedAnimation<Color>(Colors.black54),
-                                  );
-                                }
-                              },
-                            )),
+                          future: KategoriService().getKategori(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              final List<Datum> material = snapshot.data!;
+                              return ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: material.length,
+                                itemBuilder: (context, index) {
+                                  return _buildKategoriItem(
+                                      context, material[index]);
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('Failed to load data');
+                            } else {
+                              return CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.black54),
+                              );
+                            }
+                          },
+                        )),
                       ],
                     ),
                   ),
@@ -130,92 +130,104 @@ class _ListTopikState extends State<ListTopik> {
 Widget _buildKategoriItem(BuildContext context, Datum kategori) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-    child: Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          right: 8,
-          left: 8,
-          top: 6,
-          bottom: 6,
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NewsListPage(
+              id: kategori.id,
+            ),
+          ),
+        );
+      },
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
         ),
-        child: Row(
-          children: [
-            Card(
-              child: Container(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    kategori.foto,
-                    width: 120,
-                    height: 90,
-                    fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            right: 8,
+            left: 8,
+            top: 6,
+            bottom: 6,
+          ),
+          child: Row(
+            children: [
+              Card(
+                child: Container(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      kategori.foto,
+                      width: 120,
+                      height: 90,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      kategori.jenisKategori,
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 10,
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 8,
                       ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      kategori.jenisKategori,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Poppins",
-                        fontSize: 14,
+                      Text(
+                        kategori.jenisKategori,
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                    Text(
-                      kategori.deskripsiSingkat,
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 11,
+                      SizedBox(
+                        height: 8,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width:
-                                (MediaQuery.of(context).size.width - 100) / 3,
-                          ),
-                          const Text(
-                            'Pelajari',
-                            style: TextStyle(
-                              fontFamily: "Poppins",
-                              fontSize: 10,
-                              color: Color.fromARGB(255, 28, 140, 36),
-                              fontWeight: FontWeight.bold,
+                      Text(
+                        kategori.jenisKategori,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Poppins",
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        kategori.deskripsiSingkat,
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 11,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width:
+                                  (MediaQuery.of(context).size.width - 100) / 3,
                             ),
-                          ),
-                        ],
+                            const Text(
+                              'Pelajari',
+                              style: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 10,
+                                color: Color.fromARGB(255, 28, 140, 36),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ),
