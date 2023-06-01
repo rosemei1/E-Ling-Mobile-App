@@ -320,21 +320,6 @@ Widget _buildArticleItem(BuildContext context, Art article) {
                 ),
               ],
             ),
-            Positioned(
-              bottom: -5,
-              right: 8.0,
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Baca Lebih Lanjut',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 154, 191, 21),
-                      fontFamily: "Poppins",
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
           ],
         ),
       ),

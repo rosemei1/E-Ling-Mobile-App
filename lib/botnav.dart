@@ -109,8 +109,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             buildNavigationItem(Icons.home_outlined, 'Home', 0),
-            buildNavigationItem(Icons.article_outlined, 'Articles', 1),
-            buildNavigationItem(Icons.location_on_outlined, 'Locations', 2),
+            buildNavigationItem(Icons.article_outlined, 'Materi', 1),
+            buildNavigationItem(Icons.location_on_outlined, 'Pengepul', 2),
           ],
         ),
       ),

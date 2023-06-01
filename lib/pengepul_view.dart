@@ -5,9 +5,9 @@ import 'package:proto/model/pengepul.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPengepul extends StatefulWidget {
-  final Pengepul pengepul;
+  final Peng pengepul;
 
-  const DetailPengepul({super.key, required this.pengepul});
+  const DetailPengepul({required this.pengepul});
 
   @override
   _ViewDetailPengepul createState() => _ViewDetailPengepul();
@@ -63,7 +63,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.pengepul.jenis,
+                      widget.pengepul.kategori,
                       style: const TextStyle(
                           fontSize: 24.0,
                           color: Colors.white,
@@ -126,7 +126,14 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                             ),
                             SizedBox(height: 6),
                             Text(
-                              widget.pengepul.ketersediaan,
+                              widget.pengepul.ketersediaanHari,
+                              style: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              widget.pengepul.ketersediaanJam,
                               style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontSize: 12,

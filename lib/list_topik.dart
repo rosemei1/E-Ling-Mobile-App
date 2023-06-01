@@ -4,6 +4,7 @@ import 'package:proto/bottombar.dart';
 import 'package:proto/model/kategori.dart';
 import 'package:proto/service/kategoriservice.dart';
 import 'package:proto/web_view.dart';
+import 'package:proto/botnav.dart';
 
 import 'list_artikel.dart';
 
@@ -18,128 +19,107 @@ class _ListTopikState extends State<ListTopik> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        child: Stack(
-          children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              child: Container(
-                width: double.maxFinite,
-                height: 280,
-                child: ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.5), BlendMode.srcOver),
-                  child: Image.asset(
-                    'assets/images/jambangan.jpg',
-                    fit: BoxFit.cover,
+      body: SafeArea(
+        child: Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          child: Stack(
+            children: [
+              Positioned(
+                left: 0,
+                right: 0,
+                child: Container(
+                  width: double.maxFinite,
+                  height: 280,
+                  child: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.5), BlendMode.srcOver),
+                    child: Image.asset(
+                      'assets/images/jambangan.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-                left: 30,
-                top: 50,
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        color: Colors.white,
-                        child: IconButton(
-                          color: Color.fromARGB(255, 154, 191, 21),
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {},
-                        ),
+              Positioned(
+                  left: 35,
+                  top: 70,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Materi Belajar',
+                        style: const TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'Poppins'),
                       ),
+                    ],
+                  )),
+              Positioned(
+                  left: 35,
+                  top: 105,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Kami menyediakan materi dan kurikulum \nbelajar tentang waste management dan \nlingkungan untuk kalian',
+                        style: const TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'Poppins'),
+                      ),
+                    ],
+                  )),
+              Positioned(
+                top: 220,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 500,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
-                  ],
-                )),
-            Positioned(
-                left: 35,
-                top: 120,
-                child: Row(
-                  children: [
-                    Text(
-                      'Materi Belajar',
-                      style: const TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'Poppins'),
-                    ),
-                  ],
-                )),
-            Positioned(
-                left: 35,
-                top: 155,
-                child: Row(
-                  children: [
-                    Text(
-                      'Kami menyediakan materi dan kurikulum \nbelajar tentang waste management dan \nlingkungan untuk kalian',
-                      style: const TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'Poppins'),
-                    ),
-                  ],
-                )),
-            Positioned(
-              top: 260,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 500,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                          child: FutureBuilder<List<Datum>>(
+                            future: KategoriService().getKategori(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final List<Datum> material = snapshot.data!;
+                                return ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: material.length,
+                                  itemBuilder: (context, index) {
+                                    return _buildKategoriItem(
+                                        context, material[index]);
+                                  },
+                                );
+                              } else if (snapshot.hasError) {
+                                return Text('Failed to load data');
+                              } else {
+                                return CircularProgressIndicator(
+                                  valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.black54),
+                                );
+                              }
+                            },
+                          )),
+                    ],
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Container(
-                        child: FutureBuilder<List<Datum>>(
-                      future: KategoriService().getKategori(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          final List<Datum> material = snapshot.data!;
-                          // return SingleChildScrollView(
-                          //   scrollDirection: Axis.horizontal,
-                          //   child: Row(
-                          //     children: material
-                          //         .map((kategori) =>
-                          //             _buildKategoriItem(context, kategori))
-                          //         .toList(),
-                          //   ),
-                          return ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: material.length,
-                            itemBuilder: (context, index) {
-                              return _buildKategoriItem(
-                                  context, material[index]);
-                            },
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text('Failed to load data');
-                        } else {
-                          return CircularProgressIndicator(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.black54),
-                          );
-                        }
-                      },
-                    )),
-                  ],
-                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 1,
       ),
     );
   }
