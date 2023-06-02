@@ -202,26 +202,6 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                           fontSize: 11,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width:
-                                  (MediaQuery.of(context).size.width - 100) / 3,
-                            ),
-                            const Text(
-                              'Pelajari',
-                              style: TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 10,
-                                color: Color.fromARGB(255, 28, 140, 36),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),

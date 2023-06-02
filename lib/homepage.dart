@@ -1,8 +1,9 @@
 import 'dart:convert';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/botnav.dart';
 import 'package:proto/list_artikel.dart';
+import 'package:proto/list_pengepul.dart';
 import 'package:proto/model/artikel.dart';
 import 'package:proto/service/artikelservice.dart';
 import 'package:proto/web_view.dart';
@@ -111,7 +112,12 @@ class home extends StatelessWidget {
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
-                                onPressed: () {/* ... */},
+                                onPressed: () {
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(builder: (context)=>pengepulList()
+                                      )
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -240,28 +246,33 @@ class home extends StatelessWidget {
                       ),
                     ),
 
-                    // Rounded Button
                     Positioned(
                       bottom: 15,
                       right: 25,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Container(
+                      child: GestureDetector(
+                        onTap: () {
+                          const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScb8a3kF8MmJN9VcwbmMdjYmmoFlL0dE2fkfiQbn30kzdNQXg/viewform';
+                          launch(googleFormUrl);
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Container(
                             color: Colors.white,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12.0, vertical: 6.0),
+                            padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 15, right: 15, top: 3, bottom: 3),
+                              padding: EdgeInsets.only(left: 15, right: 15, top: 3, bottom: 3),
                               child: Text(
                                 "Ikuti Survey",
                                 style: TextStyle(
-                                    fontSize: 11.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 154, 191, 21),
-                                    fontFamily: "Poppins"),
+                                  fontSize: 11.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 154, 191, 21),
+                                  fontFamily: "Poppins",
+                                ),
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],

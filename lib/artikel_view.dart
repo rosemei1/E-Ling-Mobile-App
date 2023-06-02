@@ -95,8 +95,8 @@ class _ViewArtikelState extends State<ViewArtikel> {
                       padding: EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/logo.png', // change this to your image path
+                        child: Image.network(
+                         widget.artikel.foto, // change this to your image path
                           width: 150, // set the width and height of the imag
                         ), //ganti image
                       ),
