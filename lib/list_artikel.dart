@@ -403,7 +403,7 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
       borderRadius: BorderRadius.circular(16.0),
     ),
     child: SizedBox(
-      height: 175, // Set the height of the card here
+      height:  175.0 + (MediaQuery.of(context).size.height * 0.045), // Set the height of the card here
       child: Stack(
         children: [
           // Image
@@ -448,10 +448,10 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
                 ),
                 SizedBox(height: 4),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.78,
                   height: MediaQuery.of(context).size.height * 0.1,
                   child: Text(
-                    "Kamu bisa membaca atau menonton konten adukasi yang kami siapkan khusus untukmu.",
+                    kategori.deskripsiPanjang,
                     style: const TextStyle(
                       fontSize: 13.0,
                       color: Colors.white,
@@ -465,8 +465,8 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
 
           // Rounded Button
           Positioned(
-            bottom: 15,
-            right: 25,
+            bottom: MediaQuery.of(context).size.height * 0.02,
+            right: MediaQuery.of(context).size.width * 0.06,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               child: Container(

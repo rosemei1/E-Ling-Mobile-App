@@ -395,13 +395,15 @@ Widget _buildArticleItem(BuildContext context, Art article) {
               children: <Widget>[
                 Container(
                   width: 100,
-                  height: 100,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Image.network(
-                      article
-                          .foto, // Replace with the actual path of your image asset
-                      fit: BoxFit.cover,
+                  height:100,
+                  child: Flexible(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image.network(
+                        article
+                            .foto, // Replace with the actual path of your image asset
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

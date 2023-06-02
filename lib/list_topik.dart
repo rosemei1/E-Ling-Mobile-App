@@ -110,7 +110,10 @@ class _ListTopikState extends State<ListTopik> {
                               );
                             }
                           },
-                        )),
+                        ),),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                        )
                       ],
                     ),
                   ),
@@ -174,11 +177,11 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 8,
-                      ),
+                      // SizedBox(
+                      //   height: 8,
+                      // ),
                       Text(
-                        kategori.jenisKategori,
+                        kategori.deskripsiSingkat,
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontSize: 10,
@@ -187,16 +190,19 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                       SizedBox(
                         height: 8,
                       ),
-                      Text(
-                        kategori.jenisKategori,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontFamily: "Poppins",
-                          fontSize: 14,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.42,
+                        child: Text(
+                          kategori.jenisKategori,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Poppins",
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                       Text(
-                        kategori.deskripsiSingkat,
+                        "ini pan....",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontSize: 11,
