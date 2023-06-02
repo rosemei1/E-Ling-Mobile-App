@@ -126,9 +126,10 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                                   handleColor: Colors.green,
                                 ),
                               ),
-                              FullScreenButton(),
+
                               RemainingDuration(),
-                              PlaybackSpeedButton()
+                              // PlaybackSpeedButton(),
+                              // FullScreenButton()
                             ],
                           ),
                         ),
