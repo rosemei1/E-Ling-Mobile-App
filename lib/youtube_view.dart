@@ -26,6 +26,8 @@ class _ViewYoutubeState extends State<ViewYoutube> {
       initialVideoId: videoID!,
       flags: const YoutubePlayerFlags(
         autoPlay: false,
+        mute: false,
+        loop: true,
       ),
     );
     super.initState();
@@ -50,13 +52,7 @@ class _ViewYoutubeState extends State<ViewYoutube> {
         leading: IconButton(
           color: Color.fromARGB(255, 154, 191, 21),
           icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => NewsListPage(id: widget.id)),
-            );
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: SingleChildScrollView(
@@ -94,20 +90,47 @@ class _ViewYoutubeState extends State<ViewYoutube> {
                       padding: EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: YoutubePlayer(
-                          controller: _controller,
-                          showVideoProgressIndicator: true,
-                          onReady: () => debugPrint('Ready'),
-                          bottomActions: [
-                            CurrentPosition(),
-                            ProgressBar(
-                              isExpanded: true,
-                              colors: const ProgressBarColors(
-                                playedColor: Colors.green,
-                                handleColor: Colors.green,
+                        child: GestureDetector(
+                          onDoubleTapDown: (details) {
+                            // Get the position of the tap
+                            final doubleTapPosition = details.localPosition.dx;
+
+                            // Get the width of the player
+                            final playerWidth = MediaQuery.of(context).size.width;
+
+                            // Calculate the time to be skipped based on the tap position
+                            final skipDuration = const Duration(seconds: 10);
+
+                            // Check if the tap is on the left or right side of the player
+                            if (doubleTapPosition <= playerWidth / 2) {
+                              // Skip backward
+                              _controller.seekTo(_controller.value.position - skipDuration);
+                            } else {
+                              // Skip forward
+                              _controller.seekTo(_controller.value.position + skipDuration);
+                            }
+                          },
+                          child: YoutubePlayer(
+                            controller: _controller,
+                            showVideoProgressIndicator: true,
+                            onReady: () {
+                              debugPrint('Player is ready');
+                              _controller.play();
+                            },
+                            bottomActions: [
+                              CurrentPosition(),
+                              ProgressBar(
+                                isExpanded: true,
+                                colors: const ProgressBarColors(
+                                  playedColor: Colors.green,
+                                  handleColor: Colors.green,
+                                ),
                               ),
-                            ),
-                          ],
+                              FullScreenButton(),
+                              RemainingDuration(),
+                              PlaybackSpeedButton()
+                            ],
+                          ),
                         ),
                       ),
                     ),

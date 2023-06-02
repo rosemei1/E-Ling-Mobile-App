@@ -368,7 +368,7 @@ Widget _buildMateriItem(BuildContext context, Mats materi) {
                     fontWeight: FontWeight.w600),
               ),
               subtitle: Text(
-                "Oleh Eling",
+                materi.sumber,
                 maxLines: 2, //// membatasi subtitle pada satu baris
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
