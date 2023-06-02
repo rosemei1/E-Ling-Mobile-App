@@ -23,6 +23,22 @@ class _pengepulListState extends State<pengepulList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: const Text(
+            "Pengepul",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 154, 191, 21),
+              fontFamily: "WorkSans",
+              fontSize: 22,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(

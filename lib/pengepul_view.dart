@@ -90,13 +90,16 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                           fontWeight: FontWeight.w800,
                           fontFamily: 'Poppins'),
                     ),
-                    Text(
-                      widget.pengepul.nama,
-                      style: const TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'Poppins'),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: Text(
+                        widget.pengepul.nama,
+                        style: const TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'Poppins'),
+                      ),
                     ),
                   ],
                 )),
@@ -106,7 +109,7 @@ class _ViewDetailPengepul extends State<DetailPengepul> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 255, 250, 244),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),

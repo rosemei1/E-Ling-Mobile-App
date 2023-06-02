@@ -35,7 +35,7 @@ class _ListTopikState extends State<ListTopik> {
                     colorFilter: ColorFilter.mode(
                         Colors.black.withOpacity(0.5), BlendMode.srcOver),
                     child: Image.asset(
-                      'assets/images/jambangan.jpg',
+                      'assets/images/globe.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -77,7 +77,7 @@ class _ListTopikState extends State<ListTopik> {
                   width: MediaQuery.of(context).size.width,
                   height: 500,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 255, 250, 244),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),

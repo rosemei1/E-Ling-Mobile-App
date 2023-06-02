@@ -410,8 +410,8 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
-              child: Image.asset(
-                "assets/images/gunung.png",
+              child: Image.network(
+                kategori.foto,
                 fit: BoxFit.cover,
               ),
             ),
@@ -484,7 +484,8 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
                           color: Color.fromARGB(255, 154, 191, 21),
                           fontFamily: "Poppins"),
                     ),
-                  )),
+                  )
+              ),
             ),
           ),
         ],
