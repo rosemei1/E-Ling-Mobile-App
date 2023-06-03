@@ -296,13 +296,13 @@ class home extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 15,
-          ),
+          // SizedBox(
+          //   height: 15,
+          // ),
 
           //article card
             Container(
-              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
+              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 2.0),
               child: FutureBuilder<List<Art>>(
                 future: ArtikelService().getArtikel(), // Call your API to fetch the articles
                 builder: (context, snapshot) {
@@ -403,11 +403,14 @@ Widget _buildArticleItem(BuildContext context, Art article) {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Flexible(
+                Container(
+                  width: 100,
+                  height: 100,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.network(
-                      article.foto,
+                      article
+                          .foto, // Replace with the actual path of your image asset
                       fit: BoxFit.cover,
                     ),
                   ),
