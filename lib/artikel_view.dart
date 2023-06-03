@@ -124,15 +124,19 @@ class _ViewArtikelState extends State<ViewArtikel> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      "Sumber : "+widget.artikel.sumber,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                  ),
                   ListTile(
-                    title: Text('Deskripsi',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 154, 191, 21),
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Poppins",
-                        )),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -150,9 +154,11 @@ class _ViewArtikelState extends State<ViewArtikel> {
                                   fontFamily: "Poppins",
                                 ),
                               ),
+
                             ],
                           ),
                         ),
+                        SizedBox(height: 15,)
                       ],
                     ),
                   ),
