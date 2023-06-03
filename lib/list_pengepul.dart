@@ -39,49 +39,37 @@ class _pengepulListState extends State<pengepulList> {
         ),
         backgroundColor: Colors.transparent,
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 8,
+      body: FutureBuilder<List<Peng>>(
+        future: PengepulService().getPengepul(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.04), // Ubah margin horizontal sesuai preferensi
-                child: FutureBuilder<List<Peng>>(
-                  future: PengepulService().getPengepul(), // Replace this line with your API call
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Text('Failed to load data');
-                    } else if (snapshot.hasData) {
-                      final List<Peng> material = snapshot.data!;
-                      return SizedBox(
-                        width: MediaQuery.of(context).size.width * 1,
-                        height: MediaQuery.of(context).size.height * 1,
-                        child: GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.9,
-                          ),
-                          itemCount: material.length,
-                          itemBuilder: (context, index) {
-                            return _buildPengepulItem(context, material[index]);
-                          },
-                        ),
-                      );
-                    } else {
-                      return Text('No data available');
-                    }
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Failed to load data'),
+            );
+          } else if (snapshot.hasData) {
+            final List<Peng> material = snapshot.data!;
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.9,
+              ),
+              itemCount: material.length,
+              itemBuilder: (context, index) {
+                return _buildPengepulItem(context, material[index]);
+              },
+            );
+          } else {
+            return Center(
+              child: Text('No data available'),
+            );
+          }
+        },
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: 2,

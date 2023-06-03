@@ -373,11 +373,13 @@ Widget _buildArticleItem(BuildContext context, Art article) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ViewArtikel(
-                artikel: article,
-              )));
+        context,
+        MaterialPageRoute(
+          builder: (context) => ViewArtikel(
+            artikel: article,
+          ),
+        ),
+      );
     },
     child: Container(
       decoration: BoxDecoration(
@@ -401,17 +403,12 @@ Widget _buildArticleItem(BuildContext context, Art article) {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  width: 100,
-                  height:100,
-                  child: Flexible(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: Image.network(
-                        article
-                            .foto, // Replace with the actual path of your image asset
-                        fit: BoxFit.cover,
-                      ),
+                Flexible(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.network(
+                      article.foto,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -427,19 +424,20 @@ Widget _buildArticleItem(BuildContext context, Art article) {
                           child: Text(
                             article.nama,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(204, 25, 25, 27),
-                                fontFamily: "Poppins",
-                                fontSize: 13),
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromARGB(204, 25, 25, 27),
+                              fontFamily: "Poppins",
+                              fontSize: 13,
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
+                        SizedBox(height: 5),
                         Text(
                           article.tanggal,
-                          style:
-                          TextStyle(fontSize: 10.0, fontFamily: "Poppins"),
+                          style: TextStyle(
+                            fontSize: 10.0,
+                            fontFamily: "Poppins",
+                          ),
                         ),
                       ],
                     ),
