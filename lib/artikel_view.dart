@@ -166,6 +166,7 @@ class _ViewArtikelState extends State<ViewArtikel> {
               ),
             )
           ],
+        //  IM TIRED BOSS
         ),
       ),
     );
