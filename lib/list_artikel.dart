@@ -403,7 +403,7 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
       borderRadius: BorderRadius.circular(16.0),
     ),
     child: SizedBox(
-      height:  175.0 + (MediaQuery.of(context).size.height * 0.045), // Set the height of the card here
+      height:  130.0 + (MediaQuery.of(context).size.height * 0.045), // Set the height of the card here
       child: Stack(
         children: [
           // Image
@@ -420,7 +420,7 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.40),
+                  color: Colors.black.withOpacity(0.50),
                   borderRadius: BorderRadius.circular(
                       16.0) // Adjust the opacity as desired
                   ),
@@ -464,30 +464,30 @@ Widget _buildKategori(BuildContext context, Datum kategori) {
           ),
 
           // Rounded Button
-          Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.02,
-            right: MediaQuery.of(context).size.width * 0.06,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Container(
-                  color: Colors.white,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 17, right: 17, top: 4, bottom: 4),
-                    child: Text(
-                      "Mulai Belajar",
-                      style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 154, 191, 21),
-                          fontFamily: "Poppins"),
-                    ),
-                  )
-              ),
-            ),
-          ),
+          // Positioned(
+          //   bottom: MediaQuery.of(context).size.height * 0.02,
+          //   right: MediaQuery.of(context).size.width * 0.06,
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.circular(16.0),
+          //     child: Container(
+          //         color: Colors.white,
+          //         padding:
+          //             EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+          //         child: Padding(
+          //           padding:
+          //               EdgeInsets.only(left: 17, right: 17, top: 4, bottom: 4),
+          //           child: Text(
+          //             "Mulai Belajar",
+          //             style: TextStyle(
+          //                 fontSize: 12.0,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Color.fromARGB(255, 154, 191, 21),
+          //                 fontFamily: "Poppins"),
+          //           ),
+          //         )
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     ),

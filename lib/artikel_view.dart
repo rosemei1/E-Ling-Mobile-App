@@ -79,14 +79,17 @@ class _ViewArtikelState extends State<ViewArtikel> {
                     SizedBox(
                       height: 8,
                     ),
-                    Text(
-                      widget.artikel.nama,
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        widget.artikel.nama,
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
-                      textAlign: TextAlign.left,
                     ),
                     SizedBox(
                       height: 8,
@@ -95,12 +98,25 @@ class _ViewArtikelState extends State<ViewArtikel> {
                       padding: EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                         widget.artikel.foto, // change this to your image path
-                          width: 150, // set the width and height of the imag
-                        ), //ganti image
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            final maxWidth = constraints.maxWidth;
+                            final desiredWidth = maxWidth * 1;
+                            final aspectRatio = 16 / 9;
+
+                            final calculatedHeight = desiredWidth / aspectRatio;
+
+                            return Image.network(
+                              widget.artikel.foto,
+                              width: desiredWidth,
+                              height: calculatedHeight,
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ),
                       ),
                     ),
+
                   ],
                 ),
               ),

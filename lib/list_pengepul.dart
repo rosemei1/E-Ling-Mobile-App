@@ -173,12 +173,12 @@ class _pengepulListState extends State<pengepulList> {
                       Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width * 0.05, // Ubah padding horizontal sesuai preferensi
-                          vertical: MediaQuery.of(context).size.height * 0.001, // Ubah padding vertikal sesuai preferensi
+                          vertical: MediaQuery.of(context).size.height * 0.0001, // Ubah padding vertikal sesuai preferensi
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 8,),
+                            SizedBox(height: 5,),
                             Text(
                               pengepul.nama,
                               style: TextStyle(
@@ -190,7 +190,7 @@ class _pengepulListState extends State<pengepulList> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(height: 6,),
+                            SizedBox(height: 3,),
                             Text(
                               pengepul.kategori,
                               style: TextStyle(

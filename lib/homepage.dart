@@ -301,38 +301,46 @@ class home extends StatelessWidget {
           ),
 
           //article card
-          Container(
-            margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
-            child: FutureBuilder<List<Art>>(
-              future: ArtikelService()
-                  .getArtikel(), // Call your API to fetch the articles
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  // While waiting for the data to load, show a loading indicator
-                  return CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
-                  );
-                } else if (snapshot.hasData) {
-                  final List<Art> articles = snapshot.data!;
+            Container(
+              margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 1.0),
+              child: FutureBuilder<List<Art>>(
+                future: ArtikelService().getArtikel(), // Call your API to fetch the articles
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // While waiting for the data to load, show a loading indicator
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                    );
+                  } else if (snapshot.hasData) {
+                    final List<Art> articles = snapshot.data!;
 
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: articles.length,
-                    itemBuilder: (context, index) {
-                      return _buildArticleItem(context, articles[index]);
-                    },
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('Failed to load data: ${snapshot.error}');
-                } else {
-                  return Text('No data available');
-                }
-              },
+                    // Sort the articles in descending order based on their timestamps
+                    articles.sort((a, b) => b.id.compareTo(a.id));
+
+                    // Fetch only the last 3 contents
+                    final lastThreeArticles = articles.length > 3
+                        ? articles.sublist(0, 3)
+                        : articles;
+
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: lastThreeArticles.length,
+                      itemBuilder: (context, index) {
+                        return _buildArticleItem(context, lastThreeArticles[index]);
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Failed to load data: ${snapshot.error}');
+                  } else {
+                    return Text('No data available');
+                  }
+                },
+              ),
             ),
-          ),
 
-          SizedBox(
+
+            SizedBox(
             height: 8,
           ),
           ],

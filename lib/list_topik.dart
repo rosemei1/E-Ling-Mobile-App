@@ -5,6 +5,10 @@ import 'package:proto/model/kategori.dart';
 import 'package:proto/service/kategoriservice.dart';
 import 'package:proto/web_view.dart';
 import 'package:proto/botnav.dart';
+import 'package:proto/model/materi.dart';
+import 'package:proto/model/artikel.dart';
+import 'package:proto/service/artikelservice.dart';
+import 'package:proto/service/materiservice.dart';
 
 import 'list_artikel.dart';
 
@@ -87,30 +91,65 @@ class _ListTopikState extends State<ListTopik> {
                     child: Column(
                       children: [
                         Container(
-                            child: FutureBuilder<List<Datum>>(
-                          future: KategoriService().getKategori(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              final List<Datum> material = snapshot.data!;
-                              return ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: material.length,
-                                itemBuilder: (context, index) {
-                                  return _buildKategoriItem(
-                                      context, material[index]);
-                                },
-                              );
-                            } else if (snapshot.hasError) {
-                              return Text('Failed to load data');
-                            } else {
-                              return CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.black54),
-                              );
-                            }
-                          },
-                        ),),
+                          child: FutureBuilder<List<Datum>>(
+                            future: KategoriService().getKategori(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final List<Datum> material = snapshot.data!;
+                                return FutureBuilder<List<Art>>(
+                                  future: ArtikelService().getArtikel(),
+                                  builder: (context, artikelSnapshot) {
+                                    if (artikelSnapshot.hasData) {
+                                      final List<Art> articles = artikelSnapshot.data!;
+                                      return FutureBuilder<List<Mats>>(
+                                        future: MateriService().getMateri(),
+                                        builder: (context, materiSnapshot) {
+                                          if (materiSnapshot.hasData) {
+                                            final List<Mats> materials = materiSnapshot.data!;
+                                            return ListView.builder(
+                                              physics: NeverScrollableScrollPhysics(),
+                                              shrinkWrap: true,
+                                              itemCount: material.length,
+                                              itemBuilder: (context, index) {
+                                                return _buildKategoriItem(
+                                                  context,
+                                                  material[index],
+                                                  articles,
+                                                  materials,
+                                                );
+                                              },
+                                            );
+                                          } else if (materiSnapshot.hasError) {
+                                            return Text('Failed to load data');
+                                          } else {
+                                            return CircularProgressIndicator(
+                                              valueColor: AlwaysStoppedAnimation<Color>(
+                                                Colors.black54,
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      );
+                                    } else if (artikelSnapshot.hasError) {
+                                      return Text('Failed to load data');
+                                    } else {
+                                      return CircularProgressIndicator(
+                                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                                      );
+                                    }
+                                  },
+                                );
+                              } else if (snapshot.hasError) {
+                                return Text('Failed to load data');
+                              } else {
+                                return CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black54),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.1,
                         )
@@ -130,7 +169,11 @@ class _ListTopikState extends State<ListTopik> {
   }
 }
 
-Widget _buildKategoriItem(BuildContext context, Datum kategori) {
+Widget _buildKategoriItem(BuildContext context, Datum kategori, List<Art> articles, List<Mats> materials) {
+  String idKategori = kategori.id.toString();
+  int artikelCount = countArtikel(articles, idKategori);
+  int materiCount = countMateri(materials, idKategori);
+  int result = materiCount+artikelCount;
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
     child: GestureDetector(
@@ -202,7 +245,7 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
                         ),
                       ),
                       Text(
-                        "ini pan....",
+                        "$result Materi Pembelajaran  ",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontSize: 11,
@@ -218,4 +261,14 @@ Widget _buildKategoriItem(BuildContext context, Datum kategori) {
       ),
     ),
   );
+}
+
+// Count the number of contents in Artikel with the given idKategori
+int countArtikel(List<Art> articles, String idKategori) {
+  return articles.where((art) => art.idKategori == idKategori).length;
+}
+
+// Count the number of contents in Materi with the given idKategori
+int countMateri(List<Mats> materials, String idKategori) {
+  return materials.where((mat) => mat.idKategori == idKategori).length;
 }
