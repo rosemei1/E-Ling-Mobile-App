@@ -3,6 +3,7 @@ import 'package:proto/list_artikel.dart';
 import 'package:proto/topek.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:proto/model/artikel.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class ViewArtikel extends StatefulWidget {
   //final String videoId;
@@ -139,29 +140,49 @@ class _ViewArtikelState extends State<ViewArtikel> {
                       ),
                     ),
                   ),
-                  ListTile(
-                    subtitle: Column(
+                  // ListTile(
+                  //   subtitle: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       SizedBox(height: 10),
+                  //       // RichText(
+                  //       //   textAlign: TextAlign.justify,
+                  //       //   text: TextSpan(
+                  //       //     style: TextStyle(
+                  //       //         fontSize: 15.0, color: Colors.black54),
+                  //       //     children: <TextSpan>[
+                  //       //       TextSpan(
+                  //       //         text: widget.artikel.deskripsiPanjang,
+                  //       //         style: TextStyle(
+                  //       //           fontSize: 13,
+                  //       //           fontFamily: "Poppins",
+                  //       //         ),
+                  //       //       ),
+                  //       //
+                  //       //
+                  //       //     ],
+                  //       //   ),
+                  //       // ),
+                  //
+                  //       SizedBox(height: 15,)
+                  //     ],
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 10),
-                        RichText(
-                          textAlign: TextAlign.justify,
-                          text: TextSpan(
-                            style: TextStyle(
-                                fontSize: 15.0, color: Colors.black54),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: widget.artikel.deskripsiPanjang,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: "Poppins",
-                                ),
-                              ),
-
-                            ],
-                          ),
+                        Html(
+                          data: widget.artikel.deskripsiPanjang,
+                          style: {
+                            "html": Style(
+                              fontSize: FontSize(13.0),
+                              color: Colors.black54,
+                              fontFamily: "Poppins",
+                            ),
+                          },
                         ),
-                        SizedBox(height: 15,)
                       ],
                     ),
                   ),
